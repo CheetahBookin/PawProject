@@ -3,7 +3,7 @@
 
 TBD.
 
-![Logo](http://localhost:3000/cheetahbooking-high-resolution-logo.png)
+![Logo](https://github.com/CheetahBookin/PawProject/blob/main/client/public/cheetahbooking-high-resolution-logo.png)
 
 
 
