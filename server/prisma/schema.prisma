@@ -14,7 +14,7 @@ model User {
   password  String
   profile   UserProfile?
   bookings  Bookings[]
-  roomRates RoomRates[]
+  rates    Rates[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -38,7 +38,6 @@ model Bookings {
   bookingDetails BookingDetails?
   invoice   Invoice?
   userId    Int      @unique
-  agentId   Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -78,6 +77,18 @@ model Accomodation {
   images    AccomodationImages[]
   Bookings  BookingDetails[]
   Rooms     Rooms[]
+  Rates     Rates[]
+}
+
+model Rates {
+  id        Int      @id @default(autoincrement())
+  accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
+  hotelId   Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  rate      Int
+  message  String
+  date      DateTime
 }
 
 model AccomodationImages {
@@ -90,19 +101,9 @@ model AccomodationImages {
 model Rooms {
   id        Int      @id @default(autoincrement())
   accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
-  roomRates RoomRates[]
   hotelId   Int
   roomNumber      String
-  price     Int
-}
-
-model RoomRates {
-  id        Int      @id @default(autoincrement())
-  room      Rooms    @relation(fields: [roomId], references: [id])
-  roomId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  rate      Int
-  message  String
-  date      DateTime
+  peopleCapacity  Int
+  priceForPerson     Float
+  childrenPrice   Float
 }
