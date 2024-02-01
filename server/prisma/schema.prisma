@@ -13,6 +13,8 @@ model User {
   email     String   @unique
   password  String
   profile   UserProfile?
+  bookings  Bookings[]
+  roomRates RoomRates[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -28,4 +30,79 @@ model UserProfile {
   profileImage String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Bookings {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  bookingDetails BookingDetails?
+  invoice   Invoice?
+  userId    Int      @unique
+  agentId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Invoice {
+  id        Int      @id @default(autoincrement())
+  booking   Bookings @relation(fields: [bookingId], references: [id])
+  bookingId Int     @unique
+  name      String
+  surname   String
+  address   String
+  country   String
+  city      String
+  price     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BookingDetails {
+  id        Int      @id @default(autoincrement())
+  booking   Bookings @relation(fields: [bookingId], references: [id])
+  bookingId Int     @unique
+  checkIn   DateTime
+  checkOut  DateTime
+  accomodation     Accomodation    @relation(fields: [accomodationId], references: [id])
+  accomodationId   Int
+}
+
+model Accomodation {
+  id        Int      @id @default(autoincrement())
+  name      String
+  address   String
+  country   String
+  city      String
+  type     String
+  carParkFee Float?
+  images    AccomodationImages[]
+  Bookings  BookingDetails[]
+  Rooms     Rooms[]
+}
+
+model AccomodationImages {
+  id        Int      @id @default(autoincrement())
+  accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
+  hotelId   Int
+  image     String
+}
+
+model Rooms {
+  id        Int      @id @default(autoincrement())
+  accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
+  roomRates RoomRates[]
+  hotelId   Int
+  roomNumber      String
+  price     Int
+}
+
+model RoomRates {
+  id        Int      @id @default(autoincrement())
+  room      Rooms    @relation(fields: [roomId], references: [id])
+  roomId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  rate      Int
+  message  String
+  date      DateTime
 }
