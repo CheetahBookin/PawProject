@@ -12,7 +12,7 @@ function Header() {
           <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0 gap-12">
             <li><Link className="block" href="/destinations">Destinations</Link></li>
             <li><button className="block">PLN</button></li>
-            <li><Link className="block" href="/dashboard">Konto</Link></li>
+            <li><Link className="block" href="/login">Konto</Link></li>
           </ul>
         </div>
       </nav>
