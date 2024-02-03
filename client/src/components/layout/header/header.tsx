@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Header() {
   return (
-    <header className="lg:px-16 flex py-4 shadow-md justify-between" style={{ backgroundColor: "#D89340" }}>
+    <header className="lg:px-16 flex py-4 shadow-md justify-between bg-brand-primary">
       <Link href="/">
           <img src="/cheetahbooking-high-resolution-logo.png" alt="logo" className="w-56" />
       </Link>
