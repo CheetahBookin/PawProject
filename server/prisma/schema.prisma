@@ -78,6 +78,14 @@ model Accomodation {
   Bookings  BookingDetails[]
   Rooms     Rooms[]
   Rates     Rates[]
+  BookedDates BookedDates[]
+}
+
+model BookedDates {
+  id        Int      @id @default(autoincrement())
+  accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
+  hotelId   Int
+  date      String
 }
 
 model Rates {
@@ -106,4 +114,5 @@ model Rooms {
   peopleCapacity  Int
   priceForPerson     Float
   childrenPrice   Float
+  discount   Float?
 }
