@@ -31,7 +31,7 @@ function Header() {
                 ))}
               </select>
               </li>
-            <li><Link className="block" href="/dashboard"><FontAwesomeIcon icon={faUser} className="w-6"/></Link></li>
+            <li><Link className="block" href="/login"><FontAwesomeIcon icon={faUser} className="w-6"/></Link></li>
           </ul>
         </div>
       </nav>
