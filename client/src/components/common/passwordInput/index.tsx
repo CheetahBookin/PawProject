@@ -1,8 +1,15 @@
 'use client'
 import Label from '@/components/common/label'
 import {useState} from 'react'
+import LabelCheckbox from '../labelCheckbox'
 
-function PasswordInput(){
+interface PasswordInputProps{
+    content: string
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    name: string
+}
+
+function PasswordInput({content, onChange, name}: PasswordInputProps){
     const [checked, setChecked] = useState(false)
 
     const togglePasswordVisibility = ()=>{
@@ -17,11 +24,8 @@ function PasswordInput(){
 
     return(
         <div className='flex flex-col w-full'>
-            <Label inputType={checked ? 'text' : 'password'} spanContent={'Password'}/>
-            <label>
-                <input type='checkbox' onChange={togglePasswordVisibility}/>
-                <span className='text-sm text-gray-600 pl-1'>Show password</span>
-            </label>
+            <Label inputType={checked ? 'text' : 'password'} spanContent={content} onChange={onChange} name={name}/>
+            <LabelCheckbox content='Show password' onChange={togglePasswordVisibility} name={name}/>
         </div>
     )
 }

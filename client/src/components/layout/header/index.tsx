@@ -25,12 +25,12 @@ function Header() {
           <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0 gap-12">
             <li><Link className="block" href="/destinations">Destinations</Link></li>
             <li>
-              <select>
+              <select className="appearance-none bg-brand-secondary border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                 {currency.map((item, index) => (
                   <option key={index} value={item.value}>{item.label}</option>
                 ))}
               </select>
-              </li>
+            </li>
             <li><Link className="block" href="/login"><FontAwesomeIcon icon={faUser} className="w-6"/></Link></li>
           </ul>
         </div>
