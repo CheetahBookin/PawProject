@@ -19,7 +19,7 @@ function Search() {
 
   return (
     <section className="flex flex-col items-center justify-center bg-brand-secondary  border-gray-300 rounded-md">
-      <h2 className="text-2xl font-bold mb-4">Wyszukiwarka</h2>
+      <h2 className="text-2xl font-bold mb-4">Search For Your Dream Tour!</h2>
       <div className="flex space-x-2 mb-4">
         <input
           type="text"
