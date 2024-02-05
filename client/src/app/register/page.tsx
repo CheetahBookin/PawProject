@@ -6,6 +6,7 @@ import Label from '@/components/common/label'
 import PasswordInput from '@/components/common/passwordInput'
 import LabelCheckbox from '@/components/common/labelCheckbox'
 import { RegisterData } from '@/types/authTypes' 
+import { register } from '@/services/authService'
 
 function RegisterSite(){
     const [data, setData] = React.useState<RegisterData>({
@@ -15,7 +16,8 @@ function RegisterSite(){
         password: '',
         confirmPassword: ''
     })
-    
+    const [loading, setLoading] = React.useState<boolean>(false)
+    const [error, setError] = React.useState<string>('')
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value, checked, type} = e.target
         setData({
@@ -24,9 +26,19 @@ function RegisterSite(){
         })
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        console.log(data)
+        setLoading(true)
+        try{
+            const response = await register(data.email, data.username, data.agreement, data.password, data.confirmPassword)
+            if(response.status === 201) console.log('User registered successfully')
+            else console.log(response.data.message)
+        } catch (err: any) {
+            setError(err.response.data.error)
+        } finally {
+            setLoading(false)
+        }
+
     }
     return(
         <section className='flex flex-col items-center h-full justify-center bg-brand-secondary'>
@@ -37,7 +49,8 @@ function RegisterSite(){
                 <LabelCheckbox content='I agree to the terms and conditions' onChange={e=>handleChange(e)} important={true} name={'agreement'}/>
                 <PasswordInput content={'Password'} onChange={e=>handleChange(e)} name={'password'}/>
                 <PasswordInput content={'Confirm Password'} onChange={e=>handleChange(e)} name={'confirmPassword'}/>
-                <button className='mt-2 bg-brand-secondary hover:bg-brand-primary transition-all text-gray-600 font-bold py-2 px-4 rounded focus:outline-none focus::shadow-outline' onClick={e=>handleSubmit(e)}>Sign up</button>
+                <button className='mt-2 bg-brand-secondary hover:bg-brand-primary transition-all text-gray-600 font-bold py-2 px-4 rounded focus:outline-none focus::shadow-outline' onClick={e=>handleSubmit(e)}>{loading ? "loading" : "Sign up"}</button>
+                {error && <p className='text-red-500 mt-2'>{error}</p>}
             </form>
             <p className='mt-4 text-sm text-gray-600'>Already have an account? <Link href='/login' className='text-brand-primary font-bold'>Login here</Link></p>
         </section>
