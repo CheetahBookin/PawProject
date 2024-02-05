@@ -12,6 +12,7 @@ model User {
   username  String   @unique
   email     String   @unique
   password  String
+  agreement Boolean
   profile   UserProfile?
   bookings  Bookings[]
   rates    Rates[]
@@ -21,7 +22,7 @@ model User {
 
 model UserProfile {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int      @unique
   firstName String
   lastName  String
@@ -34,7 +35,7 @@ model UserProfile {
 
 model Bookings {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   bookingDetails BookingDetails?
   invoice   Invoice?
   userId    Int      @unique
@@ -92,7 +93,7 @@ model Rates {
   id        Int      @id @default(autoincrement())
   accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
   hotelId   Int
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   rate      Int
   message  String
