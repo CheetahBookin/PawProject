@@ -19,7 +19,7 @@ VALUES
 ('Hotel Morena', 'Konopnickiej 1A', 'Poland', 'Mosina', 'Hotel', 7.00),
 ('Venetian Dreams Guesthouse', '666 Spruce St', 'Italy', 'Venice', 'Guesthouse', NULL),
 ('Sydney Harbor Hotel', '777 Cherry St', 'Australia', 'Sydney', 'Hotel', 13.50),
-('Melbourne Gateway Motel', '888 Pine St', 'Australia', 'Melbourne', 'Motel', NULL),
+('Melbourne Gateway Motel', '888 Pine St', 'Australia', 'Melbourne', 'Motel', NULL),/**/
 ('Queensland Oasis Resort', '999 Elm St', 'Australia', 'Brisbane', 'Resort', 20.00),
 ('Maple Leaf Inn', '121 Oak St', 'Canada', 'Toronto', 'Inn', 12.75),
 ('Pacific Coast Hostel', '232 Maple St', 'Canada', 'Vancouver', 'Hostel', 8.00),
@@ -121,17 +121,17 @@ VALUES
 (17, 'https://meteor-turystyka.pl/images/base/2/1435/266349_40.jpg'),
 (17, 'https://meteor-turystyka.pl/images/base/2/1435/266547_40.jpg'),
 
-(18, 'https://example.com/guesthouse_r_image1.jpg'),
-(18, 'https://example.com/guesthouse_r_image2.jpg'),
-(18, 'https://example.com/guesthouse_r_image3.jpg'),
+(18, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/416306236.jpg?k=21a67f4e7bb65e4e5da7eb54ad349f73f653b5832fd76dfe372c73890fc9b01e&o=&hp=1'),
+(18, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/495005573.jpg?k=1ef6b00edf70d0e5b6532f7da566ab6487ec054e00c4ff0d89ae6246c53bb8e8&o=&hp=1'),
+(18, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/408847256.jpg?k=caf06e92ba60168d5bfd809e99a87472f8cebea8cee53e4647d8e85b20cfc873&o=&hp=1'),
 
-(19, 'https://example.com/hotel_s_image1.jpg'),
-(19, 'https://example.com/hotel_s_image2.jpg'),
-(19, 'https://example.com/hotel_s_image3.jpg'),
+(19, 'https://s7d1.scene7.com/is/image/marriotts7prod/mc-sydmc-opera-view-suite-16268:Classic-Hor?wid=1336&fit=constrain'),
+(19, 'https://cache.marriott.com/content/dam/marriott-renditions/SYDMC/sydmc-room-0079-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*'),
+(19, 'https://cache.marriott.com/content/dam/marriott-renditions/SYDMC/sydmc-twin-twin-1281-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*'),
 
-(20, 'https://example.com/motel_t_image1.jpg'),
-(20, 'https://example.com/motel_t_image2.jpg'),
-(20, 'https://example.com/motel_t_image3.jpg'),
+(20, 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/db/83/64/oaks-oasis.jpg?w=1200&h=-1&s=1'),
+(20, 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/04/4b/7b/interior-view-of-banquet.jpg?w=1100&h=-1&s=1'),
+(20, 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/66/b1/b8/img-20180320-215757-largejpg.jpg?w=1200&h=-1&s=1'),
 
 (21, 'https://example.com/resort_u_image1.jpg'),
 (21, 'https://example.com/resort_u_image2.jpg'),

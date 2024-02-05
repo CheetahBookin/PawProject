@@ -1,6 +1,7 @@
 export type User = {
     username: string,
     email: string,
+    agreement: boolean,
     password: string
 }
 

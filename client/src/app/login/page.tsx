@@ -4,12 +4,17 @@ import Link from 'next/link'
 import Label from '../../components/common/label'
 import PasswordInput from '@/components/common/passwordInput'
 import { LoginData } from '@/types/authTypes'
+import { login } from '@/services/authService'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 function Login(){
-    const [data, setData] = React.useState<LoginData>({
+    const [data, setData] = useState<LoginData>({
         email: '',
         password: ''
     })
+
+    const router = useRouter()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
@@ -19,9 +24,16 @@ function Login(){
         })
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        console.log(data)
+        try{
+            const response = await login(data.email, data.password)
+            if(response.status === 200){
+                router.push('/')
+            }
+        }catch(err: any){
+            console.log(err.response.data.error)
+        }
     }
     return(
         <section className='flex flex-col items-center h-full justify-center bg-brand-secondary'>

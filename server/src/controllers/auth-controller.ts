@@ -10,15 +10,17 @@ interface AuthRequest extends Request {
     body: {
         username: string
         email: string
+        agreement: boolean
         password: string
+        confirmPassword: string
     }
 }
 
-const userValidation = (username: string, email: string, password: string) => {
+const userValidation = (username: string, email: string, agreement: boolean, password: string, confirmPassword: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
     
-    if (!username || !email || !password) {
+    if (!username || !email || !password || !confirmPassword) {
         return "All fields are required";
     }
 
@@ -28,6 +30,14 @@ const userValidation = (username: string, email: string, password: string) => {
 
     if (!passwordRegex.test(password)) {
         return "Your password must be at least 8 characters long, contain at least one number and have a mixture of uppercase and lowercase letters";
+    }
+
+    if (password !== confirmPassword) {
+        return "Passwords do not match";
+    }
+
+    if (!agreement) {
+        return "You must agree to the terms and conditions";
     }
 
     return true;
@@ -57,8 +67,10 @@ const login = async (req: AuthRequest, res: Response) => {
 }
 
 const register = async (req: AuthRequest, res: Response) => {
-    const { username, email, password } = req.body as User
-    const validation: string | boolean = userValidation(username, email, password)
+    const { username, email, agreement, password } = req.body as User
+    const confirmPassword = req.body.confirmPassword as string
+    console.log(username, email, agreement, password, confirmPassword)
+    const validation: string | boolean = userValidation(username, email, agreement, password, confirmPassword)
     if (validation !== true) {
         return res.status(400).json({ error: validation })
     }
@@ -66,6 +78,7 @@ const register = async (req: AuthRequest, res: Response) => {
     const user: User = {
         username,
         email,
+        agreement,
         password: hashedPassword
     }
     await prisma.user.create({
