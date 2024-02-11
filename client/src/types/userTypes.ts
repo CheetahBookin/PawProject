@@ -1,16 +1,13 @@
 export type User = {
+    id: number,
     username: string,
     email: string,
     agreement: boolean,
-    password: string
-}
-
-export type FullUser = User & {
-    id: number,
+    password: string,
     createdAt: Date,
     updatedAt: Date
 }
 
-export type MinimizedUser = {
-    id: number
+export type UserError = {
+    error: string
 }

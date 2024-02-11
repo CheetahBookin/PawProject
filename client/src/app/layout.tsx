@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/layout/header/index'
 import Footer from '@/components/layout/footer/index'
+import { UserContextProvider } from '@/Context/userContext'
 
 export const metadata: Metadata = {
   title: 'CheetahBooking',
@@ -13,6 +14,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
   return (
     <html lang="pl-PL" className="h-full">
       <head>
@@ -23,9 +25,11 @@ export default function RootLayout({
         <title>{String(metadata.title)}</title>
       </head>
       <body className="flex flex-col h-full">
-        <Header />
-        {children}
-        <Footer />
+        <UserContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </UserContextProvider>  
       </body>
     </html>
   )
