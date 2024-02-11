@@ -44,50 +44,69 @@ const userValidation = (username: string, email: string, agreement: boolean, pas
 }
 
 const login = async (req: AuthRequest, res: Response) => {
-    const { email, password } = req.body as { email: string, password: string }
-    const user: FullUser | null = await prisma.user.findUnique({
-        where: { email }
-    })
-    if(!email || !password) {
-        return res.status(400).json({ error: "All fields are required" })
+    try{
+        const { email, password } = req.body as { email: string, password: string }
+        const user: FullUser | null = await prisma.user.findUnique({
+            where: { email }
+        })
+        if(!email || !password) {
+            return res.status(400).json({ error: "All fields are required" })
+        }
+        if (!user) {
+            return res.status(400).json({ error: "User not found" })
+        }
+        const validPassword = await argon2.verify(user.password, password)
+        if (!validPassword) {
+            return res.status(400).json({ error: "Incorrect Password" })
+        }
+        if(!process.env.JWT_SECRET) {
+            return res.status(500).json({ error: "Internal server error" })
+        }
+        const token: string = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
+        res.cookie("token", token, { httpOnly: true })
+        res.status(200).json({ message: "Logged in" })
+    }catch(error){
+        res.status(500).json({ error })
     }
-    if (!user) {
-        return res.status(400).json({ error: "User not found" })
-    }
-    const validPassword = await argon2.verify(user.password, password)
-    if (!validPassword) {
-        return res.status(400).json({ error: "Incorrect Password" })
-    }
-    if(!process.env.JWT_SECRET) {
-        return res.status(500).json({ error: "JWT not found" })
-    }
-    const token: string = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
-    res.cookie("token", token, { httpOnly: true })
-    res.json({ message: "Logged in" })
 }
 
 const register = async (req: AuthRequest, res: Response) => {
-    const { username, email, agreement, password } = req.body as User
-    const confirmPassword = req.body.confirmPassword as string
-    console.log(username, email, agreement, password, confirmPassword)
-    const validation: string | boolean = userValidation(username, email, agreement, password, confirmPassword)
-    if (validation !== true) {
-        return res.status(400).json({ error: validation })
+    try{
+        const { username, email, agreement, password } = req.body as User
+        const confirmPassword = req.body.confirmPassword as string
+        const existingEmail: FullUser | null = await prisma.user.findUnique({
+            where: { email }
+        })
+        const existingUser: FullUser | null = await prisma.user.findUnique({
+            where: { username }
+        })
+        const validation: string | boolean = userValidation(username, email, agreement, password, confirmPassword)
+        if (validation !== true) {
+            return res.status(400).json({ error: validation })
+        }
+        const hashedPassword = await argon2.hash(password)
+        const user: User = {
+            username,
+            email,
+            agreement,
+            password: hashedPassword
+        }
+        if (existingUser) {
+            return res.status(400).json({ error: "Username is already taken" })
+        }
+        if (existingEmail) {
+            return res.status(400).json({ error: "User with that email already exists" })
+        }
+        await prisma.user.create({
+            data: user
+        }).then(user => {
+            res.status(201).json({ user })
+        }).catch(error => {
+            res.status(400).json({ error })
+        })
+    }catch(error){
+        res.status(500).json({ error })
     }
-    const hashedPassword = await argon2.hash(password)
-    const user: User = {
-        username,
-        email,
-        agreement,
-        password: hashedPassword
-    }
-    await prisma.user.create({
-        data: user
-    }).then(user => {
-        res.status(201).json({ user })
-    }).catch(error => {
-        res.status(400).json({ error })
-    })
 }
 
 export {
