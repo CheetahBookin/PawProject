@@ -1,5 +1,5 @@
 'use client'
-import { useContext } from 'react'
+
 import Link from 'next/link'
 import Label from '../../components/common/label'
 import PasswordInput from '@/components/common/passwordInput'
@@ -38,6 +38,7 @@ function Login(){
                 setIsLogged(true)
                 router.push('/')
             }else{
+                setIsLogged(false)
                 setError(response.data.error)
             }
         }catch(err: any){

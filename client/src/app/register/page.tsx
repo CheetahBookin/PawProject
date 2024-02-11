@@ -9,9 +9,11 @@ import { RegisterData } from '@/types/authTypes'
 import { register, login } from '@/services/authService'
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/common/loading'
+import { useUserContext } from '@/Context/userContext'
 
 function Register(){
     const router = useRouter()
+    const { setIsLogged } = useUserContext()
     const [data, setData] = useState<RegisterData>({
         email: '',
         username: '',
@@ -36,9 +38,11 @@ function Register(){
             const response = await register(data.email, data.username, data.agreement, data.password, data.confirmPassword)
             if(response.status === 201) {
                 const response = await login(data.email, data.password)
-                console.log(response)
                 if(response.status === 200) {
+                    setIsLogged(true)
                     router.push('/')
+                }else{
+                    setIsLogged(false)
                 }
             }
             else {
