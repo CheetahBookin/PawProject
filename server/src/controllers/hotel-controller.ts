@@ -71,4 +71,49 @@ const getDiscountedRooms = async (req: Request, res: Response) => {
   res.json(hotels);
 }
 
-export { getHotels, getExactHotel, getDiscountedRooms };
+const getHotelsTypes = async (req: Request, res: Response) => {
+  const hotelsTypes = await prisma.accomodation.findMany({
+    select: {
+      type: true,
+      images: {
+        select: {
+          image: true
+        },
+        take: 1
+      }
+    }
+  });
+
+  const uniqueHotelTypes = hotelsTypes.filter((hotel, index, self) =>
+    index === self.findIndex((t) => t.type === hotel.type)
+  );
+
+  res.json(uniqueHotelTypes);
+}
+
+const browseByPropertyType = async (req: Request, res: Response) => {
+  const { type } = req.body
+  const hotels = await prisma.accomodation.findMany({
+    where: {
+      type: type
+    },
+    select: {
+      name: true,
+      city: true,
+      carParkFee: true,
+      country: true,
+      type: true,
+      address: true,
+      id: true,
+      images: {
+        select: {
+          image: true
+        },
+        take: 1
+      }
+    }
+  });
+  res.json(hotels);
+}
+
+export { getHotels, getExactHotel, getDiscountedRooms, getHotelsTypes, browseByPropertyType };
