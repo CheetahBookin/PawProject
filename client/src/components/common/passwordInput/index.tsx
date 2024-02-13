@@ -24,7 +24,7 @@ function PasswordInput({content, onChange, name}: PasswordInputProps){
 
     return(
         <div className='flex flex-col w-full'>
-            <Label inputType={checked ? 'text' : 'password'} spanContent={content} onChange={onChange} name={name}/>
+            <Label inputType={checked ? 'text' : 'password'} spanContent={content} onChange={onChange} name={name} className='mt-1 block w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none text-gray-600'/>
             <LabelCheckbox content='Show password' onChange={togglePasswordVisibility} name={name}/>
         </div>
     )
