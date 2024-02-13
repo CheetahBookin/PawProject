@@ -30,6 +30,29 @@ const searchForHotel = async (req: SearchRequest, res: Response) => {
     res.json(hotels);
 }
 
+const searchForCountryOrCity = async (req: SearchRequest, res: Response) => {
+    const { search } = req.body;
+    const countriesHotels = await prisma.accomodation.findMany({
+      where: {
+        country: {
+          contains: search
+        }
+      }
+    });
+    const citiesHotels = await prisma.accomodation.findMany({
+      where: {
+        city: {
+          contains: search
+        }
+      }
+    });
+    const countries = countriesHotels.map(hotel => hotel.country);
+    const cities = citiesHotels.map(hotel => hotel.city);
+    const uniqueCountries = [...new Set(countries)];
+    const uniqueCities = [...new Set(cities)];
+    res.json({countries: uniqueCountries, cities: uniqueCities});
+}
+
 const searchForTrip = async (req: TripRequest, res: Response) => {
     const { city, dateFrom, dateTo, adult, children } = req.body;
     const mergedDate = dateFrom + "-" + dateTo
@@ -77,4 +100,4 @@ const searchForTrip = async (req: TripRequest, res: Response) => {
     res.json(response);
 }
 
-export { searchForHotel, searchForTrip };
+export { searchForHotel, searchForTrip, searchForCountryOrCity };
