@@ -7,7 +7,7 @@ import { LoginData } from '@/types/authTypes'
 import { login } from '@/services/authService'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useUserContext } from '@/Context/userContext'
+import { useUserContext } from '@/context/userContext'
 import Loading from '@/components/common/loading'
 
 function Login(){
@@ -51,7 +51,7 @@ function Login(){
         <section className='flex flex-col items-center h-full justify-center bg-brand-secondary'>
             <h1 className='text-4xl font-bold text-gray-600'>Login</h1>
             <form className='mt-5 w-64 flex flex-col items-center border border-gray-300 shadow-md p-6 rounded-lg bg-brand-primary'>
-                <Label inputType={'email'} spanContent={'Email'} onChange={e=>handleChange(e)} name={'email'}/>
+                <Label inputType={'email'} spanContent={'Email'} onChange={e=>handleChange(e)} name={'email'} className='mt-1 block w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none text-gray-600'/>
 
                 <div className='flex flex-col'>
                     <PasswordInput content={'Password'} onChange={e=>handleChange(e)} name={'password'}/>

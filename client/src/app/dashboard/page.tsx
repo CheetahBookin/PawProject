@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { getUser, logout } from '@/services/userService'
 import { useState } from 'react'
 import { User } from '@/types/userTypes'
-import { useUserContext } from '@/Context/userContext'
+import { useUserContext } from '@/context/userContext'
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/common/loading'
 
