@@ -10,7 +10,7 @@ interface SearchRequest extends Request {
 
 interface TripRequest extends Request {
     body: {
-      city: string;
+      destination: string;
       dateFrom: string;
       dateTo: string;
       adult: number;
@@ -19,6 +19,7 @@ interface TripRequest extends Request {
 }
 
 const searchForHotel = async (req: SearchRequest, res: Response) => {
+  try{
     const { search } = req.body;
     const hotels = await prisma.accomodation.findMany({
       where: {
@@ -28,9 +29,13 @@ const searchForHotel = async (req: SearchRequest, res: Response) => {
       }
     });
     res.json(hotels);
+  }catch(err){
+    res.status(500).json({error: "Something went wrong"});
+  }
 }
 
 const searchForCountryOrCity = async (req: SearchRequest, res: Response) => {
+  try{
     const { search } = req.body;
     const countriesHotels = await prisma.accomodation.findMany({
       where: {
@@ -51,20 +56,42 @@ const searchForCountryOrCity = async (req: SearchRequest, res: Response) => {
     const uniqueCountries = [...new Set(countries)];
     const uniqueCities = [...new Set(cities)];
     res.json({countries: uniqueCountries, cities: uniqueCities});
+  }catch(err){
+    res.status(500).json({error: "Something went wrong"});
+  }
 }
 
 const searchForTrip = async (req: TripRequest, res: Response) => {
-    const { city, dateFrom, dateTo, adult, children } = req.body;
-    const mergedDate = dateFrom + "-" + dateTo
-    if(!children) req.body.children = 0;
+  try {
+    const { destination, dateFrom, dateTo, adult, children } = req.body;
+    if (!children) req.body.children = 0;
+    if (!destination) return res.status(400).json({ error: "You have to go somewhere" });
+    if (!adult) return res.status(400).json({ error: "There must be at least one adult on the trip" });
+    const dateFromParsed = new Date(dateFrom);
+    const dateToParsed = new Date(dateTo);
+    if (dateFromParsed > dateToParsed) return res.status(400).json({ error: "You can't go back in time dumbass" });
+    if (dateFromParsed < new Date()) return res.status(400).json({ error: "You can't go back in time dumbass" });
+    const nightsCount = Math.floor((dateToParsed.getTime() - dateFromParsed.getTime()) / (1000 * 3600 * 24));
     const hotels = await prisma.accomodation.findMany({
       where: {
-        city: city
+        OR: [
+          {
+            city: destination
+          },
+          {
+            country: destination
+          }
+        ]
       },
       include: {
         Rooms: {
           where: {
             peopleCapacity: adult + children
+          }
+        },
+        images: {
+          select: {
+            image: true
           }
         },
         BookedDates: {
@@ -74,30 +101,36 @@ const searchForTrip = async (req: TripRequest, res: Response) => {
         }
       }
     });
-    hotels.map(hotel => {
-        hotel.Rooms = hotel.Rooms.filter(room => room.peopleCapacity >= adult + children);
+    hotels.forEach(hotel => {
+      hotel.Rooms = hotel.Rooms.filter(room => room.peopleCapacity >= adult + children);
     });
     const calculatedPrice = hotels.map(hotel => {
-        hotel.Rooms = hotel.Rooms.map(room => {
-            return {
-                ...room,
-                price: room.priceForPerson * adult + room.childrenPrice * children
-            }
-        });
-        return hotel;
+      hotel.Rooms = hotel.Rooms.map(room => {
+        return {
+          ...room,
+          discountedPrice: ((room.discount ? room.priceForPerson * (1 - room.discount) : room.priceForPerson) * adult + (room.discount ? room.childrenPrice * (1 - room.discount) : room.childrenPrice) * children) * nightsCount,
+          price: (room.priceForPerson * adult + room.childrenPrice * children) * nightsCount
+        }
+      });
+      return hotel;
     });
     const response = calculatedPrice.map(hotel => {
-        return {
-            name: hotel.name,
-            address: hotel.address,
-            city: hotel.city,
-            country: hotel.country,
-            type: hotel.type,
-            Rooms: hotel.Rooms,
-            wholeDate: mergedDate
-        }
-    })
-    res.json(response);
+      return {
+        id: hotel.id,
+        name: hotel.name,
+        address: hotel.address,
+        city: hotel.city,
+        country: hotel.country,
+        type: hotel.type,
+        Rooms: hotel.Rooms,
+        images: hotel.images,
+        nights: nightsCount
+      }
+    });
+    return res.status(200).json(response);
+  } catch (err) {
+    return res.status(500).json({ error: "Something went wrong" });
+  }
 }
 
 export { searchForHotel, searchForTrip, searchForCountryOrCity };
