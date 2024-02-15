@@ -21,6 +21,14 @@ export type Rooms = {
     childrenPrice: number
 }
 
+export type FullRoom = Rooms & {
+    discount: number
+    hotelId: number
+    id: number
+    price: number
+    discountedPrice: number
+}
+
 export type HotelsTypesTypes = {
     type: string,
     images: RoomImages[]
