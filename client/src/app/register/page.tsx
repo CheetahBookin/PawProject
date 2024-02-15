@@ -9,7 +9,7 @@ import { RegisterData } from '@/types/authTypes'
 import { register, login } from '@/services/authService'
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/common/loading'
-import { useUserContext } from '@/Context/userContext'
+import { useUserContext } from '@/context/userContext'
 
 function Register(){
     const router = useRouter()
@@ -58,8 +58,8 @@ function Register(){
         <section className='flex flex-col items-center h-full justify-center bg-brand-secondary'>
             <h1 className='text-4xl font-bold text-gray-600'>Sign up</h1>
             <form className='mt-5 w-80 flex flex-col items-center border border-gray-300 shadow-md p-6 rounded-lg bg-brand-primary'>
-                <Label inputType={'email'} spanContent={'Email'} onChange={e=>handleChange(e)} name={'email'}/>
-                <Label inputType={'text'} spanContent={'Username'} onChange={e=>handleChange(e)} name={'username'}/>
+                <Label inputType={'email'} spanContent={'Email'} onChange={e=>handleChange(e)} name={'email'} className='mt-1 block w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none text-gray-600'/>
+                <Label inputType={'text'} spanContent={'Username'} onChange={e=>handleChange(e)} name={'username'} className='mt-1 block w-full border-gray-300 rounded-md py-2 px-3 focus:outline-none text-gray-600'/>
                 <LabelCheckbox content='I agree to the terms and conditions' onChange={e=>handleChange(e)} important={true} name={'agreement'}/>
                 <PasswordInput content={'Password'} onChange={e=>handleChange(e)} name={'password'}/>
                 <PasswordInput content={'Confirm Password'} onChange={e=>handleChange(e)} name={'confirmPassword'}/>

@@ -6,7 +6,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { getUser } from "@/services/userService";
 import { User } from "@/types/userTypes";
-import { useUserContext } from "@/Context/userContext";
+import { useUserContext } from "@/context/userContext";
 import Loading from "@/components/common/loading";
 
 function Header() {

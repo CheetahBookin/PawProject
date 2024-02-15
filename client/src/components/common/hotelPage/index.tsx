@@ -15,7 +15,7 @@ function HotelPage({name, address, country, city, type, carParkFee, images, Room
         <p>{carParkFee}</p>
         <div className='flex gap-12'>
           {images.map((image, index) => (
-            <img key={index} src={image.image} alt={name} className='w-96 h-96'/>
+            <img key={index} src={image.image} alt={name} className='w-96 h-96 object-cover'/>
           ))}
         </div>
         <div className='flex gap-12'>
