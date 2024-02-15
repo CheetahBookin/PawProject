@@ -4,12 +4,14 @@ import React, { useState } from 'react';
 import Label from '@/components/common/label';
 import Counter from '@/components/common/counter';
 import { searchForCountryOrCity } from '@/services/searchService';
-import { FullSearchResults, SearchResultsForCountryOrCity } from '@/types/searchTypes';
+import { FullSearchResults, SearchForTrip, SearchResultsForCountryOrCity } from '@/types/searchTypes';
 import SearchResults from '@/components/common/searchBarResults';
-import Loading from '@/components/common/loading';
+import { useRouter } from 'next/navigation'
 
-function Search() {
-  const [data, setData] = useState({
+function SearchBar() {
+  const router = useRouter();
+  const [error, setError] = useState<string>('');
+  const [data, setData] = useState<SearchForTrip>({
     destination: '',
     checkInDate: '',
     checkOutDate: '',
@@ -55,9 +57,39 @@ function Search() {
     });
   };
 
-  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const createQueryString = (data: object) =>{
+    let query = '';
+    for(const [key, value] of Object.entries(data)){
+      query += `${key}=${value}&`
+    }
+    return query;
+  }
+
+  const validateData = (data: SearchForTrip) => {
+    if(data.destination.length == 0) return "You have to go somewhere";
+    if(data.checkInDate.length == 0) return "You have to check in";
+    if(data.checkOutDate.length == 0) return "You have to check out";
+    const checkIn = new Date(data.checkInDate);
+    const checkOut = new Date(data.checkOutDate);
+    if(checkIn > checkOut) return "You can't go back in time dumbass";
+    if(checkIn < new Date()) return "You can't go back in time dumbass"
+    if(data.adults == 0) return "There must be at least one adult on the trip"
+
+    return true;
+  }
+
+  const handleSearch = async(e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(data);
+    try{
+      const validation = validateData(data)
+      if(validation !== true){
+        setError(validation)
+        return
+      }
+      router.push(`/search?${createQueryString(data)}`)
+    }catch(err){
+      console.log(err)
+    }
   }
 
   const handleOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -112,8 +144,9 @@ function Search() {
           Search
         </button>
       </form>
+      {error && <p className="text-red-500 text-md">{error}</p>}
     </section>
   );
 }
 
-export default Search;
+export default SearchBar;
