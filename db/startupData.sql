@@ -185,73 +185,73 @@ VALUES
 (33, 'https://dynamic-media-cdn.tripadvisor.com/media/daodao/photo-s/01/e6/2f/ad/caption.jpg?w=600&h=-1&s=1'),
 (33, 'https://dynamic-media-cdn.tripadvisor.com/media/daodao/photo-s/01/94/a6/44/vila.jpg?w=600&h=-1&s=1'),
 
-(34, 'https://example.com/inn_ah_image1.jpg'),
-(34, 'https://example.com/inn_ah_image2.jpg'),
-(34, 'https://example.com/inn_ah_image3.jpg'),
+(34, 'https://cf.bstatic.com/xdata/images/landmark/max1024/160906.webp?k=86c4a5faa3aad0fa396fc11f4f1e72849d7cde67cb1430722777d908f367c8cd&o='),
+(34, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/437112347.jpg?k=20559eb477a4d163ebe6ca93f41498e5234a2fc526d70a1593c0b82e856d3dcc&o=&hp=1'),
+(34, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/437112218.jpg?k=765a42bda2cd96d0876001f705d268af85f09a19230632a58c3c4e5960d27949&o=&hp=1'),
 
-(35, 'https://example.com/hostel_ai_image1.jpg'),
-(35, 'https://example.com/hostel_ai_image2.jpg'),
-(35, 'https://example.com/hostel_ai_image3.jpg'),
+(35, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/64261413.jpg?k=b4ca0539879059f1913101553189a9e4ec7c5817842494c58d780dd4ea03b8f9&o=&hp=1'),
+(35, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/236230562.jpg?k=c7167e50076a3afe1e6534b10980a7812d9d91c522a60113125459c1130fcb87&o=&hp=1'),
+(35, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/201999086.jpg?k=550cef1e6ae97f9eb25d7d08a913852acdcb26657933fa56c2ee7f9ac8a5b42c&o=&hp=1'),
 
-(36, 'https://example.com/guesthouse_aj_image1.jpg'),
-(36, 'https://example.com/guesthouse_aj_image2.jpg'),
-(36, 'https://example.com/guesthouse_aj_image3.jpg'),
+(36, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/16997318.jpg?k=ffbb30fbb1127296bcf0ffe68a4d30c51452d20b2d11c80a08cb881094e0ae32&o=&hp=1'),
+(36, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/16996656.jpg?k=9366c315027ddbe8efe619bff90726a45156f45c4b4695d14ceb163c1975851a&o=&hp=1'),
+(36, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/132877430.jpg?k=11e8f7c1cf626c25e5c5fafcbb6f9aa0d492a0ff6b83d30857224ed7514ff36e&o=&hp=1'),
 
-(37, 'https://example.com/hotel_ak_image1.jpg'),
-(37, 'https://example.com/hotel_ak_image2.jpg'),
-(37, 'https://example.com/hotel_ak_image3.jpg'),
+(37, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/226854097.jpg?k=1b6570d7801e12c568ac18b9ed004d871bdfc5ee2f630a40f59a52747ff4ee5c&o=&hp=1'),
+(37, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/226851105.jpg?k=5efc5e80fc1aaffcf09c12a63e92e9b55688dc98bed8e99e2c65956a580ff946&o=&hp=1'),
+(37, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/226854150.jpg?k=b62f5d24a8fd3fe67614e79bd9d274820df48cc33d837ffa70df91cce9747a57&o=&hp=1'),
 
-(38, 'https://example.com/motel_al_image1.jpg'),
-(38, 'https://example.com/motel_al_image2.jpg'),
-(38, 'https://example.com/motel_al_image3.jpg'),
+(38, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/329643357.jpg?k=63661bcf8e0f9f59909dd84f5002bfbd68e275c320be8e3fe14fd6847c9f06e5&o=&hp=1'),
+(38, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/523351591.jpg?k=0eb3d8e6de1776cd68b49f8f0e9864f069bf1df6d3fc4f45bd361282fccd56da&o=&hp=1'),
+(38, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/523351136.jpg?k=90ee6648c8539df9fa12a860367504735c1bea86485a185910d7ec8fffa52dc6&o=&hp=1'),
 
-(39, 'https://example.com/resort_am_image1.jpg'),
-(39, 'https://example.com/resort_am_image2.jpg'),
-(39, 'https://example.com/resort_am_image3.jpg'),
+(39, 'https://cf.bstatic.com/xdata/images/landmark/max1024/203858.webp?k=add3707d8be187d2a9bf34e3dec050a1d5d7c99c08997c8aec72f8af554367b1&o='),
+(39, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/516520273.jpg?k=e63d47e0cbeee0499114ef4f2a2e47e4e0b1b5ce9a3fe7d579c54e3e6186fac8&o=&hp=1'),
+(39, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/506765504.jpg?k=7c2b869b03dd838b78f0f1f24a5918ab304050d66bce07d0c4edb32ce9bdffec&o=&hp=1'),
 
-(40, 'https://example.com/inn_an_image1.jpg'),
-(40, 'https://example.com/inn_an_image2.jpg'),
-(40, 'https://example.com/inn_an_image3.jpg'),
+(40, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/82221425.jpg?k=29406dff3d54f7700fc0f2ff43e9298669a166bd1d25ae3bb74d7d498a6c127d&o=&hp=1'),
+(40, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/27716215.jpg?k=69aff6f7a3e4332c077fbc085e46e1a17f92b58849dfce16a102c17e63ce63be&o=&hp=1'),
+(40, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/82221219.jpg?k=d48d5c007b4134ed08c38fb622527e5fae27fb26158e6aefdf2d610b759133c5&o=&hp=1'),
 
-(41, 'https://example.com/hostel_ao_image1.jpg'),
-(41, 'https://example.com/hostel_ao_image2.jpg'),
-(41, 'https://example.com/hostel_ao_image3.jpg'),
+(41, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/53955177.jpg?k=6a6947b60eb72b2315c8fd166e1f4e609f8cf414c91783590b80c91bdf35beaa&o=&hp=1'),
+(41, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/53917863.jpg?k=fd1db9d497e57c1a33025178abb7b4f6017c1b91e9b2ae5a50dbbe0f5fa6312b&o=&hp=1'),
+(41, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/178982348.jpg?k=4eb97dddfbfd6c638cba04096e7e30b5657374785c7fdaac69d59c622d685f1d&o=&hp=1'),
 
-(42, 'https://example.com/guesthouse_ap_image1.jpg'),
-(42, 'https://example.com/guesthouse_ap_image2.jpg'),
-(42, 'https://example.com/guesthouse_ap_image3.jpg'),
+(42, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/310017160.jpg?k=b920bc54cc0f63b7c252af4aacb459207a96c89161ba6fbe4b2dac3f00d1672b&o=&hp=1'),
+(42, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/490889630.jpg?k=ede437bae51f2306684201fc6b2e34b278b049584d3ed551e1d456acc22d6539&o=&hp=1'),
+(42, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/310017108.jpg?k=358504dcf8598b14667c048d9dc730b08b198b382b1d16ebea16f7858e37c972&o=&hp=1'),
 
-(43, 'https://example.com/hotel_aq_image1.jpg'),
-(43, 'https://example.com/hotel_aq_image2.jpg'),
-(43, 'https://example.com/hotel_aq_image3.jpg'),
+(43, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/526832855.jpg?k=da7f0fe2f25e62d9bd5cceed41358839ac81e338532d1bcfd7a39243915554fd&o=&hp=1'),
+(43, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/526825229.jpg?k=990128dda1a0bd5fa0ff8468f324d46717824c668e02839931df83552bf71e93&o=&hp=1'),
+(43, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/526812881.jpg?k=3c2f747683693025859b5a754042b95374543b221f84ac40d768a5800519a939&o=&hp=1'),
 
-(44, 'https://example.com/motel_ar_image1.jpg'),
-(44, 'https://example.com/motel_ar_image2.jpg'),
-(44, 'https://example.com/motel_ar_image3.jpg'),
+(44, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/379226705.jpg?k=72965c676abe139b9f3393522259c1b76ff160d583a6311ec6bf9d262b273101&o=&hp=1'),
+(44, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/379230132.jpg?k=3a050986b586bd6506166040640dd37323c813030c4abdccd59d6d85037ec049&o=&hp=1'),
+(44, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/379492616.jpg?k=9443081bb25932c637936c89c492575a6820a28bd40dc87b875849ab28ab422b&o=&hp=1'),
 
-(45, 'https://example.com/resort_as_image1.jpg'),
-(45, 'https://example.com/resort_as_image2.jpg'),
-(45, 'https://example.com/resort_as_image3.jpg');
+(45, 'https://sochiparkhotel.ru/upload/iblock/d5e/44100z13fvg66gfd7ki9ye2uma61ghjy.jpg'),
+(45, 'https://sochiparkhotel.ru/upload/iblock/0cc/p08o416jmdvucrq1u25y5dxhtyeqi3js.jpg'),
+(45, 'https://sochiparkhotel.ru/upload/iblock/537/b5k061zn8o8qkwpfuslukfm4qd0fb1vp.jpg');
 
-(46, 'https://example.com/hotel_at_image1.jpg'),
-(46, 'https://example.com/hotel_at_image2.jpg'),
-(46, 'https://example.com/hotel_at_image3.jpg'),
+(46, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/368729241.jpg?k=456cfe19a81c98741fef9f12df1e301e1bf0a814fcc0d2eff2e72e8652f8c40d&o=&hp=1'),
+(46, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/368729125.jpg?k=e94d30a5ea94442d5b83f9358f94fa6079d49830f8604fa36ac73cdfc5b0ac51&o=&hp=1'),
+(46, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/368729150.jpg?k=476a4654c243924cbfbdda43ad2d9ff73ac661380adcb261588979ee4d2a4f9c&o=&hp=1'),
 
-(47, 'https://example.com/motel_au_image1.jpg'),
-(47, 'https://example.com/motel_au_image2.jpg'),
-(47, 'https://example.com/motel_au_image3.jpg'),
+(47, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/270481956.jpg?k=2fd6974cd8a37ab66fdf37f3ab00903c6ea4db01353d4f6263a58773c974b49d&o=&hp=1'),
+(47, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/53558912.jpg?k=1ac162f3b31a17dd8b1f28f7d2c354dda15109bac171a598698d9c079d104b8e&o=&hp=1'),
+(47, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/79380082.jpg?k=4748f373077311fcd02a847810acb61406d023495716cb1c588a9b8a1c13f5d2&o=&hp=1'),
 
-(48, 'https://example.com/resort_av_image1.jpg'),
-(48, 'https://example.com/resort_av_image2.jpg'),
-(48, 'https://example.com/resort_av_image3.jpg'),
+(48, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/321667241.jpg?k=fbff5c78870760553dbffc20ce71f84b60cb99a577162314c44ee55c90ece93d&o=&hp=1'),
+(48, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/321667132.jpg?k=b07f5eaba3e1dd86d3927ef4ca19add95d069fc3d0bcf45cfc37d545a49948f7&o=&hp=1'),
+(48, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/279208579.jpg?k=1dcd1dd9557535a8c7d5dd5052f5a3ed5fbfd9560ecdcefaedd19f3fa7a23545&o=&hp=1'),
 
-(49, 'https://example.com/inn_aw_image1.jpg'),
-(49, 'https://example.com/inn_aw_image2.jpg'),
-(49, 'https://example.com/inn_aw_image3.jpg'),
+(49, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/451146159.jpg?k=872a81d078b4b8a58e5c771863313d950b67963d907d46b46e8a5c9b5295038a&o=&hp=1'),
+(49, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/451146366.jpg?k=b34dbcfa8fd0cfc87b6d085c9b7a4558bb573acacb493a32beb018ab691584cb&o=&hp=1'),
+(49, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/451146358.jpg?k=543f03d83f39ebc579855ed32bb4743049d9be6bfcfc9558f42598bbd61b6f56&o=&hp=1'),
 
-(50, 'https://example.com/hostel_ax_image1.jpg'),
-(50, 'https://example.com/hostel_ax_image2.jpg'),
-(50, 'https://example.com/hostel_ax_image3.jpg');
+(50, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/102746718.jpg?k=e208d0a3f94aa748f36623774909fec208f7087ff23a7658a5238ea6f1f252b5&o=&hp=1'),
+(50, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/102746723.jpg?k=3a9a393a3e7daff5281adce916494e3aa646edd907885276f612a8c3bc871b6b&o=&hp=1'),
+(50, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/102746685.jpg?k=904b11650c1b25da13967ad983f6560a9ab25e5aef7f319b31e4f96846be08c6&o=&hp=1');
 
 INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
 VALUES 
