@@ -15,36 +15,36 @@ VALUES
 ('Sunny Madrid Hotel', '111 Oak St', 'Spain', 'Madrid', 'Hotel', 11.25),
 ('Barcelona Beach Motel', '222 Maple St', 'Spain', 'Barcelona', 'Motel', NULL),
 ('Costa del Sol Resort', '333 Birch St', 'Spain', 'Valencia', 'Resort', 16.00),
-('Hotel NH Poznań', 'Święty Marcin 67', 'Poland', 'Poznań', 'Hotel', 10.00),
+('Hotel NH Poznan', 'Swiety Marcin 67', 'Poland', 'Poznan', 'Hotel', 10.00),
 ('Hotel Morena', 'Konopnickiej 1A', 'Poland', 'Mosina', 'Hotel', 7.00),
 ('Venetian Dreams Guesthouse', '666 Spruce St', 'Italy', 'Venice', 'Guesthouse', NULL),
 ('Sydney Harbor Hotel', '777 Cherry St', 'Australia', 'Sydney', 'Hotel', 13.50),
 ('Melbourne Gateway Motel', '888 Pine St', 'Australia', 'Melbourne', 'Motel', NULL),
 ('Queensland Oasis Resort', '999 Elm St', 'Australia', 'Brisbane', 'Resort', 20.00),
-('Maple Leaf Inn', '121 Oak St', 'Canada', 'Toronto', 'Inn', 12.75),
+('Maple Leaf Hostel', '121 Oak St', 'Canada', 'Toronto', 'Hostel', 12.75),
 ('Pacific Coast Hostel', '232 Maple St', 'Canada', 'Vancouver', 'Hostel', 8.00),
 ('Montreal Magic Guesthouse', '343 Birch St', 'Canada', 'Montreal', 'Guesthouse', NULL),
 ('Tokyo Tower Hotel', '454 Cedar St', 'Japan', 'Tokyo', 'Hotel', 14.25),
 ('Osaka Oasis Motel', '565 Walnut St', 'Japan', 'Osaka', 'Motel', NULL),
 ('Kyoto Gardens Resort', '676 Spruce St', 'Japan', 'Kyoto', 'Resort', 22.50),
-('Seoul Serenity Inn', '787 Cherry St', 'South Korea', 'Seoul', 'Inn', 13.25),
+('Seoul Serenity Flat', '787 Cherry St', 'South Korea', 'Seoul', 'Flat', 13.25),
 ('Busan Backpackers Hostel', '898 Pine St', 'South Korea', 'Busan', 'Hostel', 9.00),
 ('Incheon Island Guesthouse', '909 Elm St', 'South Korea', 'Incheon', 'Guesthouse', NULL),
 ('Forbidden City Hotel', '123 Oak St', 'China', 'Beijing', 'Hotel', 15.75),
 ('Shanghai Skyline Motel', '234 Maple St', 'China', 'Shanghai', 'Motel', NULL),
 ('Guangzhou Green Resort', '345 Birch St', 'China', 'Guangzhou', 'Resort', 25.00),
-('Bollywood Inn', '456 Cedar St', 'India', 'Mumbai', 'Inn', 14.50),
+('Bollywood Hotel', '456 Cedar St', 'India', 'Mumbai', 'Hotel', 14.50),
 ('Delhi Daze Hostel', '567 Walnut St', 'India', 'New Delhi', 'Hostel', 10.00),
 ('Bangalore Bliss Guesthouse', '678 Spruce St', 'India', 'Bangalore', 'Guesthouse', NULL),
 ('Sao Paulo Splendor Hotel', '789 Cherry St', 'Brazil', 'Sao Paulo', 'Hotel', 17.25),
 ('Rio Retreat Motel', '890 Pine St', 'Brazil', 'Rio de Janeiro', 'Motel', NULL),
 ('Brasilia Bay Resort', '901 Elm St', 'Brazil', 'Brasilia', 'Resort', 27.50),
-('Mexico City Lights Inn', '112 Oak St', 'Mexico', 'Mexico City', 'Inn', 15.00),
+('Mexico City Lights Hotel', '112 Oak St', 'Mexico', 'Mexico City', 'Hotel', 15.00),
 ('Cancun Cove Hostel', '223 Maple St', 'Mexico', 'Cancun', 'Hostel', 11.50),
 ('Guadalajara Gem Guesthouse', '334 Birch St', 'Mexico', 'Guadalajara', 'Guesthouse', NULL),
 ('Moscow Manor Hotel', '445 Cedar St', 'Russia', 'Moscow', 'Hotel', 18.75),
 ('Saint Petersburg Stopover Motel', '556 Walnut St', 'Russia', 'Saint Petersburg', 'Motel', NULL),
-('Sochi Sunset Resort', '667 Spruce St', 'Russia', 'Sochi', 'Resort', 30.00);
+('Sochi Sunset Resort', '667 Spruce St', 'Russia', 'Sochi', 'Resort', 30.00),
 ('Luxury Grand Hotel', '123 Broadway St', 'USA', 'Chicago', 'Hotel', 20.00),
 ('Seaside Resort Hotel', '456 Ocean Ave', 'USA', 'San Francisco', 'Hotel', 15.00),
 ('Mountain View Hotel', '789 Summit Rd', 'USA', 'Denver', 'Hotel', 10.00),
@@ -231,7 +231,7 @@ VALUES
 
 (45, 'https://sochiparkhotel.ru/upload/iblock/d5e/44100z13fvg66gfd7ki9ye2uma61ghjy.jpg'),
 (45, 'https://sochiparkhotel.ru/upload/iblock/0cc/p08o416jmdvucrq1u25y5dxhtyeqi3js.jpg'),
-(45, 'https://sochiparkhotel.ru/upload/iblock/537/b5k061zn8o8qkwpfuslukfm4qd0fb1vp.jpg');
+(45, 'https://sochiparkhotel.ru/upload/iblock/537/b5k061zn8o8qkwpfuslukfm4qd0fb1vp.jpg'),
 
 (46, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/368729241.jpg?k=456cfe19a81c98741fef9f12df1e301e1bf0a814fcc0d2eff2e72e8652f8c40d&o=&hp=1'),
 (46, 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/368729125.jpg?k=e94d30a5ea94442d5b83f9358f94fa6079d49830f8604fa36ac73cdfc5b0ac51&o=&hp=1'),
@@ -259,373 +259,275 @@ VALUES
 (1, 'Ocean View Room', 2, 120.00, 60.00, NULL),
 (1, 'Executive Loft', 4, 180.00, 90.00, NULL),
 (1, 'Royal Penthouse', 5, 250.00, 125.00, NULL),
-(1, 'Family Suite', 6, 200.00, 100.00, NULL);
+(1, 'Family Suite', 6, 200.00, 100.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (2, 'Beachfront Bungalow', 2, 200.00, 100.00, NULL),
 (2, 'Poolside Villa', 4, 300.00, 150.00, 0.1),
 (2, 'Garden View Room', 2, 150.00, 75.00, 0.25),
 (2, 'Sunset Suite', 3, 250.00, 125.00, NULL),
-(2, 'Coastal Cabin', 2, 100.00, 50.00, NULL);
+(2, 'Coastal Cabin', 2, 100.00, 50.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (3, 'Alpine Retreat', 2, 180.00, 90.00, NULL),
 (3, 'Scenic Suite', 3, 220.00, 110.00, NULL),
 (3, 'Lodge Room', 4, 200.00, 100.00, NULL),
 (3, 'Mountain Chalet', 2, 160.00, 80.00, NULL),
-(3, 'Valley View Loft', 3, 250.00, 125.00, NULL);
+(3, 'Valley View Loft', 3, 250.00, 125.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (4, 'Antique Chamber', 2, 140.00, 70.00, NULL),
 (4, 'Historic Suite', 3, 180.00, 90.00, 0.3),
 (4, 'Victorian Room', 2, 120.00, 60.00, NULL),
 (4, 'Colonial Loft', 4, 200.00, 100.00, NULL),
-(4, 'Heritage Suite', 2, 160.00, 80.00, NULL);
+(4, 'Heritage Suite', 2, 160.00, 80.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (5, 'Skyline View Room', 2, 130.00, 65.00, NULL),
 (5, 'Metropolis Suite', 3, 200.00, 100.00, NULL),
 (5, 'Urban Loft', 4, 180.00, 90.00, NULL),
 (5, 'Downtown Den', 2, 110.00, 55.00, NULL),
-(5, 'Cityscape Chamber', 2, 120.00, 60.00, NULL);
+(5, 'Cityscape Chamber', 2, 120.00, 60.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (6, 'Elegant Suite', 3, 170.00, 85.00, NULL),
-(6, 'Classic Room', 2, 110.00, 55.00, NULL);
+(6, 'Classic Room', 2, 110.00, 55.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (7, 'Regal Suite', 3, 190.00, 95.00, NULL),
 (7, 'Executive Room', 2, 120.00, 60.00, NULL),
 (7, 'Opulent Loft', 4, 240.00, 120.00, NULL),
 (7, 'Majestic Chamber', 2, 160.00, 80.00, 0.25),
-(7, 'Royal Penthouse', 5, 300.00, 150.00, NULL);
+(7, 'Royal Penthouse', 5, 300.00, 150.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (8, 'Premium Suite', 3, 180.00, 90.00, NULL),
 (8, 'Superior Room', 2, 130.00, 65.00, NULL),
 (8, 'Deluxe Loft', 4, 230.00, 115.00, NULL),
 (8, 'Imperial Chamber', 2, 140.00, 70.00, NULL),
-(8, 'Sovereign Penthouse', 5, 290.00, 145.00, NULL);
+(8, 'Sovereign Penthouse', 5, 290.00, 145.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (9, 'Exclusive Suite', 3, 200.00, 100.00, NULL),
 (9, 'Premier Room', 2, 140.00, 70.00, NULL),
 (9, 'Elite Loft', 4, 250.00, 125.00, NULL),
 (9, 'Noble Chamber', 2, 170.00, 85.00, NULL),
-(9, 'Imperial Penthouse', 5, 310.00, 155.00, NULL);
+(9, 'Imperial Penthouse', 5, 310.00, 155.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (10, 'Glamour Suite', 3, 210.00, 105.00, NULL),
 (10, 'Chic Room', 2, 150.00, 75.00, NULL),
 (10, 'Elite Loft', 4, 260.00, 130.00, NULL),
 (10, 'Prestigious Chamber', 2, 180.00, 90.00, 0.1),
-(10, 'Sumptuous Penthouse', 5, 320.00, 160.00, NULL);
+(10, 'Sumptuous Penthouse', 5, 320.00, 160.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (11, 'Exquisite Suite', 3, 220.00, 110.00, NULL),
 (11, 'Stylish Room', 2, 160.00, 80.00, NULL),
 (11, 'Prestige Loft', 4, 270.00, 135.00, NULL),
 (11, 'Elegant Chamber', 2, 190.00, 95.00, NULL),
-(11, 'Elite Penthouse', 5, 330.00, 165.00, NULL);
+(11, 'Elite Penthouse', 5, 330.00, 165.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (12, 'Royal Suite', 3, 230.00, 115.00, 0.2),
-(12, 'Elegant Room', 2, 170.00, 85.00, NULL);
+(12, 'Elegant Room', 2, 170.00, 85.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (13, 'Luxury Suite', 3, 240.00, 120.00, NULL),
 (13, 'Grand Room', 2, 180.00, 90.00, NULL),
 (13, 'Elite Loft', 4, 290.00, 145.00, NULL),
 (13, 'Royal Chamber', 2, 210.00, 105.00, NULL),
-(13, 'Supreme Penthouse', 5, 350.00, 175.00, NULL);
+(13, 'Supreme Penthouse', 5, 350.00, 175.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (14, 'Premium Suite', 3, 250.00, 125.00, NULL),
 (14, 'Superior Room', 2, 190.00, 95.00, 0.1),
 (14, 'Deluxe Loft', 4, 300.00, 150.00, NULL),
 (14, 'Imperial Chamber', 2, 220.00, 110.00, NULL),
-(14, 'Sovereign Penthouse', 5, 360.00, 180.00, NULL);
+(14, 'Sovereign Penthouse', 5, 360.00, 180.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (15, 'Exclusive Suite', 3, 260.00, 130.00, NULL),
 (15, 'Premier Room', 2, 200.00, 100.00, NULL),
 (15, 'Elite Loft', 4, 310.00, 155.00, NULL),
 (15, 'Noble Chamber', 2, 230.00, 115.00, NULL),
-(15, 'Imperial Penthouse', 5, 370.00, 185.00, NULL);
+(15, 'Imperial Penthouse', 5, 370.00, 185.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (16, 'Glamour Suite', 3, 270.00, 135.00, NULL),
 (16, 'Chic Room', 2, 210.00, 105.00, NULL),
 (16, 'Elite Loft', 4, 320.00, 160.00, NULL),
 (16, 'Prestigious Chamber', 2, 240.00, 120.00, NULL),
-(16, 'Sumptuous Penthouse', 5, 380.00, 190.00, NULL);
+(16, 'Sumptuous Penthouse', 5, 380.00, 190.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (17, 'Exquisite Suite', 3, 280.00, 140.00, 0.25),
 (17, 'Stylish Room', 2, 220.00, 110.00, NULL),
 (17, 'Prestige Loft', 4, 330.00, 165.00, NULL),
 (17, 'Elegant Chamber', 2, 250.00, 125.00, NULL),
-(17, 'Elite Penthouse', 5, 390.00, 195.00, NULL);
+(17, 'Elite Penthouse', 5, 390.00, 195.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (18, 'Royal Suite', 3, 290.00, 145.00, NULL),
-(18, 'Elegant Room', 2, 230.00, 115.00, NULL);
+(18, 'Elegant Room', 2, 230.00, 115.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (19, 'Luxury Suite', 3, 300.00, 150.00, NULL),
 (19, 'Grand Room', 2, 240.00, 120.00, NULL),
 (19, 'Elite Loft', 4, 350.00, 175.00, NULL),
 (19, 'Royal Chamber', 2, 260.00, 130.00, NULL),
-(19, 'Supreme Penthouse', 5, 410.00, 205.00, 0.2);
+(19, 'Supreme Penthouse', 5, 410.00, 205.00, 0.2),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (20, 'Premium Suite', 3, 310.00, 155.00, NULL),
 (20, 'Superior Room', 2, 250.00, 125.00, NULL),
 (20, 'Deluxe Loft', 4, 360.00, 180.00, NULL),
 (20, 'Imperial Chamber', 2, 280.00, 140.00, NULL),
-(20, 'Sovereign Penthouse', 5, 420.00, 210.00, NULL);
+(20, 'Sovereign Penthouse', 5, 420.00, 210.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (21, 'Exclusive Suite', 3, 320.00, 160.00, NULL),
 (21, 'Premier Room', 2, 260.00, 130.00, NULL),
 (21, 'Elite Loft', 4, 370.00, 185.00, NULL),
 (21, 'Noble Chamber', 2, 290.00, 145.00, NULL),
-(21, 'Imperial Penthouse', 5, 430.00, 215.00, 0.05);
+(21, 'Imperial Penthouse', 5, 430.00, 215.00, 0.05),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (22, 'Glamour Suite', 3, 330.00, 165.00, NULL),
 (22, 'Chic Room', 2, 270.00, 135.00, NULL),
 (22, 'Elite Loft', 4, 380.00, 190.00, NULL),
 (22, 'Prestigious Chamber', 2, 300.00, 150.00, NULL),
-(22, 'Sumptuous Penthouse', 5, 440.00, 220.00, NULL);
+(22, 'Sumptuous Penthouse', 5, 440.00, 220.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (23, 'Exquisite Suite', 3, 340.00, 170.00, NULL),
 (23, 'Stylish Room', 2, 280.00, 140.00, NULL),
 (23, 'Prestige Loft', 4, 390.00, 195.00, NULL),
 (23, 'Elegant Chamber', 2, 310.00, 155.00, NULL),
-(23, 'Elite Penthouse', 5, 450.00, 225.00, NULL);
+(23, 'Elite Penthouse', 5, 450.00, 225.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (24, 'Royal Suite', 3, 350.00, 175.00, 0.2),
-(24, 'Elegant Room', 2, 290.00, 145.00, NULL);
+(24, 'Elegant Room', 2, 290.00, 145.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (25, 'Luxury Suite', 3, 360.00, 180.00, NULL),
 (25, 'Grand Room', 2, 300.00, 150.00, NULL),
 (25, 'Elite Loft', 4, 410.00, 205.00, NULL),
 (25, 'Royal Chamber', 2, 330.00, 165.00, NULL),
-(25, 'Supreme Penthouse', 5, 470.00, 235.00, NULL);
+(25, 'Supreme Penthouse', 5, 470.00, 235.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (26, 'Premium Suite', 3, 370.00, 185.00, NULL),
 (26, 'Superior Room', 2, 310.00, 155.00, 0.1),
 (26, 'Deluxe Loft', 4, 420.00, 210.00, NULL),
 (26, 'Imperial Chamber', 2, 340.00, 170.00, NULL),
-(26, 'Sovereign Penthouse', 5, 480.00, 240.00, NULL);
+(26, 'Sovereign Penthouse', 5, 480.00, 240.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (27, 'Exclusive Suite', 3, 380.00, 190.00, NULL),
 (27, 'Premier Room', 2, 320.00, 160.00, NULL),
 (27, 'Elite Loft', 4, 430.00, 215.00, NULL),
 (27, 'Noble Chamber', 2, 350.00, 175.00, NULL),
-(27, 'Imperial Penthouse', 5, 490.00, 245.00, NULL);
+(27, 'Imperial Penthouse', 5, 490.00, 245.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (28, 'Glamour Suite', 3, 390.00, 195.00, NULL),
 (28, 'Chic Room', 2, 330.00, 165.00, NULL),
 (28, 'Elite Loft', 4, 440.00, 220.00, NULL),
 (28, 'Prestigious Chamber', 2, 360.00, 180.00, 0.2),
-(28, 'Sumptuous Penthouse', 5, 500.00, 250.00, NULL);
+(28, 'Sumptuous Penthouse', 5, 500.00, 250.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (29, 'Exquisite Suite', 3, 400.00, 200.00, NULL),
 (29, 'Stylish Room', 2, 340.00, 170.00, NULL),
 (29, 'Prestige Loft', 4, 450.00, 225.00, NULL),
 (29, 'Elegant Chamber', 2, 370.00, 185.00, 0.1),
-(29, 'Elite Penthouse', 5, 510.00, 255.00, NULL);
+(29, 'Elite Penthouse', 5, 510.00, 255.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (30, 'Royal Suite', 3, 410.00, 205.00, NULL),
-(30, 'Elegant Room', 2, 350.00, 175.00, 0.1);
+(30, 'Elegant Room', 2, 350.00, 175.00, 0.1),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (31, 'Luxury Suite', 3, 420.00, 210.00, NULL),
 (31, 'Grand Room', 2, 360.00, 180.00, 0.2),
 (31, 'Elite Loft', 4, 470.00, 235.00, NULL),
 (31, 'Royal Chamber', 2, 390.00, 195.00, NULL),
-(31, 'Supreme Penthouse', 5, 530.00, 265.00, NULL);
+(31, 'Supreme Penthouse', 5, 530.00, 265.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (32, 'Premium Suite', 3, 430.00, 215.00, NULL),
 (32, 'Superior Room', 2, 370.00, 185.00, 0.05),
 (32, 'Deluxe Loft', 4, 480.00, 240.00, 0.15),
 (32, 'Imperial Chamber', 2, 400.00, 200.00, NULL),
-(32, 'Sovereign Penthouse', 5, 540.00, 270.00, NULL);
+(32, 'Sovereign Penthouse', 5, 540.00, 270.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (33, 'Exclusive Suite', 3, 440.00, 220.00, NULL),
 (33, 'Premier Room', 2, 380.00, 190.00, 0.1),
 (33, 'Elite Loft', 4, 490.00, 245.00, NULL),
 (33, 'Noble Chamber', 2, 410.00, 205.00, NULL),
-(33, 'Imperial Penthouse', 5, 550.00, 275.00, NULL);
+(33, 'Imperial Penthouse', 5, 550.00, 275.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (34, 'Glamour Suite', 3, 450.00, 225.00, NULL),
 (34, 'Chic Room', 2, 390.00, 195.00, NULL),
 (34, 'Elite Loft', 4, 500.00, 250.00, NULL),
 (34, 'Prestigious Chamber', 2, 420.00, 210.00, 0.1),
-(34, 'Sumptuous Penthouse', 5, 560.00, 280.00, NULL);
+(34, 'Sumptuous Penthouse', 5, 560.00, 280.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (35, 'Exquisite Suite', 3, 460.00, 230.00, NULL),
 (35, 'Stylish Room', 2, 400.00, 200.00, NULL),
 (35, 'Prestige Loft', 4, 510.00, 255.00, NULL),
 (35, 'Elegant Chamber', 2, 430.00, 215.00, NULL),
-(35, 'Elite Penthouse', 5, 570.00, 285.00, NULL);
+(35, 'Elite Penthouse', 5, 570.00, 285.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (36, 'Royal Suite', 3, 470.00, 235.00, NULL),
-(36, 'Elegant Room', 2, 410.00, 205.00, NULL);
+(36, 'Elegant Room', 2, 410.00, 205.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (37, 'Luxury Suite', 3, 480.00, 240.00, NULL),
 (37, 'Grand Room', 2, 420.00, 210.00, NULL),
 (37, 'Elite Loft', 4, 530.00, 265.00, NULL),
 (37, 'Royal Chamber', 2, 450.00, 225.00, NULL),
-(37, 'Supreme Penthouse', 5, 590.00, 295.00, NULL);
+(37, 'Supreme Penthouse', 5, 590.00, 295.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (38, 'Premium Suite', 3, 490.00, 245.00, 0.2),
 (38, 'Superior Room', 2, 430.00, 215.00, NULL),
 (38, 'Deluxe Loft', 4, 540.00, 270.00, NULL),
 (38, 'Imperial Chamber', 2, 460.00, 230.00, NULL),
-(38, 'Sovereign Penthouse', 5, 600.00, 300.00, NULL);
+(38, 'Sovereign Penthouse', 5, 600.00, 300.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (39, 'Exclusive Suite', 3, 500.00, 250.00, NULL),
 (39, 'Premier Room', 2, 440.00, 220.00, 0.2),
 (39, 'Elite Loft', 4, 550.00, 275.00, NULL),
 (39, 'Noble Chamber', 2, 470.00, 235.00, NULL),
-(39, 'Imperial Penthouse', 5, 610.00, 305.00, NULL);
+(39, 'Imperial Penthouse', 5, 610.00, 305.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (40, 'Glamour Suite', 3, 510.00, 255.00, NULL),
 (40, 'Chic Room', 2, 450.00, 225.00, NULL),
 (40, 'Elite Loft', 4, 560.00, 280.00, NULL),
 (40, 'Prestigious Chamber', 2, 480.00, 240.00, NULL),
-(40, 'Sumptuous Penthouse', 5, 620.00, 310.00, NULL);
+(40, 'Sumptuous Penthouse', 5, 620.00, 310.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (41, 'Exquisite Suite', 3, 520.00, 260.00, NULL),
 (41, 'Stylish Room', 2, 460.00, 230.00, NULL),
 (41, 'Prestige Loft', 4, 570.00, 285.00, NULL),
 (41, 'Elegant Chamber', 2, 490.00, 245.00, NULL),
-(41, 'Elite Penthouse', 5, 630.00, 315.00, NULL);
+(41, 'Elite Penthouse', 5, 630.00, 315.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (42, 'Royal Suite', 3, 530.00, 265.00, NULL),
-(42, 'Elegant Room', 2, 470.00, 235.00, NULL);
+(42, 'Elegant Room', 2, 470.00, 235.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (43, 'Luxury Suite', 3, 540.00, 270.00, NULL),
 (43, 'Grand Room', 2, 480.00, 240.00, NULL),
 (43, 'Elite Loft', 4, 590.00, 295.00, NULL),
 (43, 'Royal Chamber', 2, 510.00, 255.00, NULL),
-(43, 'Supreme Penthouse', 5, 650.00, 325.00, NULL);
+(43, 'Supreme Penthouse', 5, 650.00, 325.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (44, 'Premium Suite', 3, 550.00, 275.00, NULL),
 (44, 'Superior Room', 2, 490.00, 245.00, NULL),
 (44, 'Deluxe Loft', 4, 600.00, 300.00, NULL),
 (44, 'Imperial Chamber', 2, 520.00, 260.00, NULL),
-(44, 'Sovereign Penthouse', 5, 660.00, 330.00, NULL);
+(44, 'Sovereign Penthouse', 5, 660.00, 330.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (45, 'Exclusive Suite', 3, 560.00, 280.00, NULL),
 (45, 'Premier Room', 2, 500.00, 250.00, NULL),
 (45, 'Elite Loft', 4, 610.00, 305.00, NULL),
 (45, 'Noble Chamber', 2, 530.00, 265.00, NULL),
-(45, 'Imperial Penthouse', 5, 670.00, 335.00, NULL);
+(45, 'Imperial Penthouse', 5, 670.00, 335.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (46, 'Glamour Suite', 3, 570.00, 285.00, NULL),
 (46, 'Chic Room', 2, 510.00, 255.00, NULL),
 (46, 'Elite Loft', 4, 620.00, 310.00, NULL),
 (46, 'Prestigious Chamber', 2, 540.00, 270.00, NULL),
-(46, 'Sumptuous Penthouse', 5, 680.00, 340.00, NULL);
+(46, 'Sumptuous Penthouse', 5, 680.00, 340.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (47, 'Exquisite Suite', 3, 580.00, 290.00, NULL),
 (47, 'Stylish Room', 2, 520.00, 260.00, NULL),
 (47, 'Prestige Loft', 4, 630.00, 315.00, NULL),
 (47, 'Elegant Chamber', 2, 550.00, 275.00, NULL),
-(47, 'Elite Penthouse', 5, 690.00, 345.00, NULL);
+(47, 'Elite Penthouse', 5, 690.00, 345.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (48, 'Royal Suite', 3, 590.00, 295.00, NULL),
 (48, 'Elegant Room', 2, 530.00, 265.00, NULL),
 (48, 'Imperial Loft', 4, 640.00, 320.00, NULL),
 (48, 'Majestic Chamber', 2, 560.00, 280.00, NULL),
-(48, 'Royal Penthouse', 5, 700.00, 350.00, NULL);
+(48, 'Royal Penthouse', 5, 700.00, 350.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (49, 'Luxury Suite', 3, 600.00, 300.00, NULL),
 (49, 'Grand Room', 2, 540.00, 270.00, NULL),
 (49, 'Elite Loft', 4, 650.00, 325.00, NULL),
 (49, 'Royal Chamber', 2, 570.00, 285.00, NULL),
-(49, 'Supreme Penthouse', 5, 710.00, 355.00, NULL);
+(49, 'Supreme Penthouse', 5, 710.00, 355.00, NULL),
 
-INSERT INTO Rooms (hotelId, roomNumber, peopleCapacity, priceForPerson, childrenPrice, discount)
-VALUES 
 (50, 'Premium Suite', 3, 610.00, 305.00, NULL),
 (50, 'Superior Room', 2, 550.00, 275.00, NULL),
 (50, 'Deluxe Loft', 4, 660.00, 330.00, NULL),
