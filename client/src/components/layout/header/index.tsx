@@ -48,7 +48,7 @@ function Header() {
   ];
 
   return (
-    <header className="lg:px-16 flex py-4 shadow-md justify-between bg-brand-primary">
+    <header className="lg:px-16 flex py-4 shadow-md justify-between bg-brand-primary items-center">
       <Link href="/">
           <img src="/cheetahbooking-high-resolution-logo.png" alt="logo" className="w-56" />
       </Link>
@@ -56,6 +56,8 @@ function Header() {
         <div className="hidden md:flex md:items-center md:w-auto w-full" id="menu">
           <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0 gap-12">
             {isLogged && <li>{!loading ? <p>Welcome on your adventure {user?.username}!</p> : <Loading />}</li>}
+            <li><Link className="block" href="/offer">Our offer</Link></li>
+            <li><Link className="block" href="/about">About</Link></li>
             <li><Link className="block" href="/destinations">Destinations</Link></li>
             <li>
               <select className="appearance-none bg-brand-secondary border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
