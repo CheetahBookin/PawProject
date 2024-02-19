@@ -51,8 +51,8 @@ const searchForCountryOrCity = async (req: SearchRequest, res: Response) => {
         }
       }
     });
-    const countries = countriesHotels.map(hotel => hotel.country);
-    const cities = citiesHotels.map(hotel => hotel.city);
+    const countries = countriesHotels.map((hotel: any) => hotel.country);
+    const cities = citiesHotels.map((hotel: any) => hotel.city);
     const uniqueCountries = [...new Set(countries)];
     const uniqueCities = [...new Set(cities)];
     res.json({countries: uniqueCountries, cities: uniqueCities});
@@ -101,11 +101,11 @@ const searchForTrip = async (req: TripRequest, res: Response) => {
         }
       }
     });
-    hotels.forEach(hotel => {
-      hotel.Rooms = hotel.Rooms.filter(room => room.peopleCapacity >= adult + children);
+    hotels.forEach((hotel: any) => {
+      hotel.Rooms = hotel.Rooms.filter((room: any) => room.peopleCapacity >= adult + children);
     });
-    const calculatedPrice = hotels.map(hotel => {
-      hotel.Rooms = hotel.Rooms.map(room => {
+    const calculatedPrice = hotels.map((hotel: any) => {
+      hotel.Rooms = hotel.Rooms.map((room: any) => {
         return {
           ...room,
           discountedPrice: ((room.discount ? room.priceForPerson * (1 - room.discount) : room.priceForPerson) * adult + (room.discount ? room.childrenPrice * (1 - room.discount) : room.childrenPrice) * children) * nightsCount,
@@ -114,7 +114,7 @@ const searchForTrip = async (req: TripRequest, res: Response) => {
       });
       return hotel;
     });
-    const response = calculatedPrice.map(hotel => {
+    const response = calculatedPrice.map((hotel: any) => {
       return {
         id: hotel.id,
         name: hotel.name,

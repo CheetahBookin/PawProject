@@ -99,9 +99,9 @@ const register = async (req: AuthRequest, res: Response) => {
         }
         await prisma.user.create({
             data: user
-        }).then(user => {
+        }).then((user: any) => {
             res.status(201).json({ user })
-        }).catch(error => {
+        }).catch((error: any) => {
             res.status(400).json({ error })
         })
     }catch(error){
