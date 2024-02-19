@@ -1,5 +1,14 @@
 import axios from "axios";
 
+const searchForHotel = async (search: string) => {
+    try{
+        const response = await axios.post('http://localhost:5000/search', {search});
+        return response.data
+    }catch(err){
+        console.log(err)
+    }
+}
+
 const searchForCountryOrCity = async (search: string) => {
     try{
         const response = await axios.post('http://localhost:5000/search/country-city', {search});
@@ -20,5 +29,6 @@ const searchForTrip = async (destination: string, dateFrom: string, dateTo: stri
 
 export {
     searchForCountryOrCity,
-    searchForTrip
+    searchForTrip,
+    searchForHotel
 }
