@@ -84,8 +84,8 @@ const getHotelsTypes = async (req: Request, res: Response) => {
     }
   });
 
-  const uniqueHotelTypes = hotelsTypes.filter((hotel, index, self) =>
-    index === self.findIndex((t) => t.type === hotel.type)
+  const uniqueHotelTypes = hotelsTypes.filter((hotel: any, index: any, self: any) =>
+    index === self.findIndex((t: any) => t.type === hotel.type)
   );
 
   res.json(uniqueHotelTypes);
