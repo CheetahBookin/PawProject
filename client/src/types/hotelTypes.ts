@@ -10,6 +10,16 @@ export type HotelTypes = {
     Rooms: Rooms[]
 }
 
+export type HotelTypesShort = {
+    id: number,
+    name: string,
+    address: string,
+    country: string,
+    city: string,
+    type: string,
+    carParkFee: number
+}
+
 export type RoomImages = {
     image: string
 }
