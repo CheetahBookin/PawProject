@@ -27,8 +27,28 @@ const givePermission = async () => {
     }
 }
 
+const forgotPassword = async (email: string) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/users/forgot-password`, { email });
+        return response;
+    } catch (err: any) {
+        return err.response;
+    }
+}
+
+const resetPassword = async (email: string, resetCode: string, newPassword: string) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/users/reset-password`, { email, resetCode, newPassword });
+        return response;
+    } catch (err: any) {
+        return err.response;
+    }
+}
+
 export {
     getUser,
     logout,
-    givePermission
+    givePermission,
+    forgotPassword,
+    resetPassword
 }
