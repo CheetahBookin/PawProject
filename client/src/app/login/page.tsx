@@ -55,7 +55,7 @@ function Login(){
 
                 <div className='flex flex-col'>
                     <PasswordInput content={'Password'} onChange={e=>handleChange(e)} name={'password'}/>
-                    <p className='text-sm text-gray-600 inline self-end cursor-pointer'>Forgot password?</p>
+                    <Link href='/reset-password' className='text-sm text-gray-600 inline self-end cursor-pointer'>Forgot password?</Link>
                 </div>
 
                 <button className='mt-2 bg-brand-secondary hover:bg-brand-primary transition-all text-gray-600 font-bold py-2 px-4 rounded focus:outline-none focus::shadow-outline' onClick={e=>handleSubmit(e)}>{loading ? <Loading /> : "Login"}</button>
