@@ -1,5 +1,5 @@
 import GalleryPopularDestinations from '@/components/layout/galleryPopularDestinations'
-import GallerySlider1 from '@/components/layout/gallerySlider1'
+import BargainsGallery from '@/components/layout/bargainsGallery'
 import GallerySlider2 from '@/components/layout/gallerySlider2'
 import Search from '../components/layout/searchBar/index'
 import GalleryPropertyType from '@/components/layout/galleryPropertyType'
@@ -11,7 +11,7 @@ export default function Home() {
        <Search />
        <GalleryPopularDestinations />
        <GalleryPropertyType />
-       <GallerySlider1 />
+       <BargainsGallery />
        <GallerySlider2 />
     </main>
   )
