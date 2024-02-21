@@ -76,6 +76,7 @@ model Accomodation {
   city      String
   type     String
   carParkFee Float?
+  flag_url  String?
   images    AccomodationImages[]
   Bookings  BookingDetails[]
   Rooms     Rooms[]
