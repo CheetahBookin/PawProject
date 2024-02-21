@@ -40,6 +40,7 @@ const browseHotelsByCity = async (req: Request, res: Response) => {
             city: city
         },
         select: {
+            id: true,
             name: true,
             images: {
                 select: {
