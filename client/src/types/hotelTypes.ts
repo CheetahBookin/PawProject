@@ -44,3 +44,20 @@ export type HotelsTypesTypes = {
     type: string,
     images: RoomImages[]
 }
+
+type DiscountedRoomsRooms = {
+    roomNumber: string,
+    priceForPerson: number,
+    discount: number,
+    id: number,
+    peopleCapacity: number
+}
+
+export type DiscountedRooms = {
+    name: string,
+    country: string,
+    city: string,
+    id: number,
+    images: RoomImages[],
+    Rooms: DiscountedRoomsRooms[],
+}
