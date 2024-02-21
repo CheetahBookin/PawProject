@@ -49,6 +49,7 @@ const getDiscountedRooms = async (req: Request, res: Response) => {
       name: true,
       country: true,
       city: true,
+      id: true,
       images: {
         select: {
           image: true
@@ -59,7 +60,9 @@ const getDiscountedRooms = async (req: Request, res: Response) => {
         select: {
           roomNumber: true,
           priceForPerson: true,
-          discount: true
+          discount: true,
+          id: true,
+          peopleCapacity: true
         },
         orderBy: {
           discount: 'desc'
