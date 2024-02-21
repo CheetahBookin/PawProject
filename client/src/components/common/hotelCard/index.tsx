@@ -7,10 +7,11 @@ type HotelCardProps = {
     index: number,
     image: RoomImages[],
     name: string,
-    city: string
+    city: string,
+    flag_url?: string
 }
 
-function HotelCard({id, index, image, name, city}: HotelCardProps) {
+function HotelCard({id, index, image, name, city, flag_url}: HotelCardProps) {
   const router = useRouter();
   const createSlug = (name: string, id: number) =>{
     return `${name.toLowerCase().split(' ').join('-')}-${id}`;
@@ -29,7 +30,10 @@ function HotelCard({id, index, image, name, city}: HotelCardProps) {
             className="cursor-pointer opacity-80 hover:opacity-100 object-cover rounded-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 m-4"
             onClick={handleClick}
         />
-        <p>{name}, {city}</p>
+        <div className='flex justify-center gap-2'>
+          <p>{name}, {city}</p>
+          <img src={flag_url} alt={city} className='w-8'/>
+        </div>
     </div>
   )
 }
