@@ -6,6 +6,7 @@ export type HotelTypes = {
     city: string,
     type: string,
     carParkFee: number,
+    flag_url: string,
     images: RoomImages[],
     Rooms: Rooms[]
 }

@@ -53,6 +53,7 @@ function GalleryPopularDestinations() {
               image = {hotel.images}
               name = {hotel.name}
               city = {hotel.city}
+              flag_url = {hotel.flag_url}
             />
         )) : <Loading />}
       </div>
