@@ -7,5 +7,10 @@ export type CountryType = {
 
 export type CityType = {
     city: string;
+}
+
+export type HotelType = {
+    id: number;
+    name: string;
     images: RoomImages[]
 }
