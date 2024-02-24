@@ -26,11 +26,10 @@ function HotelCard({id, index, image, name, city, flag_url}: HotelCardProps) {
          <img
             src={image[0].image}
             alt={name}
-            style={{ width: '300px', height: '300px' }}
-            className="cursor-pointer opacity-80 hover:opacity-100 object-cover rounded-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 m-4"
+            className="cursor-pointer opacity-80 hover:opacity-100 object-cover rounded-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 m-4 w-72 h-72"
             onClick={handleClick}
         />
-        <div className='flex justify-center gap-2'>
+        <div className='flex justify-center gap-2 items-center'>
           <p>{name}, {city}</p>
           <img src={flag_url} alt={city} className='w-8'/>
         </div>
