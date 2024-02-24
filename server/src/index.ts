@@ -8,6 +8,8 @@ import userRouter from './routes/userRoute';
 import countryRouter from './routes/countriesRoute';
 import paymentRouter from './routes/paymentRoute';
 import cookieParser from 'cookie-parser';
+import initializeWebSocket from './websockets/initializeWebSocket';
+import { createServer } from 'http';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -35,6 +37,9 @@ app.use("/users", userRouter)
 app.use("/countries", countryRouter)
 app.use("/payments", paymentRouter)
 
-app.listen(PORT, () => {
+const httpServer = createServer(app);
+initializeWebSocket(httpServer);
+
+httpServer.listen(PORT, () => {
     console.log(`Server is running on localhost:${PORT}`);
 });
