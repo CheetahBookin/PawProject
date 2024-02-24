@@ -6,6 +6,7 @@ import searchRouter from './routes/searchRoute';
 import ratingRouter from './routes/ratingRoute';
 import userRouter from './routes/userRoute';
 import countryRouter from './routes/countriesRoute';
+import paymentRouter from './routes/paymentRoute';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -32,6 +33,7 @@ app.use("/search", searchRouter)
 app.use("/rating", ratingRouter)
 app.use("/users", userRouter)
 app.use("/countries", countryRouter)
+app.use("/payments", paymentRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is running on localhost:${PORT}`);
