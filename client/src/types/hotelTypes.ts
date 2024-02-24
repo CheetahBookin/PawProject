@@ -26,6 +26,7 @@ export type RoomImages = {
 }
 
 export type Rooms = {
+    id: number,
     roomNumber: string,
     peopleCapacity: number,
     priceForPerson: number,
