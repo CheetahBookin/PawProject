@@ -15,7 +15,7 @@ const getExactHotel = async (req: Request, res: Response) => {
     },
     include: {
       images: { select: { image: true } },
-      Rooms: { select: { roomNumber: true, peopleCapacity: true, priceForPerson: true, childrenPrice: true } },
+      Rooms: { select: { roomNumber: true, peopleCapacity: true, priceForPerson: true, childrenPrice: true, id: true } },
       Rates: {
         select: {
           rate: true,
