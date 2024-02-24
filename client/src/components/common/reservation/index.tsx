@@ -1,16 +1,17 @@
 import { getExactHotel } from '@/services/hotelsService'
-import { cancelReservation } from '@/services/paymentService'
 import { HotelTypes, RoomImages, Rooms } from '@/types/hotelTypes'
 import { Reservation } from '@/types/paymentTypes'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { getSocket } from '@/services/getSocket'
 
 type ReservationProps = {
-  reservation: Reservation
+  reservation: Reservation,
 }
 
 const ReservationCard = ({ reservation }: ReservationProps) => {
   const [hotel, setHotel] = useState<HotelTypes | null>(null)
+  const socket = getSocket()
 
   useEffect(() => {
     const fetchHotel = async () => {
@@ -28,13 +29,9 @@ const ReservationCard = ({ reservation }: ReservationProps) => {
     fetchHotel()
   }, [reservation])
 
-  const handleCancel = async () => {
+  const handleCancel = async (orderId: number) => {
     try{
-      const response = await cancelReservation(reservation.id)
-      if (response?.status !== 200) {
-        console.error("Error cancelling reservation")
-        return
-      }
+      socket.emit("cancel-reservation", orderId)
     }catch(error){
       console.error("Error cancelling reservation:", error)
     }
@@ -46,7 +43,7 @@ const ReservationCard = ({ reservation }: ReservationProps) => {
         <>
           <div className="flex items-center justify-between mb-4">
             <div>
-              {!reservation.paid && <button className="bg-red-600 rounded-lg mb-4 p-4 text-white hover:bg-red-800" onClick={handleCancel}>Cancel</button>}
+              {!reservation.paid && <button className="bg-red-600 rounded-lg mb-4 p-4 text-white hover:bg-red-800" onClick={()=>handleCancel(reservation.id)}>Cancel</button>}
               {reservation.paid && new Date(reservation.toDate) > new Date() && <p className="text-emerald-600">Active</p>}
               {new Date(reservation.toDate) < new Date() && <p className="text-red-600">Expired</p>}
               {hotel.images && hotel.images.length > 0 && <img src={hotel.images[0].image} alt="Hotel" className="w-24 h-24 object-cover rounded-md" />}
