@@ -67,6 +67,7 @@ function HotelDetails() {
               city = {hotel?.city || ""}
               type = {hotel?.type || ""}
               carParkFee = {hotel?.carParkFee || 0}
+              flag_url={hotel?.flag_url || ""}
               images = {hotel?.images || []}
               Rooms = {hotel?.Rooms || []}
               Rates = {hotel?.Rates || []}
