@@ -15,8 +15,27 @@ model User {
   agreement Boolean
   resetCode String?
   profile   UserProfile?
-  bookings  Bookings[]
   rates    Rates[]
+  orders   Orders[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Orders {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  hotelId   Int
+  roomId    Int
+  adults    Int
+  children  Int
+  fromDate  DateTime
+  toDate   DateTime
+  carParkFee Float
+  fullPrice Float
+  paid      Boolean
+  paymentId String?
+  invoice   Invoice?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -34,38 +53,22 @@ model UserProfile {
   updatedAt DateTime @updatedAt
 }
 
-model Bookings {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  bookingDetails BookingDetails?
-  invoice   Invoice?
-  userId    Int      @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Invoice {
   id        Int      @id @default(autoincrement())
-  booking   Bookings @relation(fields: [bookingId], references: [id])
-  bookingId Int     @unique
-  name      String
-  surname   String
-  address   String
-  country   String
-  city      String
-  price     Int
+  order   Orders @relation(fields: [orderId], references: [id])
+  orderId Int     @unique
+  name      String?
+  surname   String?
+  email     String?
+  address   String?
+  country   String?
+  city      String?
+  postalCode String?
+  price     Int?
+  status    String
+  currency  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model BookingDetails {
-  id        Int      @id @default(autoincrement())
-  booking   Bookings @relation(fields: [bookingId], references: [id])
-  bookingId Int     @unique
-  checkIn   DateTime
-  checkOut  DateTime
-  accomodation     Accomodation    @relation(fields: [accomodationId], references: [id])
-  accomodationId   Int
 }
 
 model Accomodation {
@@ -78,7 +81,6 @@ model Accomodation {
   carParkFee Float?
   flag_url  String?
   images    AccomodationImages[]
-  Bookings  BookingDetails[]
   Rooms     Rooms[]
   Rates     Rates[]
   BookedDates BookedDates[]
