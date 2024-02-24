@@ -11,7 +11,24 @@ const getUserData = async (req: Request, res: Response) => {
         const userData = req.user as MinimizedUser
         const id = userData.id
         const user: FullUser | null = await prisma.user.findUnique({
-            where: { id: id }
+            where: { id: id },
+            include: {
+                orders: {
+                    select: {
+                        id: true,
+                        fromDate: true,
+                        toDate: true,
+                        adults: true,
+                        children: true,
+                        hotelId: true,
+                        roomId: true,
+                        fullPrice: true,
+                        paid: true,
+                        createdAt: true
+                    }
+                }
+            }
+
         })
         if (!user) {
             return res.status(400).json({ error: "User not found" })
