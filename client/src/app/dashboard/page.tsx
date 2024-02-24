@@ -7,6 +7,7 @@ import { User } from '@/types/userTypes'
 import { useUserContext } from '@/context/userContext'
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/common/loading'
+import Link from 'next/link'
 
 function Dashboard() {
   const router = useRouter()
@@ -35,11 +36,12 @@ function Dashboard() {
     }
   }
   return (
-    <main className="bg-brand-secondary h-full text-black">
+    <main className="bg-brand-secondary text-black flex flex-col items-start">
       {user ? 
       <>
         <h1>Dashboard</h1>
         <p>Welcome {user?.username}</p>
+        <Link href="/dashboard/reservations">Your reservations</Link>
         <button className="bg-brand-primary text-white px-4 py-2 rounded-md" onClick={executeLogout}>Logout</button>
       </>
       : <Loading />}
