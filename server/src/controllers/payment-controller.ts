@@ -80,7 +80,7 @@ const bookTrip = async (req: Request, res: Response) => {
             res.status(404).json({ error: "Room not found" });
             return;
         }
-        const checkRoom = hotel.Rooms.find((r) => r.id === roomId);
+        const checkRoom = hotel.Rooms.find((r: any) => r.id === roomId);
         if (!checkRoom) {
             res.status(404).json({ error: "Room not found in this hotel" });
             return;
