@@ -9,7 +9,6 @@ import { Reservation } from '@/types/paymentTypes'
 import { getSocket } from '@/services/getSocket'
 
 function Reservations() {
-  const [reservation, setReservation] = useState<number | null>(null)
   const [paidReservations, setPaidReservations] = useState<Reservation[]>([])
   const [unpaidReservations, setUnpaidReservations] = useState<Reservation[]>([])
   const [showPaidReservations, setShowPaidReservations] = useState<boolean>(false)

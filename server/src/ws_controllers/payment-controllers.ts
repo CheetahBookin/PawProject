@@ -24,7 +24,7 @@ const getAllUnpaidReservations = async (userId: number) => {
     }
 }
 
-const cancelReservation = async (orderId: number) =>{
+const cancelReservation = async (orderId: string) =>{
     try{
         if (!orderId) {
             return "Missing required information"
