@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/public/invoice
+/public/invoice/*
+!/public/invoice/
+!/public/invoice/.gitkeep
 
 # dependencies
 /node_modules
