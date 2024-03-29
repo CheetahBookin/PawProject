@@ -3,6 +3,8 @@ import { PrismaClient } from '@prisma/client';
 import { MinimizedUser, FullUser } from '../types/User';
 import nodemailer from 'nodemailer';
 import argon2 from 'argon2';
+import path from 'path';
+import fs from 'fs';
 
 const prisma = new PrismaClient();
 
@@ -60,25 +62,29 @@ const forgotPassword = async (req: Request, res: Response) => {
             return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
         }
         const resetCode = generateUniqueCode();
-        var transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.EMAIL,
                 pass: process.env.EMAIL_PASSWORD
             }
         });
-        var mailOptions = {
+        const templatePath = path.join(__dirname, '..', 'templates', 'forgotPassword.html');
+        let emailTemplate = fs.readFileSync(templatePath, 'utf-8');
+        const logoPath = path.join(__dirname, '..', '..', '..', 'client', 'public', 'cheetahbooking-high-resolution-logo.png');
+        emailTemplate = emailTemplate.replace('{{username}}', user.username);
+        emailTemplate = emailTemplate.replace('{{resetCode}}', resetCode);
+        emailTemplate = emailTemplate.replace('{{email}}', email);
+        const mailOptions = {
             from: process.env.EMAIL,
             to: email,
             subject: 'Reset your password',
-            html: `
-                <p><h2>Hi ${user.username}!</h2></p>
-                <p>Your reset code is: ${resetCode}</p>
-                <p>Please visit this link to finish resetting your password: <a href="http://localhost:3000/reset-password/${email}">Reset Password</a></p>
-                <p>If you didn't request this, please ignore this email. Your password won't change.</p>
-                <p>Thanks, CheetahBooking Inc.</p>
-                <p><img src="https://raw.githubusercontent.com/CheetahBookin/PawProject/main/client/public/cheetahbooking-high-resolution-logo.png?token=GHSAT0AAAAAACND6ZR2YX4GPR7YXWPCQOUCZOVDGCQ" alt="CheetahBooking Logo" style="width: 350px;"></p>
-            `
+            html: emailTemplate,
+            attachments: [{
+                filename: 'cheetahbooking-high-resolution-logo.png',
+                path: logoPath,
+                cid: 'logoID'
+            }]
         };        
         transporter.sendMail(mailOptions, async function(error, info){
             if (error) {
@@ -95,6 +101,7 @@ const forgotPassword = async (req: Request, res: Response) => {
         });
     }catch(error){
         res.status(500).json({ error: "Can't send email" })
+        console.log(error)
     }
 }
 
