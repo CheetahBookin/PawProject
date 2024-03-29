@@ -5,6 +5,7 @@ import Footer from '@/components/layout/footer/index'
 import { UserContextProvider } from '@/context/userContext'
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
+import { Toaster } from '@/components/ui/toaster'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -31,11 +32,12 @@ export default function RootLayout({
         <link rel="icon" href="./favicon.ico" />
         <title>{String(metadata.title)}</title>
       </head>
-      <body className={cn("min-h-screen font-sans antialiased", fontSans.variable)}>
+      <body className={cn("min-h-full font-sans antialiased", fontSans.variable)}>
         <UserContextProvider>
           <Header />
           {children}
           <Footer />
+          <Toaster />
         </UserContextProvider>  
       </body>
     </html>
