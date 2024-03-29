@@ -9,7 +9,7 @@ const bookTrip = async (hotelId: number, roomId: number, userId: number, adults:
   }
 }
 
-const checkout = async (orderId: number, email: string, userId: number) => {
+const checkout = async (orderId: string, email: string, userId: number) => {
     try {
         const response = await axios.post("http://localhost:5000/payments/checkout", {orderId, email, userId});
         return response;
@@ -18,7 +18,7 @@ const checkout = async (orderId: number, email: string, userId: number) => {
     }
 }
 
-const checkPaymentStatus = async (orderId: number) => {
+const checkPaymentStatus = async (orderId: string) => {
     try {
         const response = await axios.post(`http://localhost:5000/payments/status`, {orderId});
         return response;
@@ -27,7 +27,7 @@ const checkPaymentStatus = async (orderId: number) => {
     }
 }
 
-const cancelReservation = async (orderId: number) => {
+const cancelReservation = async (orderId: string) => {
     try {
         const response = await axios.post(`http://localhost:5000/payments/cancel`, {orderId});
         return response;

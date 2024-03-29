@@ -31,6 +31,7 @@ export type Rooms = {
     peopleCapacity: number,
     priceForPerson: number,
     childrenPrice: number
+    discount: number
 }
 
 export type FullRoom = Rooms & {
