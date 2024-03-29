@@ -1,3 +1,4 @@
+import { useToast } from '@/components/ui/use-toast';
 import React, { useReducer, useState } from "react";
 
 type OrderDetailsProps = {
@@ -66,10 +67,11 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
     };
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
-  const [counters, dispatchCounters] = useReducer(counterReducer, {
-    adults: 0,
-    children: 0,
-  });
+    const [counters, dispatchCounters] = useReducer(counterReducer, {
+      adults: 0,
+      children: 0,
+    });
+    const { toast } = useToast();
 
   const handleClose = () => {
     setSelectedRoom(0);
@@ -113,7 +115,11 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
         children: counters.children,
         carParkFee: carParkFee
     });
-    setMessage("Data set successfully, now you can book the trip");
+    toast({
+        title: "Success",
+        description: "Data set successfully, now you can book the trip",
+        variant: "success"
+    })
     setSuccess(true);
   }
   return (
@@ -182,7 +188,6 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
           />
         </div>
         {error && <p className="text-red-500">{error}</p>}
-        {message && <p className="text-green-500">{message}</p>}
         <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md" onClick={handleBookTrip}>
           Set your data
         </button>
