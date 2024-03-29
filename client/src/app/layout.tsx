@@ -1,8 +1,15 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import '@/styles/globals.css'
 import Header from '@/components/layout/header/index'
 import Footer from '@/components/layout/footer/index'
 import { UserContextProvider } from '@/context/userContext'
+import { Inter as FontSans } from "next/font/google"
+import { cn } from "@/lib/utils"
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 export const metadata: Metadata = {
   title: 'CheetahBooking',
@@ -16,7 +23,7 @@ export default function RootLayout({
 }) {
   
   return (
-    <html lang="pl-PL" className="h-full">
+    <html lang="pl-PL" className="h-full" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0" />
@@ -24,7 +31,7 @@ export default function RootLayout({
         <link rel="icon" href="./favicon.ico" />
         <title>{String(metadata.title)}</title>
       </head>
-      <body className="flex flex-col h-full">
+      <body className={cn("min-h-screen font-sans antialiased", fontSans.variable)}>
         <UserContextProvider>
           <Header />
           {children}

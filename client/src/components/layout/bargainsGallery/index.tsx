@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight, faTag } from '@fortawesome/free-solid-svg-icons';
 import { DiscountedRooms } from '@/types/hotelTypes';
 import { useRouter } from 'next/navigation';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 function BargainsGallery() {
   const [data, setData] = useState<DiscountedRooms[]>([]);
@@ -58,12 +59,13 @@ function BargainsGallery() {
   }
 
   return (
-    <div className="relative overflow-hidden flex justify-center h-full pt-12 w-[70vw]">
-      <div ref={sliderRef} className="flex gap-16" style={{ scrollBehavior: 'smooth' }}>
-        {visibleData.map((item: DiscountedRooms, index: number) => (
-          <div key={index} className="relative flex-shrink-0 w-[18vw] h-[45vh] bg-brand-primary flex flex-col items-center rounded-2xl">
-            <FontAwesomeIcon icon={faTag} className="absolute left-[86%] bottom-[90%] text-red-500 z-10 fa fa-tag text-8xl"/>
-            <span className="absolute left-[94%] bottom-[96%] text-white z-10 text-xl">{`${(item.Rooms[0].discount) * 100}%`}</span>
+    <Carousel className="w-full max-w-7xl">
+    <CarouselContent className="-ml-1">
+      {data?.map((item: DiscountedRooms, index: number) => (
+        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          <div className="h-full bg-brand-primary rounded-2xl relative">
+            <FontAwesomeIcon icon={faTag} className="absolute top-0 left-[4px] text-red-500 z-10 fa fa-tag text-8xl"/>
+            <span className="absolute top-8 left-8 z-20 text-brand-secondary">{`${(item.Rooms[0].discount) * 100}%`}</span>
             <img src={item.images[0].image} alt={item.name} className="w-full h-1/2 rounded-t-2xl" />
             <div className='w-full flex flex-col items-center justify-around h-1/2'>
               <p className='text-black'>{item.name}, {item.country}</p>
@@ -74,20 +76,13 @@ function BargainsGallery() {
                 <p>New price: {countPrice(item.Rooms[0].priceForPerson, item.Rooms[0].discount)}zł</p>
               </div>
             </div>
-          </div>              
-        ))}
-      </div>
-      {position > 0 && (
-        <button onClick={handleClickLeft} className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white rounded-full p-2">
-          <FontAwesomeIcon icon={faCaretLeft} className='text-2xl' />
-        </button>
-      )}
-      {position + itemsPerPage < data.length && (
-        <button onClick={handleClickRight} className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white rounded-full p-2">
-          <FontAwesomeIcon icon={faCaretRight} className='text-2xl' />
-        </button>
-      )}
-    </div>
+          </div>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+  </Carousel>
   );
 }
 
