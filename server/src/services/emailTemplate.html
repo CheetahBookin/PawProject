@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+        img {
+            width: 250px;
+            margin-right: 150px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            width: 30%;
+            background-color: #f2f2f2;
+        }
+        .thanks {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Invoice</h1>
+    <div class="invoice-details">
+        <img src="cid:logoID" alt="Cheetah Logo">
+        <div>
+            <p>{{name}}</p>
+            <p>{{email}}</p>
+            <p>{{address}}</p>
+            <p>{{city}}, {{postalCode}}</p>
+            <p>{{country}}</p>
+        </div>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <th>Reckoning</th>
+            </tr>
+            <tr>
+                <td>Order Id:</td>
+                <td>{{orderId}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <th>Hotel</th>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>{{hotelName}}</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>{{hotelAddress}}, {{hotelCity}}, {{hotelCountry}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <th>Room</th>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>{{roomNumber}}</td>
+            </tr>
+            <tr>
+                <td>Adult price: </td>
+                <td>{{adults}}*{{priceForPerson}} | {{adultPrice}}PLN</td>
+            </tr>
+            <tr>
+                <td>Children price: </td>
+                <td>{{children}}*{{childrenPrice}} | {{finalChildrenPrice}}PLN</td>
+            </tr>
+            <tr>
+                <td>Discount: </td>
+                <td>{{discount}}%</td>
+            </tr>
+            <tr>
+                <td>Parking fee: </td>
+                <td>{{carParkFee}}*{{nights}} | {{carParkFeeFull}}PLN</td>
+            </tr>
+            <tr>
+                <td>Total price: </td>
+                <td>{{fullPrice}}PLN</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <th>Dates</th>
+            </tr>
+            <tr>
+                <td>Check-in:</td>
+                <td>{{fromDate}}, 12:00</td>
+            </tr>
+            <tr>
+                <td>Check-out:</td>
+                <td>{{toDate}}, 10:00</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <th>Payment</th>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>Paid</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <tbody>
+            <tr>
+                <th>People count</th>
+            </tr>
+            <tr>
+                <td>Adults:</td>
+                <td>{{adults}}</td>
+            </tr>
+            <tr>
+                <td>Children:</td>
+                <td>{{children}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="thanks">Thank you for choosing Cheetah Booking</p>
+</body>
+</html>
