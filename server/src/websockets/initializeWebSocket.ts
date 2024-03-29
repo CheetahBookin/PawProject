@@ -6,7 +6,6 @@ import verifyJWTForSocket from "../middlewares/verifyJWTForSocket";
 
 const initializeWebSocket = (httpServer: Server) => {
     const io = getSocket(httpServer);
-    console.log("WebSocket server initialized")
     io.on("connection", (ws) => {
         try{
             let cookies = ws.handshake.headers.cookie;
@@ -36,7 +35,7 @@ const initializeWebSocket = (httpServer: Server) => {
                 const reservations = await getAllUnpaidReservations(userId);
                 io.to(roomName).emit("reservations", reservations);
             });
-            ws.on("cancel-reservation", async (orderId: number) => {
+            ws.on("cancel-reservation", async (orderId: string) => {
                 await cancelReservation(orderId);
                 const updatedReservations = await getAllUnpaidReservations(userId);
                 io.to(roomName).emit("reservations", updatedReservations);

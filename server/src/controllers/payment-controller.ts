@@ -17,7 +17,6 @@ const stripe = new Stripe(stripe_key, {
 
 const bookTrip = async (req: Request, res: Response) => {
     const { hotelId, roomId, userId, adults, children, fromDate, toDate } = req.body;
-    console.log(req.body)
     try {
         if (!hotelId || !roomId || !userId || !adults || !fromDate || !toDate) {
             res.status(400).json({ error: "Missing required information" });
@@ -93,13 +92,19 @@ const bookTrip = async (req: Request, res: Response) => {
         if(!carParkFee){
             carParkFee = 0;
         }
+        function getRandomNumber(min: number, max: number) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
         const numberOfNights = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
         const parkingFee = carParkFee * numberOfNights;
         const notDiscountedPrice = ((adults * room.priceForPerson + children * room.childrenPrice) * numberOfNights) + parkingFee;
         const discount = room.discount;
         const fullPrice = discount ? (1-discount) * notDiscountedPrice : notDiscountedPrice;
+        const randomNumbers = `${getRandomNumber(100, 999)}`;
+        const customId = `${hotelId}${roomId}${userId}${startDate.toISOString().split("T")[0].replace(/-/g, "")}${endDate.toISOString().split("T")[0].replace(/-/g, "")}${randomNumbers}`;
         const newOrder = await prisma.orders.create({
         data: {
+            id: customId,
             hotelId: hotelId,
             roomId: roomId,
             userId: userId,
@@ -120,8 +125,8 @@ const bookTrip = async (req: Request, res: Response) => {
 }
 
 const checkout = async (req: Request, res: Response) => {
-    const { orderId, email, userId } = req.body;
-    console.log(req.body)
+    const { email, userId } = req.body;
+    const orderId = req.body.orderId as string;
     try {
         if (!orderId) {
             res.status(400).json({ error: "Missing required information" });
@@ -227,7 +232,7 @@ const checkout = async (req: Request, res: Response) => {
 }
 
 const checkPaymentStatus = async (req: Request, res: Response) => {
-    const { orderId } = req.body;
+    const orderId = req.body.orderId as string;
     try {
         const sessionId = await prisma.orders.findUnique({
             where: {
@@ -255,10 +260,9 @@ const checkPaymentStatus = async (req: Request, res: Response) => {
                 res.status(404).json({ error: "Order not found" });
                 return;
             }
-            const ordId = parseInt(orderId);
             await prisma.orders.update({
                 where: {
-                    id: ordId
+                    id: orderId
                 },
                 data: {
                     paid: true
@@ -266,7 +270,7 @@ const checkPaymentStatus = async (req: Request, res: Response) => {
             });
             const invoice = await prisma.invoice.findFirst({
                 where: {
-                    orderId: ordId
+                    orderId: orderId
                 }
             });
             if(invoice){
@@ -275,7 +279,7 @@ const checkPaymentStatus = async (req: Request, res: Response) => {
             }
             await prisma.invoice.create({
                 data: {
-                    orderId: ordId,
+                    orderId: orderId,
                     name: session.customer_details?.name,
                     surname: session.customer_details?.name,
                     email: session.customer_email,
@@ -290,7 +294,7 @@ const checkPaymentStatus = async (req: Request, res: Response) => {
                 }
             });
             if(session.customer_email){
-                sendInvoice(session.customer_email, ordId);
+                sendInvoice(session.customer_email, orderId);
             }
         }
         res.status(200).json({ status: session.payment_status, sendInvoice });
