@@ -21,8 +21,8 @@ function Success() {
         if (userData.status === 200) {
           setIsLogged(true);
           const orderParams = searchParams.get('orderId')
-          const orderId = Number(orderParams) as number
-          const response = await checkPaymentStatus(orderId)
+          if(!orderParams) return console.log('Please fill all fields')
+          const response = await checkPaymentStatus(orderParams)
           if(response.status === 200){
             const interval = setInterval(() => {
               setCounter((prev) => {

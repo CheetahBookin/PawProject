@@ -41,10 +41,10 @@ function Checkout(): JSX.Element {
     const mail = email
     const userId = user.id
     const orderParams = searchParams.get('order')
-    const orderId = Number(orderParams) as number
+    if(!mail || !userId || !orderParams) return console.log('Please fill all fields')
     try{
       setLoading(true);
-      const response = await checkout(orderId, mail, userId);
+      const response = await checkout(orderParams, mail, userId);
       if(response.status === 200){
         router.push(response.data.url)
       } else {
