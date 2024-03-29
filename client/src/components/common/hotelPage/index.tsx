@@ -8,18 +8,20 @@ import { getUser } from '@/services/userService';
 import { User } from '@/types/userTypes';
 import { useRouter } from 'next/navigation';
 import { bookTrip } from '@/services/paymentService';
+import { useToast } from '@/components/ui/use-toast';
 
 type HotelPageProps = HotelTypes & {
   Rates: any[];
+  room: number | null;
 };
 
-function HotelPage({ id, name, address, country, city, type, carParkFee, images, Rooms, Rates }: HotelPageProps) {
+function HotelPage({ id, name, address, country, city, type, carParkFee, images, Rooms, Rates, room }: HotelPageProps) {
   const [mainImage, setMainImage] = useState(images[0]?.image);
   const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
   const { isLogged, setIsLogged } = useUserContext();
   const [user, setUser] = useState<User | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
-  const [message, setMessage] = useState<string | null>("");
+  const { toast } = useToast();
 
   useEffect(() => {
       const fetchUser = async () => {
@@ -37,6 +39,13 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
     };
     fetchUser();
   }, [isLogged]);
+
+  useEffect(() => {
+    if(room){
+      setSelectedRoom(room);
+    }
+  }, [room])
+
   const [orderDetails, setOrderDetails] = useState({
     hotelId: 0,
     roomId: 0,
@@ -57,10 +66,19 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
       if(success){
         const response = await bookTrip(orderDetails.hotelId, orderDetails.roomId, user.id, orderDetails.adults, orderDetails.children, orderDetails.fromDate, orderDetails.toDate);
         if(response.status === 201){
-          setMessage("Your trip has been booked successfully!")
+          console.log('dziala')
+          toast({
+            title: "Success",
+            description: "Your trip has been booked successfully",
+            variant: "success"
+          })
         }else{
           console.log(response)
-          setMessage("Something went wrong, please try again later.")
+          toast({
+            title: "Error",
+            description: "Something went wrong",
+            variant: "destructive"
+          })
         }
       }else{
         setSelectedRoom(Rooms[0].id)
@@ -77,7 +95,7 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
             <h1 className="text-3xl font-bold mb-4">{name}</h1>
             <p className="mb-2">Address: {address}, {city}, {country}</p>
             <p className="mb-2">Accomodation type: {type}</p>
-            <p className="mb-6">Fee for car park {carParkFee}zł/day</p>
+            <p className="mb-6">Fee for car park: {carParkFee!==0 ? `${carParkFee}zł/day` : `Free of charge`}</p>
           </div>
           <h1>Select your room:</h1>
           <div className="grid grid-cols-1 gap-4 mb-8">
@@ -88,6 +106,7 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
                   <p>Capacity: {room.peopleCapacity}</p>
                   <p>Price per person: {room.priceForPerson}</p>
                   <p>Children price: {room.childrenPrice}</p>
+                  {room.discount && <p>Room discount: {room.discount*100}%</p>}
                 </div>
                 {selectedRoom === room.id && <OrderDetails setSelectedRoom={setSelectedRoom} roomId={room.id} hotelId={id} capacity={room.peopleCapacity} setOrderDetails={setOrderDetails} orderDetails={orderDetails} userId={user?.id} setSuccess={setSuccess} carParkFee={carParkFee}/>}
               </React.Fragment>
@@ -103,7 +122,6 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
           </div>
           <div className="flex flex-col justify-center items-center mt-8">
             <button className="book-now-button bg-blue-500 text-white px-6 py-3 rounded-full mb-4" onClick={handleBook}>Book now</button>
-            {message && <p className="text-red-500">{message}</p>}
           </div>
         </div>
         <div className="w-1/2 p-16">

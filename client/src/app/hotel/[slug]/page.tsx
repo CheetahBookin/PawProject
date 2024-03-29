@@ -2,7 +2,7 @@
 
 import { getExactHotel } from '@/services/hotelsService';
 import { HotelTypes } from '@/types/hotelTypes';
-import { usePathname } from 'next/navigation'
+import { useParams, usePathname, useSearchParams } from 'next/navigation'
 import React, { Suspense, useEffect, useState } from 'react'
 import Loading from '@/components/common/loading';
 import HotelPage from '@/components/common/hotelPage';
@@ -16,6 +16,8 @@ function HotelDetails() {
   const [hotel, setHotel] = useState<HotelDetailsProps | null>(null);
   const pathname = usePathname()
   const slug = pathname.split('/').pop() || ''
+  const params = useSearchParams()
+  const room = Number(params.get('room'))
 
   const getIdFromSlug = (slug: string) => {
     const parts = slug.split("-");
@@ -71,6 +73,7 @@ function HotelDetails() {
               images = {hotel?.images || []}
               Rooms = {hotel?.Rooms || []}
               Rates = {hotel?.Rates || []}
+              room = {room}
               />
           </>
         )}
