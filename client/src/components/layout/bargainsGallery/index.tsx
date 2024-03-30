@@ -10,9 +10,6 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 function BargainsGallery() {
   const [data, setData] = useState<DiscountedRooms[]>([]);
-  const [position, setPosition] = useState(0);
-  const itemsPerPage = 3;
-  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchBargains = async () => {
@@ -25,25 +22,6 @@ function BargainsGallery() {
     };
     fetchBargains();
   }, []);
-
-  const handleClickLeft = () => {
-    setPosition(Math.max(0, position - 1));
-  };
-
-  const handleClickRight = () => {
-    setPosition(Math.min(data.length - itemsPerPage, position + 1));
-  };
-
-  useEffect(() => {
-    if (sliderRef.current) {
-      const slider: HTMLDivElement = sliderRef.current;
-      slider.scrollLeft = position * slider.offsetWidth;
-    }
-  }, [position]);
-
-  const start = position;
-  const end = Math.min(position + itemsPerPage, data.length);
-  const visibleData = data.slice(start, end);
   const countPrice = (price: number, discount: number) => {
     return price - (price * discount);
   }
