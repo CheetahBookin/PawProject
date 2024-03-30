@@ -20,6 +20,7 @@ function Reservations() {
     const fetchUser = async () => {
       const user = await getUser()
       if(user.status === 200) {
+        document.title = `Reservations - ${user.data.username}`
         const allReservations = user.data.orders || [];
         const paid = allReservations.filter((reservation: Reservation) => reservation.paid);
         setPaidReservations(paid);

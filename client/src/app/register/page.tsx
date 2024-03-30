@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, FormEvent, ChangeEvent} from 'react'
+import { useState, FormEvent, ChangeEvent, useEffect} from 'react'
 import Link from 'next/link'
 import Label from '@/components/common/label'
 import PasswordInput from '@/components/common/passwordInput'
@@ -21,6 +21,11 @@ function Register(){
         password: '',
         confirmPassword: ''
     })
+
+    useEffect(() => {
+        document.title = 'Register'
+    }, [])
+
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>('')
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,9 +41,9 @@ function Register(){
         setLoading(true)
         try{
             const response = await register(data.email, data.username, data.agreement, data.password, data.confirmPassword)
-            if(response.status === 201) {
+            if(response && response.status === 201) {
                 const response = await login(data.email, data.password)
-                if(response.status === 200) {
+                if(response && response.status === 200) {
                     setIsLogged(true)
                     router.push('/')
                 }else{
@@ -46,7 +51,12 @@ function Register(){
                 }
             }
             else {
-                setError(response.data.error)
+                const error = response.data.error
+                if(typeof error === 'string') {
+                    setError(error)
+                }else{
+                    setError("Something went wrong")
+                }
             }
         } catch (err: any) {
             console.log(err)

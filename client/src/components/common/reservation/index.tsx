@@ -118,11 +118,11 @@ const ReservationCard = ({ reservation }: ReservationProps) => {
                     Pay
                   </Link>
                 )}
-                <button
+                {reservation.paid && <button
                   className='bg-blue-500 text-white px-4 py-2 rounded-md flex items-center'
                 >
                   <a href={`/invoice/invoice_${reservation.id}.pdf`}>Download invoice</a>
-                </button>
+                </button>}
               </div>
             </div>
           </div>

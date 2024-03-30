@@ -20,6 +20,7 @@ function Checkout(): JSX.Element {
       try {
         const userData = await getUser();
         if (userData.status === 200) {
+          document.title = `Checkout - ${userData.data.username}`;
           setUser(userData.data);
           setIsLogged(true);
         } else {

@@ -9,6 +9,7 @@ import { User } from '@/types/userTypes';
 import { useRouter } from 'next/navigation';
 import { bookTrip } from '@/services/paymentService';
 import { useToast } from '@/components/ui/use-toast';
+import { ToastAction } from '@radix-ui/react-toast';
 
 type HotelPageProps = HotelTypes & {
   Rates: any[];
@@ -66,14 +67,12 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
       if(success){
         const response = await bookTrip(orderDetails.hotelId, orderDetails.roomId, user.id, orderDetails.adults, orderDetails.children, orderDetails.fromDate, orderDetails.toDate);
         if(response.status === 201){
-          console.log('dziala')
           toast({
             title: "Success",
             description: "Your trip has been booked successfully",
             variant: "success"
           })
         }else{
-          console.log(response)
           toast({
             title: "Error",
             description: "Something went wrong",
@@ -84,7 +83,12 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
         setSelectedRoom(Rooms[0].id)
       }
     }else{
-      router.push("/login");
+      toast({
+        title: "Error",
+        description: "You need to be logged in to book a trip",
+        variant: "destructive",
+        action: <ToastAction onClick={() => router.push('/login')} altText={''}>Login</ToastAction>
+      })
     }
   }
 

@@ -2,7 +2,7 @@
 
 import Label from '@/components/common/label';
 import { forgotPassword } from '@/services/userService';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Loading from '@/components/common/loading';
 
@@ -24,6 +24,10 @@ function ResetPassword() {
       [name]: value
     });
   }
+
+  useEffect(() => {
+    document.title = 'Reset Password';
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();

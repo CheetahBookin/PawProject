@@ -26,11 +26,11 @@ function PropertyType() {
                 if(!response){
                     throw new Error("No hotels found");
                 }
-                console.log(response)
                 const responseSlug: string = createSlug(response.data[0].type)
                 if(responseSlug !== slug){
                 throw new Error("No hotel found");
                 }
+                document.title = slug.charAt(0).toUpperCase() + slug.slice(1) + "s";
                 setHotelsTypes(response.data as HotelTypes[]);
             } catch (error) {
                 console.error(error)

@@ -2,12 +2,15 @@
 
 import { getCountries } from '@/services/countryService'
 import React, { useEffect, useState } from 'react'
-import { CountryType } from '@/types/countryTypes'
+import { CountryError, CountryType } from '@/types/countryTypes'
 import DestinationsCities from '@/components/common/destinationsCities'
+import Loading from '@/components/common/loading'
+import { useToast } from '@/components/ui/use-toast'
 
 function Destinations() {
-  const [countries, setCountries] = useState([])
+  const [countries, setCountries] = useState<CountryType[] | CountryError>([])
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
+  const { toast } = useToast()
   useEffect(() => {
     document.title = 'Destinations'
     const fetchCountries = async () => {
@@ -21,9 +24,22 @@ function Destinations() {
     setSelectedCountry(country)
   }
 
+  useEffect(() => {
+    const showToast = () => {
+      if (countries && 'message' in countries) {
+        toast({
+          title: 'Error',
+          description: countries.message,
+          variant: "destructive"
+        })
+      }
+    }
+    showToast()
+  }, [countries, toast])
+
   return (
     <main className="bg-brand-secondary text-gray-700">
-      {countries.map((country: CountryType, index: number) => (
+      {Array.isArray(countries) && countries.length !== 0 ? countries.map((country: CountryType, index: number) => (
         <div>
           <div key={index} className="flex items-center justify-between p-4 border-b border-gray-300">
             <div className="flex items-center">
@@ -34,7 +50,7 @@ function Destinations() {
           </div>
           {selectedCountry && selectedCountry === country.country && <DestinationsCities selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />}
         </div>
-      ))}
+      )) : <Loading />}
     </main>
   )
 }

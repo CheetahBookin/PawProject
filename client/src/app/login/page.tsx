@@ -6,7 +6,7 @@ import PasswordInput from '@/components/common/passwordInput'
 import { LoginData } from '@/types/authTypes'
 import { login } from '@/services/authService'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUserContext } from '@/context/userContext'
 import Loading from '@/components/common/loading'
 
@@ -18,6 +18,10 @@ function Login(){
         email: '',
         password: ''
     })
+
+    useEffect(() => {
+        document.title = 'Login'
+    }, [])
 
     const router = useRouter()
 
@@ -39,7 +43,12 @@ function Login(){
                 router.push('/')
             }else{
                 setIsLogged(false)
-                setError(response.data.error)
+                const error = response.data.error
+                if(typeof error === 'string'){
+                    setError(error)
+                }else{
+                    setError('Something went wrong')
+                }
             }
         }catch(err: any){
             console.log(err)
