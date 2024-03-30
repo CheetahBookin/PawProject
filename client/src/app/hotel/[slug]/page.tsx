@@ -44,6 +44,7 @@ function HotelDetails() {
         if(responseSlug !== slug){
           throw new Error("No hotel found");
         }
+        document.title = response.data.name;
         setHotel(response.data as HotelDetailsProps)
       }catch(error){
         console.error(error);

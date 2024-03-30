@@ -1,7 +1,7 @@
 "use client"
 
 import Label from '@/components/common/label';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { resetPassword } from '@/services/userService';
 import Loading from '@/components/common/loading';
@@ -30,6 +30,10 @@ function ResetPass() {
         [name]: value
     });
   }
+
+  useEffect(() => {
+    document.title = `Reseting Password for ${email}`;
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

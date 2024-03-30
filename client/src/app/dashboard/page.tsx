@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useEffect } from 'react'
 import { getUser, logout } from '@/services/userService'
@@ -15,36 +15,44 @@ function Dashboard() {
   const [user, setUser] = useState<User | null>(null)
   useEffect(() => {
     const fetchUser = async () => {
-        const user = await getUser()
-        if(user.status === 200) {
-          setUser(user.data)
-          setIsLogged(true)
-        }else{
-          setIsLogged(false)
-          router.push('/login')
-        }
+      const user = await getUser()
+      if (user.status === 200) {
+        document.title = `Dashboard - ${user.data.username}`
+        setUser(user.data)
+        setIsLogged(true)
+      } else {
+        setIsLogged(false)
+        router.push('/login')
+      }
     }
     fetchUser()
   }, [])
 
-  const executeLogout = async() => {
+  const executeLogout = async () => {
     const response = await logout()
-    if(response.status === 200) {
+    if (response.status === 200) {
       setUser(null)
       setIsLogged(false)
       router.push(response.data.redirectTo)
     }
   }
   return (
-    <main className="bg-brand-secondary text-black flex flex-col items-start">
-      {user ? 
-      <>
-        <h1>Dashboard</h1>
-        <p>Welcome {user?.username}</p>
-        <Link href="/dashboard/reservations">Your reservations</Link>
-        <button className="bg-brand-primary text-white px-4 py-2 rounded-md" onClick={executeLogout}>Logout</button>
-      </>
-      : <Loading />}
+    <main className='bg-brand-secondary text-black flex flex-col items-start'>
+      {user ? (
+        <>
+          <h1>Dashboard</h1>
+          <p>Welcome {user?.username}</p>
+          <Link href='/dashboard/reservations'>Your reservations</Link>
+          <button
+            className='bg-brand-primary text-white px-4 py-2 rounded-md'
+            onClick={executeLogout}
+          >
+            Logout
+          </button>
+        </>
+      ) : (
+        <Loading />
+      )}
     </main>
   )
 }

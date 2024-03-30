@@ -34,7 +34,7 @@ function SearchingResults() {
     useEffect(() => {
         const fetchResults = async () => {
             if (data.destination) {
-                console.log(data.destination);
+                document.title = `Trips to ${data.destination}`
                 const response = await searchForTrip(data.destination, data.checkInDate, data.checkOutDate, data.adults, data.children);
                 setResults(response.data);
             }

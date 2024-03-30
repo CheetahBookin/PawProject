@@ -19,6 +19,7 @@ function Success() {
       try {
         const userData = await getUser();
         if (userData.status === 200) {
+          document.title = 'Payment successful';
           setIsLogged(true);
           const orderParams = searchParams.get('orderId')
           if(!orderParams) return console.log('Please fill all fields')

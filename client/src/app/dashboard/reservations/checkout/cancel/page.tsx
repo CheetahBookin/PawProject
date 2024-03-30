@@ -10,6 +10,7 @@ function Cancel() {
   const router = useRouter();
 
   useEffect(() => {
+    document.title = 'Payment Cancelled';
     const countdown = setInterval(() => {
       setCounter((prev) => {
         if (prev === 0) {
