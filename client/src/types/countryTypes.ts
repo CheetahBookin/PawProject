@@ -14,3 +14,7 @@ export type HotelType = {
     name: string;
     images: RoomImages[]
 }
+
+export type CountryError = {
+    message: string;
+}
