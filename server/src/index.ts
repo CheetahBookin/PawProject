@@ -7,6 +7,7 @@ import ratingRouter from './routes/ratingRoute';
 import userRouter from './routes/userRoute';
 import countryRouter from './routes/countriesRoute';
 import paymentRouter from './routes/paymentRoute';
+import userProfileRouter from './routes/userProfileRoute';
 import cookieParser from 'cookie-parser';
 import initializeWebSocket from './websockets/initializeWebSocket';
 import { createServer } from 'http';
@@ -36,6 +37,7 @@ app.use("/rating", ratingRouter)
 app.use("/users", userRouter)
 app.use("/countries", countryRouter)
 app.use("/payments", paymentRouter)
+app.use("/up", userProfileRouter)
 
 const httpServer = createServer(app);
 initializeWebSocket(httpServer);
