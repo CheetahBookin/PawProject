@@ -49,6 +49,7 @@ model UserProfile {
   country   String
   address   String
   profileImage String
+  darkMode  Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
