@@ -6,6 +6,7 @@ import { UserContextProvider } from '@/context/userContext'
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { Toaster } from '@/components/ui/toaster'
+import { DarkModeProvider } from '@/context/DarkModeContext'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -34,10 +35,12 @@ export default function RootLayout({
       </head>
       <body className={cn("min-h-full font-sans antialiased", fontSans.variable)}>
         <UserContextProvider>
-          <Header />
-          {children}
-          <Footer />
-          <Toaster />
+          <DarkModeProvider>
+            <Header />
+            {children}
+            <Footer />
+            <Toaster />
+          </DarkModeProvider>
         </UserContextProvider>  
       </body>
     </html>
