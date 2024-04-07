@@ -29,5 +29,29 @@ const postRating = async (req: Rating, res: Response) => {
     });
     res.json(newRating);
 }
+const updateRating = async (req: Rating, res: Response) =>{
+    const {rating, comment, userId, hotelId} = req.body;
 
-export { getRatings, postRating }
+    const existingRating = await prisma.rates.findFirst({
+        where: {
+            userId: userId,
+            hotelId: hotelId
+        }
+    })
+
+    if(existingRating) {
+        const updatedRating = await prisma.rates.update({
+            where: {
+                id: existingRating.id
+            },
+            data: {
+                rate: rating,
+                message: comment
+            }
+        })
+
+        res.json(updatedRating)
+    }
+}
+
+export { getRatings, postRating, updateRating }
