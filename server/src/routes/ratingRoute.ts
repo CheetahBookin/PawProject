@@ -3,8 +3,8 @@ import {getRatings, postRating, updateRating} from "../controllers/rating-contro
 
 const router: Router = express.Router();
 
-router.get("/", getRatings);
-router.post("/", postRating);
+router.post("/", getRatings);
+router.post("/post", postRating);
 router.post("/update", updateRating)
 
 export default router;
