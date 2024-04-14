@@ -98,9 +98,10 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
   useEffect(() => {
     const fetchRates = async ()=>{
       try{
-        const ratesData = await getRates()
+        const url = window.location.href
+        const url_split = url.split("-")
+        const ratesData = await getRates(parseInt(url_split[url_split.length - 1]))
         setRates(ratesData)
-        console.log(ratesData)
       }
       catch (error){
         console.log(error)
