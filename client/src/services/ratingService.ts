@@ -19,4 +19,4 @@ const postRates = async(rating: number, comment: string, userId: number, hotelId
     }
 }
 
-export {getRates}
+export {getRates, postRates}

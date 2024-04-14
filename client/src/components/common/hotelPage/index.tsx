@@ -11,7 +11,7 @@ import { bookTrip } from '@/services/paymentService';
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 import StarRating from "@/components/common/starRating";
-import {getRates} from "@/services/ratingService";
+import {getRates, postRates} from "@/services/ratingService";
 
 type HotelPageProps = HotelTypes & {
   Rates: any[];
@@ -115,7 +115,9 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
 
   const handleRating = async ()=>{
     if(user){
-
+      const url = window.location.href
+      const url_split = url.split("-")
+      await postRates(stars, textareaValue, user.id, parseInt(url_split[url_split.length-1]))
     }
     else {
       toast({
@@ -192,12 +194,13 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
           <div className="flex flex-row">
             <textarea className="resize-y w-3/5 h-10 rounded-lg" value={textareaValue}
                       onChange={(e)=>setTextareaValue(e.target.value)}></textarea>
-            <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-auto" onClick={handleRating}>Post rate</button>
+            <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-auto max-h-12" onClick={handleRating}>Post rate</button>
           </div>
           <div>
             {rates.map((rate: any, index: number) => (
                 <div key={index} className="mb-4">
-                  <p>{rate.rate}</p>
+                  <p>User: {rate.user.username}</p>
+                  <p>Rate: {rate.rate}</p>
                   <p>{rate.message}</p>
                 </div>
             ))}
