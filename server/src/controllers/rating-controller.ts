@@ -13,8 +13,16 @@ interface Rating extends Request {
 
 const getRatings = async (req: Rating, res: Response) => {
     const {hotelId} = req.body
-  const ratings = await prisma.rates.findMany(
-      {where: {hotelId: hotelId}}
+  const ratings = await prisma.rates.findMany({
+      where: {hotelId: hotelId},
+      select: {
+          rate: true,
+          message: true,
+          userId: true,
+          hotelId: true,
+          user: {select: {username: true}}
+      }
+  }
   );
   res.json(ratings);
 }
