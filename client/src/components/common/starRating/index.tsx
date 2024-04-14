@@ -1,10 +1,15 @@
 "use clinet"
 
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {StarIcon} from "lucide-react";
 
-const StarRating = ()=>{
-    const [stars, setStars] = useState(5)
+interface StarRatingProps{
+    stars: number,
+    setStars: React.Dispatch<React.SetStateAction<number>>
+}
+
+const StarRating = ({stars, setStars}: StarRatingProps)=>{
+    //const [stars, setStars] = useState(5)
 
     const starfill = (num: number) =>{
         if(num<=stars){

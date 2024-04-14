@@ -25,6 +25,8 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
   const [user, setUser] = useState<User | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [rates, setRates] = useState([])
+  const [textareaValue, setTextareaValue] = useState('')
+  const [stars, setStars] = useState(5)
   const { toast } = useToast();
 
   useEffect(() => {
@@ -185,10 +187,11 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
           <h1 className="text-3xl font-bold mb-4">Rates</h1>
           <div className="flex flex-row">
             <h2 className="text-2xl font-bold mb-1">Rate this hotel and write your comment</h2>
-            <StarRating/>
+            <StarRating stars={stars} setStars={setStars}/>
           </div>
           <div className="flex flex-row">
-            <textarea className="resize-y w-3/5 h-10 rounded-lg"></textarea>
+            <textarea className="resize-y w-3/5 h-10 rounded-lg" value={textareaValue}
+                      onChange={(e)=>setTextareaValue(e.target.value)}></textarea>
             <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-auto" onClick={handleRating}>Post rate</button>
           </div>
           <div>
