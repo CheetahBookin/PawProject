@@ -9,4 +9,14 @@ const getRates = async (hotelId: number) => {
     }
 }
 
+const postRates = async(rating: number, comment: string, userId: number, hotelId: number)=>{
+    try {
+        const response  = await  axios.post('http://localhost:5000/rating/post',
+            {rating, comment, userId, hotelId})
+        return response.data
+    }catch(err){
+        console.log(err)
+    }
+}
+
 export {getRates}
