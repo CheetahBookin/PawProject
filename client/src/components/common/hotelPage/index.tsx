@@ -11,7 +11,7 @@ import { bookTrip } from '@/services/paymentService';
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 import StarRating from "@/components/common/starRating";
-import {getRates, postRates} from "@/services/ratingService";
+import {getRates, postRates, existingRating, deleteRating} from "@/services/ratingService";
 
 type HotelPageProps = HotelTypes & {
   Rates: any[];
@@ -25,8 +25,10 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
   const [user, setUser] = useState<User | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [rates, setRates] = useState([])
-  const [textareaValue, setTextareaValue] = useState('')
+  const [textareaValue, setTextareaValue] = useState<string>('')
   const [stars, setStars] = useState(5)
+  const [postError, setPostError] = useState<boolean>(false)
+  const [existingRate, setExistingRate] = useState<boolean>(false)
   const { toast } = useToast();
 
   useEffect(() => {
@@ -111,13 +113,32 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
     }
 
     fetchRates()
-  }, []);
+  }, [rates]);
+
+  useEffect(() => {
+    if(user){
+      const fetchExistingRating = async ()=>{
+        const url = window.location.href
+        const url_split = url.split("-")
+        const _existingRating = await existingRating(user.id,parseInt(url_split[url_split.length - 1]))
+        setExistingRate(_existingRating)
+      }
+
+      fetchExistingRating()
+    }
+  }, [rates]);
 
   const handleRating = async ()=>{
     if(user){
-      const url = window.location.href
-      const url_split = url.split("-")
-      await postRates(stars, textareaValue, user.id, parseInt(url_split[url_split.length-1]))
+      if(textareaValue == ''){
+        setPostError(true)
+      }
+      else {
+        setPostError(false)
+        const url = window.location.href
+        const url_split = url.split("-")
+        await postRates(stars, textareaValue, user.id, parseInt(url_split[url_split.length-1]))
+      }
     }
     else {
       toast({
@@ -126,6 +147,14 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
         variant: "destructive",
         action: <ToastAction onClick={() => router.push('/login')} altText={''}>Login</ToastAction>
       })
+    }
+  }
+
+  const handleRateDelete = async()=>{
+    if(user){
+      const url = window.location.href
+      const url_split = url.split("-")
+      await deleteRating(user.id, parseInt(url_split[url_split.length-1]))
     }
   }
 
@@ -194,8 +223,12 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
           <div className="flex flex-row">
             <textarea className="resize-y w-3/5 h-10 rounded-lg" value={textareaValue}
                       onChange={(e)=>setTextareaValue(e.target.value)}></textarea>
-            <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-auto max-h-12" onClick={handleRating}>Post rate</button>
+            <div className="ml-auto">
+              <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-auto max-h-12" onClick={handleRating}>{existingRate? 'Update rate' : 'Post rate'}</button>
+              {existingRate && <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-5 max-h-12" onClick={handleRateDelete}>Delete rate</button>}
+            </div>
           </div>
+          {postError && <span className="text-red-700">Enter text</span>}
           <div>
             {rates.map((rate: any, index: number) => (
                 <div key={index} className="mb-4">
