@@ -21,7 +21,7 @@ const StarRating = ({stars, setStars}: StarRatingProps)=>{
     }
 
     return(
-        <div className="ml-auto">
+        <div className="ml-auto mr-4">
             <div className="flex flex-row">
                 <StarIcon
                     onClick={()=>setStars(1)}
