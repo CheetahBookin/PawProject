@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 import { HotelTypes } from '@/types/hotelTypes';
 import OrderDetails from '../orderDetails';
 import { useUserContext } from '@/context/userContext';
@@ -12,6 +12,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 import StarRating from "@/components/common/starRating";
 import {getRates, postRates, existingRating, deleteRating} from "@/services/ratingService";
+import {StarIcon} from "lucide-react";
 
 type HotelPageProps = HotelTypes & {
   Rates: any[];
@@ -158,6 +159,14 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
     }
   }
 
+  const ratingShowStars = (starCount: number)=>{
+    let stars: ReactNode[] = []
+    for(let i=0; i<starCount; i++){
+      stars.push(<StarIcon fill="yellow"/>)
+    }
+    return stars
+  }
+
   return (
       <>
         <main className="bg-brand-secondary text-black flex">
@@ -214,16 +223,16 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
             </div>
         </main>
 
-        <div className="bg-brand-secondary text-black flex p-16 flex-col">
-          <h1 className="text-3xl font-bold mb-4">Rates</h1>
-          <div className="flex flex-row">
+        <div className="bg-brand-secondary text-black flex p-8 flex-col">
+          <h1 className="text-3xl font-bold mb-4 ml-4">Rates</h1>
+          <div className="flex flex-row mb-4 ml-4">
             <h2 className="text-2xl font-bold mb-1">Rate this hotel and write your comment</h2>
             <StarRating stars={stars} setStars={setStars}/>
           </div>
           <div className="flex flex-row">
-            <textarea className="resize-y w-3/5 h-10 rounded-lg" value={textareaValue}
-                      onChange={(e)=>setTextareaValue(e.target.value)}></textarea>
-            <div className="ml-auto">
+            <textarea className="resize-y w-3/5 h-10 rounded-lg ml-4" value={textareaValue}
+                      onChange={(e)=>setTextareaValue(e.target.value)} disabled={!user}></textarea>
+            <div className="ml-auto mr-4">
               <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-auto max-h-12" onClick={handleRating}>{existingRate? 'Update rate' : 'Post rate'}</button>
               {existingRate && <button className="bg-blue-500 text-white px-6 py-3 rounded-full ml-5 max-h-12" onClick={handleRateDelete}>Delete rate</button>}
             </div>
@@ -231,9 +240,9 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
           {postError && <span className="text-red-700">Enter text</span>}
           <div>
             {rates.map((rate: any, index: number) => (
-                <div key={index} className="mb-4">
-                  <p>User: {rate.user.username}</p>
-                  <p>Rate: {rate.rate}</p>
+                <div key={index} className="bg-brand-primary p-4 rounded-lg shadow-md m-4">
+                  <p className="flex flex-row">{ratingShowStars(rate.rate)}</p>
+                  <p className="font-bold">User: {rate.user.username}</p>
                   <p>{rate.message}</p>
                 </div>
             ))}
