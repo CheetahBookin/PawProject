@@ -9,11 +9,14 @@ import { User } from "@/types/userTypes";
 import { useUserContext } from "@/context/userContext";
 import Loading from "@/components/common/loading";
 import Searcher from "@/components/common/headerHotelSearch";
+import { useDarkMode } from "@/context/DarkModeContext";
+import { getUserProfile } from "@/services/userProfileService";
 
 function Header() {
   const { isLogged, setIsLogged } = useUserContext();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const { darkMode, setDarkMode } = useDarkMode();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,6 +25,11 @@ function Header() {
         const userData = await getUser();
         if (userData.status === 200) {
           setUser(userData.data);
+          const userProfile = await getUserProfile(userData.data.id)
+          if(userProfile.status === 200){
+            const darkModeState = userProfile.data.darkMode
+            setDarkMode(darkModeState)
+          }
           setIsLogged(true);
         } else {
           setIsLogged(false);
@@ -34,6 +42,15 @@ function Header() {
     };
     fetchUser();
   }, [isLogged]);
+
+  useEffect(() => {
+    if(darkMode){
+      document.documentElement.classList.add('dark')
+    }
+    else{
+      document.documentElement.classList.remove('dark')
+    }
+  }, [darkMode]);
 
   const currency = [
     { value: "PLN", label: "PLN" },
