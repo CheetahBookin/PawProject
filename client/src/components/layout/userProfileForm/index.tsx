@@ -5,7 +5,7 @@ import { createUserProfile, getUserProfile, updateUserProfile } from '@/services
 import { useToast } from '@/components/ui/use-toast'
 import { User } from '@/types/userTypes'
 import { UserProfileType } from '@/types/userProfileTypes'
-import { useDarkMode } from '@/context/useDarkMode'
+import { useDarkMode } from '@/context/DarkModeContext'
 
 type UserProfileFormProps = {
   user: User
@@ -25,7 +25,8 @@ function UserProfileForm({
   switchBtn,
 }: UserProfileFormProps) {
   const { toast } = useToast()
-  const { updateProfile } = useDarkMode()
+  const [darkModeSwitched, setDarkModeSwitched] = useState(false)
+  const { setDarkMode } = useDarkMode()
   const handleSwitchChange = () => {
     setIsChecked((prevValue) => !prevValue)
   }
@@ -36,6 +37,20 @@ function UserProfileForm({
       [name]: value,
     }))
   }
+
+  useEffect(() => {
+    const setDarkModeRT = async () => {
+      if(user){
+        const userProfile = await getUserProfile(user.id)
+        if(userProfile.status === 200){
+          const darkModeState = userProfile.data.darkMode
+          setDarkMode(darkModeState)
+        }
+      }
+    }
+    setDarkModeRT()
+  }, [darkModeSwitched])
+
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
@@ -55,6 +70,7 @@ function UserProfileForm({
             description: 'Your profile has been created successfully',
             variant: 'success',
           })
+          setDarkModeSwitched(prevVal=>!prevVal)
         } else {
           toast({
             title: 'Error',
@@ -80,7 +96,7 @@ function UserProfileForm({
     e.preventDefault()
     try {
       if (user) {
-        const response = await updateProfile(
+        const response = await updateUserProfile(
             user.id,
             userProfile.firstName,
             userProfile.lastName,
@@ -89,12 +105,13 @@ function UserProfileForm({
             userProfile.profileImage,
             isChecked
         )
-        if (response === 'updated') {
+        if (response.status === 200) {
           toast({
             title: 'Profile Updated',
             description: 'Your profile has been updated successfully',
             variant: 'success',
           })
+          setDarkModeSwitched(prevVal=>!prevVal)
         } else {
           toast({
             title: 'Error',
