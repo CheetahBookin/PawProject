@@ -7,8 +7,7 @@ import { useUserContext } from '@/context/userContext'
 import { useRouter } from 'next/navigation'
 import Loading from '@/components/common/loading'
 import Link from 'next/link'
-import { Switch } from '@/components/ui/switch'
-import { createUserProfile, getUserProfile, updateUserProfile } from '@/services/userProfileService'
+import { getUserProfile } from '@/services/userProfileService'
 import { useToast } from '@/components/ui/use-toast'
 import UserProfileForm from '@/components/layout/userProfileForm'
 
@@ -45,7 +44,6 @@ function Dashboard() {
   }, [])
 
   useEffect(() => {
-    console.log('loaded')
     const loadUserProfile = async () => {
       if (user) {
         const userProfileData = await getUserProfile(user.id)
@@ -58,7 +56,7 @@ function Dashboard() {
           setLoadingProfile(false)
           toast({
             title: 'Error',
-            description: 'Failed to load user profile.',
+            description: 'Please complete your profile information',
             variant: 'destructive',
           })
           setSwitchBtn(true)
