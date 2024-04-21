@@ -50,6 +50,7 @@ model UserProfile {
   address   String
   profileImage String
   darkMode  Boolean
+  level     String    @default("Rookie")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -84,14 +85,6 @@ model Accomodation {
   images    AccomodationImages[]
   Rooms     Rooms[]
   Rates     Rates[]
-  BookedDates BookedDates[]
-}
-
-model BookedDates {
-  id        Int      @id @default(autoincrement())
-  accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
-  hotelId   Int
-  date      String
 }
 
 model Rates {
