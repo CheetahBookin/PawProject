@@ -2,7 +2,6 @@ import axios from "axios";
 
 const getUserProfile = async (userId: number) => {
     try {
-        console.log(userId)
         const response = await axios.get(`http://localhost:5000/up/${userId}`);
         return response
     } catch (error: any) {
