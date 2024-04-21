@@ -18,7 +18,10 @@ export type MostVisitedDestination = {
 }
 
 export type NextTrip = {
-    hotel: HotelTypes[];
+    response: {
+        hotel: HotelTypes[];
+        tripDate: Date;
+    }
 }
 
 export type Level = {
