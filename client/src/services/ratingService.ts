@@ -1,5 +1,14 @@
 import axios from "axios";
 
+const getUsersRates = async (userId: number) => {
+    try {
+        const response = await axios.get(`http://localhost:5000/rating/${userId}`)
+        return response
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const getRates = async (hotelId: number) => {
     try{
         const response = await axios.post('http://localhost:5000/rating', {hotelId})
@@ -36,4 +45,4 @@ const deleteRating = async(userId: number, hotelId: number)=>{
     }
 }
 
-export {getRates, postRates, existingRating, deleteRating}
+export {getRates, postRates, existingRating, deleteRating, getUsersRates}
