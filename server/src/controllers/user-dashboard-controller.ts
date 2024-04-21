@@ -142,7 +142,12 @@ const nextTrip = async (req: Request, res: Response) => {
             where: { id: upcomingTrip[0].hotelId }
         })
 
-        res.status(200).json({ hotel })
+        const response = {
+            hotel,
+            tripDate: upcomingTrip[0].fromDate
+        }
+
+        res.status(200).json({ response })
     } catch (error) {
         res.status(500).json({ error: "Can't reach next trip" })
         console.log(error)
