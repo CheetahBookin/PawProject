@@ -17,9 +17,21 @@ model User {
   profile   UserProfile?
   rates    Rates[]
   orders   Orders[]
+  favorites Favorites[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Favorites {
+  id             Int          @id @default(autoincrement())
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         Int
+  accommodation  Accomodation @relation(fields: [accommodationId], references: [id])
+  accommodationId Int
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
 
 model Orders {
   id        String      @id @default(uuid())
@@ -84,6 +96,7 @@ model Accomodation {
   flag_url  String?
   images    AccomodationImages[]
   Rooms     Rooms[]
+  favorites Favorites[]
   Rates     Rates[]
 }
 
