@@ -15,6 +15,8 @@ import UserBlocks from '@/components/common/userBlocks'
 import { getFinishedUpcomingTrips, getMostVisitedDestination, nextTrip, userLevel } from '@/services/userDashboardService'
 import { FinishedUpcomingTrips, Level, MostVisitedDestination, NextTrip, Opinions } from '@/types/dashboardTypes'
 import { getUsersRates } from '@/services/ratingService'
+import { getFavoritesHotels } from '@/services/favoritesService'
+import { FavoritesHotels } from '@/types/favoritesTypes'
 
 function Dashboard() {
   const router = useRouter()
@@ -27,6 +29,7 @@ function Dashboard() {
   const [nTrip, setNTrip] = useState<NextTrip | null>(null)
   const [level, setLevel] = useState<Level | null>(null)
   const [opinions, setOpinions] = useState<Opinions | null>(null)
+  const [favorites, setFavorites] = useState<FavoritesHotels[]>([])
   const [userProfile, setUserProfile] = useState({
     firstName: '',
     lastName: '',
@@ -65,6 +68,10 @@ function Dashboard() {
           const opinions = await getUsersRates(user.data.id)
           if (opinions?.status === 200) {
             setOpinions(opinions.data)
+          }
+          const favorites = await getFavoritesHotels(user.data.id)
+          if (favorites?.status === 200) {
+            setFavorites(favorites.data)
           }
         } else {
           setIsLogged(false)
@@ -124,6 +131,15 @@ function Dashboard() {
     }
   }
 
+  const createSlug = (name: string, id: number) =>{
+    return `${name.toLowerCase().split(' ').join('-')}-${id}`;
+  }
+
+  const handleClick = (name: string, id: number) =>{
+    const slug = createSlug(name, id)
+    router.push(`/hotel/${slug}`);
+  }
+
   return (
     <main className='bg-gray-100 text-black p-4 dark:bg-gray-500 w-full'>
       {loadingProfile ? (
@@ -132,7 +148,7 @@ function Dashboard() {
         <section className="flex flex-col md:flex-row justify-center items-start gap-4 md:gap-8">
           <div className="w-full md:w-3/4 flex flex-col gap-4">
             <div className="flex flex-col md:flex-row gap-4">
-              <div className="w-3/4 md:w-30% flex flex-col gap-8 items-center bg-white shadow-lg rounded-lg justify-center">
+              <div className="w-1/3 md:w-30% flex flex-col gap-8 items-center bg-white shadow-lg rounded-lg justify-center">
                 <p className='mb-2'>Welcome, <span className='font-bold'>{user.username}</span>!</p>
                 <img
                   src={userProfile.profileImage || '/assets/profile.webp'}
@@ -140,37 +156,35 @@ function Dashboard() {
                   className='w-3/4 h-56 rounded-full mb-4 cursor-pointer'
                 />
               </div>
-              <div className="w-full md:w-70% flex flex-wrap justify-center items-center gap-8 h-[40vh]">
+              <div className="w-full md:w-3/4 flex flex-wrap justify-center items-center gap-8 h-[40vh]">
                 <InfoProfileBox text='Finished trips'>
-                  <p>{finishedUpcomingTrips ? finishedUpcomingTrips.finished : "0"}</p>
+                    <p className="text-2xl font-bold">{finishedUpcomingTrips ? finishedUpcomingTrips.finished : "0"}</p>
                 </InfoProfileBox>
                 <InfoProfileBox text='Upcoming trips'>
-                  <p>{finishedUpcomingTrips ? finishedUpcomingTrips.upcoming : "0"}</p>
+                    <p className="text-2xl font-bold">{finishedUpcomingTrips ? finishedUpcomingTrips.upcoming : "0"}</p>
                 </InfoProfileBox>
                 <InfoProfileBox text='Most visited'>
-                  {mostVisitedDestination ? (
-                    <div>
-                      <p>City: {mostVisitedDestination.mostVisitedCity.city}, {mostVisitedDestination.mostVisitedCity.count} times</p>
-                      <p>Country: {mostVisitedDestination.mostVisitedCountry.country}, {mostVisitedDestination.mostVisitedCountry.count} times</p>
-                    </div>
-                  ) : (
-                    <p>No data</p>
-                  )}
+                    {mostVisitedDestination ? (
+                        <div>
+                            <p className="text-lg font-semibold">City: {mostVisitedDestination.mostVisitedCity.city}, {mostVisitedDestination.mostVisitedCity.count} times</p>
+                            <p className="text-lg font-semibold">Country: {mostVisitedDestination.mostVisitedCountry.country}, {mostVisitedDestination.mostVisitedCountry.count} times</p>
+                        </div>
+                    ) : (
+                        <p className="text-lg font-semibold">No data</p>
+                    )}
                 </InfoProfileBox>
                 <InfoProfileBox text='Next trip'>
-                  {nTrip ? (
-                    <div>
-                      <p>Hotel: {nTrip.hotel[0].name}</p>
-                      <p>City: {nTrip.hotel[0].city}</p>
-                      <p>Country: {nTrip.hotel[0].country}</p>
-                    </div>
-                  ) : (
-                    <p>There is no trip scheduled</p>
-                  )}
+                    {nTrip ? (
+                        <div>
+                            <p className="text-lg font-semibold">{nTrip.response.tripDate.toString().split("T")[0]} you are about to visit {nTrip.response.hotel[0].name} located in {nTrip.response.hotel[0].city}, {nTrip.response.hotel[0].country}</p>
+                        </div>
+                    ) : (
+                        <p className="text-lg font-semibold">There is no trip scheduled</p>
+                    )}
                 </InfoProfileBox>
-              </div>
             </div>
-            <div className="bg-white w-full shadow-lg rounded-lg p-4 flex gap-4 h-[31.5vh]">
+            </div>
+            <div className="bg-white w-full shadow-lg rounded-lg p-4 flex justify-center gap-4 h-[31.5vh]">
               <UserBlocks header='Your level'>
                 <div className="flex flex-col justify-between items-center">
                   <p className='text-center'>{level ? level.level : "No level"}</p>
@@ -196,7 +210,27 @@ function Dashboard() {
                 )}
               </UserBlocks>
               <UserBlocks header='Your favorites'>
-                <p className='text-center'>0</p>
+                {favorites.length !== 0 ? (
+                  <div className="flex flex-col p-4 overflow-auto">
+                    <p className='text-center pb-4'>You have {favorites.length} favorite{favorites.length > 1 && "s"}:</p>
+                    {favorites && favorites.map((favorite, index) => {
+                      console.log(favorite)
+                      return (
+                        <div key={index} onClick={()=>handleClick(favorite.name, favorite.id)} className="flex flex-col justify-center cursor-pointer hover:bg-gray-200 hover:transition-all">
+                          <hr className="w-full"/>
+                          <div className="flex items-center gap-4 py-4">
+                            <div className="w-12 h-12">
+                              <img src={favorite.images[0].image} alt={favorite.name} className="w-full h-full rounded-lg"/>
+                            </div>
+                            <p>{favorite.name}</p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : (
+                  <p className='text-center'>You have not yet added any favorites</p>
+                )}
               </UserBlocks>
             </div>
           </div>
@@ -205,15 +239,15 @@ function Dashboard() {
             <div className='flex flex-col'>
               <button
                 onClick={executeLogout}
-                className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline h-16'
+                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline h-16'
               >
-                Logout
+                Settings
               </button>
               <button
                 onClick={executeLogout}
                 className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 focus:outline-none focus:shadow-outline h-16'
               >
-                Remove your profile
+                Logout
               </button>
             </div>
           </div>
