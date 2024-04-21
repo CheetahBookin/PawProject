@@ -85,11 +85,14 @@ function Header() {
             <li>
               <Searcher />
             </li>
-            <li>
-              <Link className="block" href="/offer">
-                Our offer
-              </Link>
-            </li>
+            {isLogged && (
+              <li>
+                {!loading ? (
+                  <Link href="/dashboard/reservations">Reservations</Link>
+                ) : (
+                  <Loading />
+                )}
+              </li>)}
             <li>
               <Link className="block" href="/about">
                 About
