@@ -27,6 +27,23 @@ const getRatings = async (req: Rating, res: Response) => {
   res.json(ratings);
 }
 
+const getUsersRatings = async (req: Rating, res: Response) => {
+    const userId = Number(req.params.id)
+    if(!userId){
+        return res.status(400).json({error: "User id not found"})
+    }
+    const ratings = await prisma.rates.findMany({
+        where: {userId: userId},
+        select: {
+            rate: true,
+            message: true,
+            accomodation: {select: {name: true}}
+        }
+    })
+    const numberOfRatings = ratings.length
+    res.status(200).json({ratings, numberOfRatings})
+}
+
 const postRating = async (req: Rating, res: Response) =>{
     const {rating, comment, userId, hotelId} = req.body;
 
@@ -93,4 +110,4 @@ const deleteRating = async(req: Rating, res: Response)=>{
     })
 }
 
-export { getRatings, postRating, existingRating, deleteRating}
+export { getRatings, postRating, existingRating, deleteRating, getUsersRatings}
