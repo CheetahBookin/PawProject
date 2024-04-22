@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons"; // Dodajemy ikonę lupy
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { getUser } from "@/services/userService";
 import { User } from "@/types/userTypes";
@@ -25,10 +25,10 @@ function Header() {
         const userData = await getUser();
         if (userData.status === 200) {
           setUser(userData.data);
-          const userProfile = await getUserProfile(userData.data.id)
-          if(userProfile.status === 200){
-            const darkModeState = userProfile.data.darkMode
-            setDarkMode(darkModeState)
+          const userProfile = await getUserProfile(userData.data.id);
+          if (userProfile.status === 200) {
+            const darkModeState = userProfile.data.darkMode;
+            setDarkMode(darkModeState);
           }
           setIsLogged(true);
         } else {
@@ -44,11 +44,10 @@ function Header() {
   }, [isLogged]);
 
   useEffect(() => {
-    if(darkMode){
-      document.documentElement.classList.add('dark')
-    }
-    else{
-      document.documentElement.classList.remove('dark')
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
 
@@ -66,12 +65,12 @@ function Header() {
   ];
 
   return (
-    <header className="lg:px-16 flex py-4 shadow-md justify-between bg-brand-primary items-center">
+    <header className="lg:px-16 flex flex-wrap py-4 shadow-md justify-between bg-brand-primary items-center">
       <Link href="/">
         <img src="/cheetahbooking-high-resolution-logo.png" alt="logo" className="w-56" />
       </Link>
       <nav className="flex-1 flex justify-end">
-        <div className="hidden md:flex md:items-center md:w-auto w-full" id="menu">
+        <div className="md:flex md:items-center md:w-auto w-full" id="menu">
           <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0 gap-12">
             {isLogged && (
               <li>
@@ -136,3 +135,4 @@ function Header() {
 }
 
 export default Header;
+
