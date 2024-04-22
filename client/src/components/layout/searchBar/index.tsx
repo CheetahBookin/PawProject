@@ -101,51 +101,51 @@ function SearchBar() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full bg-brand-secondary border-gray-300 rounded-md p-6 lg:w-3/4 md:w-full">
-      <h2 className="text-2xl font-bold mb-4">Search For Your Dream Tour!</h2>
-      <form className="flex flex-col md:flex-row md:space-x-2 lg:flex-row mb-4 w-full items-center" action="/search" method='POST'>
-        <div className="w-full relative z-50">
-          <Label
-            inputType={'text'}
-            placeholder={'Where do you want to go?'}
-            onChange={(e) => handleDestinationChange(e)}
-            onKeyDown={(e) => handleOnKeyDown(e)}
-            name={'destination'}
-            value={clicked ? destination : undefined}
-            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
-            noLabel={true}
-          />
-          {searchResults && <SearchResults results={searchResults.result} setData={setData} clicked={setClicked} destination={setDestination} setSearchResult={setSearchResults}/>}
-        </div>
-        <Label
-          inputType={'date'}
-          placeholder={'Check In'}
-          onChange={(e) => handleChange(e)}
-          name={'checkInDate'}
-          className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
-          noLabel={true}
-        />
-        <Label
-          inputType={'date'}
-          placeholder={'Check Out'}
-          onChange={(e) => handleChange(e)}
-          name={'checkOutDate'}
-          className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
-          noLabel={true}
-        />
-        <div className="flex items-center space-x-4">
-          <Counter label='Children' onChangeCount={(count) => handleChangeCount('children', count)} />
-          <Counter label='Adults' onChangeCount={(count) => handleChangeCount('adults', count)} />
-        </div>
-        <button
-          id="search"
-          className="h-10 bg-brand-primary text-white rounded-md px-4 self-center md:self-start"
-          onClick={e=>handleSearch(e)}
-        >
-          Search
-        </button>
-      </form>
-      {error && <p className="text-red-500 text-md">{error}</p>}
-    </section>
+  <h2 className="text-2xl font-bold mb-4">Search For Your Dream Tour!</h2>
+  <form className="flex flex-col md:flex-row md:space-x-2 lg:flex-row mb-4 w-full items-center" action="/search" method='POST'>
+    <div className="w-full relative z-50">
+      <Label
+        inputType={'text'}
+        placeholder={'Where do you want to go?'}
+        onChange={(e) => handleDestinationChange(e)}
+        onKeyDown={(e) => handleOnKeyDown(e)}
+        name={'destination'}
+        value={clicked ? destination : undefined}
+        className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
+        noLabel={true}
+      />
+      {searchResults && <SearchResults results={searchResults.result} setData={setData} clicked={setClicked} destination={setDestination} setSearchResult={setSearchResults}/>}
+    </div>
+    <Label
+      inputType={'date'}
+      placeholder={'Check In'}
+      onChange={(e) => handleChange(e)}
+      name={'checkInDate'}
+      className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
+      noLabel={true}
+    />
+    <Label
+      inputType={'date'}
+      placeholder={'Check Out'}
+      onChange={(e) => handleChange(e)}
+      name={'checkOutDate'}
+      className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
+      noLabel={true}
+    />
+    <div className="flex items-center space-x-4">
+      <Counter label='Children' onChangeCount={(count) => handleChangeCount('children', count)} />
+      <Counter label='Adults' onChangeCount={(count) => handleChangeCount('adults', count)} />
+    </div>
+    <button
+      id="search"
+      className="h-10 bg-brand-primary text-white rounded-md px-4 self-center md:self-start"
+      onClick={e=>handleSearch(e)}
+    >
+      Search
+    </button>
+  </form>
+  {error && <p className="text-red-500 text-md">{error}</p>}
+</section>
   );
 }
 
