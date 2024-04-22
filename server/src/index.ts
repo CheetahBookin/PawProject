@@ -8,6 +8,8 @@ import userRouter from './routes/userRoute';
 import countryRouter from './routes/countriesRoute';
 import paymentRouter from './routes/paymentRoute';
 import userProfileRouter from './routes/userProfileRoute';
+import userDashboardRouter from './routes/userDashboardRoute';
+import favoritesRouter from './routes/favoritesRoute';
 import cookieParser from 'cookie-parser';
 import initializeWebSocket from './websockets/initializeWebSocket';
 import { createServer } from 'http';
@@ -38,6 +40,8 @@ app.use("/users", userRouter)
 app.use("/countries", countryRouter)
 app.use("/payments", paymentRouter)
 app.use("/up", userProfileRouter)
+app.use("/dashboard", userDashboardRouter)
+app.use("/favs", favoritesRouter)
 
 const httpServer = createServer(app);
 initializeWebSocket(httpServer);

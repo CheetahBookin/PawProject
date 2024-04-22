@@ -93,11 +93,6 @@ const searchForTrip = async (req: TripRequest, res: Response) => {
           select: {
             image: true
           }
-        },
-        BookedDates: {
-          select: {
-            date: true
-          }
         }
       }
     });

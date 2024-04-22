@@ -90,8 +90,6 @@ function UserProfileForm({
     }
   }
 
-  console.log(isChecked, userProfile.darkMode)
-
   const handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
@@ -131,7 +129,7 @@ function UserProfileForm({
     }
   }
   return (
-    <form className='max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
+    <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 flex flex-col justify-center'>
       <div className='mb-4'>
         <label htmlFor='firstName' className='block text-gray-700 text-sm font-bold mb-2'>
           First Name:

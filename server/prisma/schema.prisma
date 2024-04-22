@@ -17,9 +17,21 @@ model User {
   profile   UserProfile?
   rates    Rates[]
   orders   Orders[]
+  favorites Favorites[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Favorites {
+  id             Int          @id @default(autoincrement())
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         Int
+  accommodation  Accomodation @relation(fields: [accommodationId], references: [id])
+  accommodationId Int
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
 
 model Orders {
   id        String      @id @default(uuid())
@@ -50,6 +62,7 @@ model UserProfile {
   address   String
   profileImage String
   darkMode  Boolean
+  level     String    @default("Rookie")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -83,15 +96,8 @@ model Accomodation {
   flag_url  String?
   images    AccomodationImages[]
   Rooms     Rooms[]
+  favorites Favorites[]
   Rates     Rates[]
-  BookedDates BookedDates[]
-}
-
-model BookedDates {
-  id        Int      @id @default(autoincrement())
-  accomodation     Accomodation    @relation(fields: [hotelId], references: [id])
-  hotelId   Int
-  date      String
 }
 
 model Rates {
