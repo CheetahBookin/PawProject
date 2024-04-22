@@ -46,15 +46,16 @@ function GalleryPopularDestinations() {
       <h2 className="text-2xl font-bold">Popular Destinations</h2>
       <div className="flex justify-center mt-8">
         {!loading ? hotelsData.map((hotel, index) => (
-            <HotelCard 
-              key = {index}
-              id = {hotel.id}
-              index = {index}
-              image = {hotel.images}
-              name = {hotel.name}
-              city = {hotel.city}
-              flag_url = {hotel.flag_url}
-            />
+            <div key={index} className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6">
+              <HotelCard 
+                id={hotel.id}
+                index={index}
+                image={hotel.images}
+                name={hotel.name}
+                city={hotel.city}
+                flag_url={hotel.flag_url}
+              />
+            </div>
         )) : <Loading />}
       </div>
     </div>
@@ -62,3 +63,4 @@ function GalleryPopularDestinations() {
 }
 
 export default GalleryPopularDestinations;
+
