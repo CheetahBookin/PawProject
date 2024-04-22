@@ -15,7 +15,7 @@ function Footer() {
           </a>
           <div className="mt-6 lg:max-w-xl">
             <p className="text-sm text-gray-800">
-            CheetahBooking is a leading accommodation booking platform that connects travelers with a diverse range of lodging options worldwide. Our platform offers a seamless experience for users to discover, compare, and book accommodations tailored to their preferences and budget. Whether it's hotels, vacation rentals, or hostels, CheetahBooking provides a hassle-free solution for travelers to find their ideal stay, ensuring a smooth and enjoyable journey every step of the way.
+              CheetahBooking is a leading accommodation booking platform that connects travelers with a diverse range of lodging options worldwide. Our platform offers a seamless experience for users to discover, compare, and book accommodations tailored to their preferences and budget. Whether it's hotels, vacation rentals, or hostels, CheetahBooking provides a hassle-free solution for travelers to find their ideal stay, ensuring a smooth and enjoyable journey every step of the way.
             </p>
           </div>
         </div>
@@ -82,7 +82,7 @@ function Footer() {
       </div>
 
       <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
-        <p className="text-sm text-gray-600">© Copyright 2024 CheetahBooking. All rights reserved.</p>
+        <p className="text-sm text-gray-600">© 2024 CheetahBooking. All rights reserved.</p>
         <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
           <li>
             <a href="#" className="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">Privacy &amp; Cookies Policy</a>
