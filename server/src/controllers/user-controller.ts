@@ -147,10 +147,138 @@ const resetPassword = async (req: Request, res: Response) => {
     }
 }
 
+const updateEmail = async (req: Request, res: Response) => {
+    try{
+        const { userId, email } = req.body;
+        if(!userId || !email){
+            return res.status(400).json({ error: "Missing required information" })
+        }
+        const user = await prisma.user.findUnique({
+            where: { id: userId }
+        })
+        if (!user) {
+            return res.status(400).json({ error: "User not found" })
+        }
+        const mail = user.email
+        if(mail === email){
+            return res.status(400).json({ error: "New email can't be the same as the old one" });
+        }
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                email
+            }
+        })
+        res.status(200).json({ message: "Email updated" });
+    }catch(error){
+        res.status(500).json({ error: "Can't update user profile" })
+    }
+}
+
+const updatePassword = async (req: Request, res: Response) => {
+    try{
+        const { userId, currentPassword, newPassword } = req.body;
+        if(!userId || !currentPassword || !newPassword){
+            return res.status(400).json({ error: "Missing required information" })
+        }
+        const user = await prisma.user.findUnique({
+            where: { id: userId }
+        })
+        if (!user) {
+            return res.status(400).json({ error: "User not found" })
+        }
+        const isSamePassword = await argon2.verify(user.password, newPassword);
+        if (isSamePassword) {
+            return res.status(400).json({ error: "New password can't be the same as the old one" });
+        }
+        const isPasswordCorrect = await argon2.verify(user.password, currentPassword);
+        if (!isPasswordCorrect) {
+            return res.status(400).json({ error: "Incorrect current password" });
+        }
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+        if (!passwordRegex.test(newPassword)) {
+            return res.status(400).json({ error: "Your password must be at least 8 characters long, contain at least one number and have a mixture of uppercase and lowercase letters" })
+        }
+        const hashedPassword = await argon2.hash(newPassword);
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                password: hashedPassword
+            }
+        })
+        res.status(200).json({ message: "Password updated" });
+    }catch(error){
+        res.status(500).json({ error: "Can't update user profile" })
+    }
+}
+
+const updatePhone = async (req: Request, res: Response) => {
+    try{
+        const { userId, phone } = req.body;
+        if(!userId || !phone){
+            return res.status(400).json({ error: "Missing required information" })
+        }
+        const user = await prisma.user.findUnique({
+            where: { id: userId }
+        })
+        if (!user) {
+            return res.status(400).json({ error: "User not found" })
+        }
+        const phoneNum = user.phoneNumber
+        if(phoneNum === phone){
+            return res.status(400).json({ error: "New phone number can't be the same as the old one" });
+        }
+        if(phone.length !== 9){
+            return res.status(400).json({ error: "Phone number must be 9 digits long" });
+        }
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                phoneNumber: phone
+            }
+        })
+        res.status(200).json({ message: "Phone updated" });
+    }catch(error){
+        res.status(500).json({ error: "Can't update user profile" })
+    }
+}
+
+const updateNickname = async (req: Request, res: Response) => {
+    try{
+        const { userId, nickname } = req.body;
+        if(!userId || !nickname){
+            return res.status(400).json({ error: "Missing required information" })
+        }
+        const user = await prisma.user.findUnique({
+            where: { id: userId }
+        })
+        if (!user) {
+            return res.status(400).json({ error: "User not found" })
+        }
+        const nick = user.username
+        if(nick === nickname){
+            return res.status(400).json({ error: "New nickname can't be the same as the old one" });
+        }
+        await prisma.user.update({
+            where: { id: userId },
+            data: {
+                username: nickname
+            }
+        })
+        res.status(200).json({ message: "Nickname updated" });
+    }catch(error){
+        res.status(500).json({ error: "Can't update user profile" })
+    }
+}
+
 export {
     getUserData,
     logout,
     givePermission,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    updateEmail,
+    updatePassword,
+    updatePhone,
+    updateNickname
 }
