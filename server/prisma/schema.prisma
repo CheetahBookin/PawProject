@@ -12,6 +12,7 @@ model User {
   username  String   @unique
   email     String   @unique
   password  String
+  phoneNumber String?
   agreement Boolean
   resetCode String?
   profile   UserProfile?
