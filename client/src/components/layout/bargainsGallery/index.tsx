@@ -38,7 +38,7 @@ function BargainsGallery() {
   }
 
   return (
-    <Carousel className="w-full max-w-7xl">
+    <Carousel className="w-[65%]">
       <CarouselContent className="-ml-1">
         {data?.map((item: DiscountedRooms, index: number) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">

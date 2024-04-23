@@ -22,7 +22,7 @@ function HotelCard({id, index, image, name, city, flag_url}: HotelCardProps) {
     router.push(`/hotel/${slug}`);
   }
   return (
-    <div key={index} className="w-1/4 px-4">
+    <div key={index} className="px-4 sm:w-full md:w-full">
          <img
             src={image[0].image}
             alt={name}
