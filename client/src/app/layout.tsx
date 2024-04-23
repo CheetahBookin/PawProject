@@ -7,6 +7,7 @@ import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { Toaster } from '@/components/ui/toaster'
 import { DarkModeProvider } from '@/context/DarkModeContext'
+import { ProfileImageProvider } from '@/context/ProfileImageContext'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -36,10 +37,12 @@ export default function RootLayout({
       <body className={cn("min-h-full font-sans antialiased", fontSans.variable)}>
         <UserContextProvider>
           <DarkModeProvider>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster />
+            <ProfileImageProvider>
+              <Header />
+              {children}
+              <Footer />
+              <Toaster />
+            </ProfileImageProvider>
           </DarkModeProvider>
         </UserContextProvider>  
       </body>
