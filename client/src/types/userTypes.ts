@@ -3,6 +3,7 @@ export type User = {
     username: string,
     email: string,
     agreement: boolean,
+    phoneNumber: string,
     password: string,
     createdAt: Date,
     updatedAt: Date

@@ -11,12 +11,14 @@ import Loading from "@/components/common/loading";
 import Searcher from "@/components/common/headerHotelSearch";
 import { useDarkMode } from "@/context/DarkModeContext";
 import { getUserProfile } from "@/services/userProfileService";
+import { useProfileImage } from "@/context/ProfileImageContext";
 
 function Header() {
   const { isLogged, setIsLogged } = useUserContext();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const { darkMode, setDarkMode } = useDarkMode();
+  const { profileImage, setProfileImage } = useProfileImage();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,7 +30,9 @@ function Header() {
           const userProfile = await getUserProfile(userData.data.id);
           if (userProfile.status === 200) {
             const darkModeState = userProfile.data.darkMode;
+            const profileImage = userProfile.data.profileImage;
             setDarkMode(darkModeState);
+            setProfileImage(profileImage);
           }
           setIsLogged(true);
         } else {
@@ -120,9 +124,9 @@ function Header() {
                 ) : (
                   <Link className="block" href="/dashboard">
                     <img
-                      src="https://placehold.it/50x50"
+                      src={profileImage || "/assets/profile.webp"}
                       alt="Profile"
-                      className="w-full h-full object-cover border-r-2 border-brand-secondary rounded-full"
+                      className="w-20 h-20 object-cover border-r-2 border-brand-secondary rounded-full"
                     />
                   </Link>
                 )}

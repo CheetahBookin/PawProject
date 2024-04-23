@@ -6,6 +6,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { User } from '@/types/userTypes'
 import { UserProfileType } from '@/types/userProfileTypes'
 import { useDarkMode } from '@/context/DarkModeContext'
+import { useProfileImage } from '@/context/ProfileImageContext'
 
 type UserProfileFormProps = {
   user: User
@@ -25,6 +26,7 @@ function UserProfileForm({
   switchBtn,
 }: UserProfileFormProps) {
   const { toast } = useToast()
+  const { setProfileImage } = useProfileImage()
   const [darkModeSwitched, setDarkModeSwitched] = useState(false)
   const { setDarkMode } = useDarkMode()
   const handleSwitchChange = () => {
@@ -71,6 +73,7 @@ function UserProfileForm({
             variant: 'success',
           })
           setDarkModeSwitched(prevVal=>!prevVal)
+          setProfileImage(userProfile.profileImage)
         } else {
           toast({
             title: 'Error',
@@ -110,6 +113,7 @@ function UserProfileForm({
             variant: 'success',
           })
           setDarkModeSwitched(prevVal=>!prevVal)
+          setProfileImage(userProfile.profileImage)
         } else {
           toast({
             title: 'Error',

@@ -45,10 +45,50 @@ const resetPassword = async (email: string, resetCode: string, newPassword: stri
     }
 }
 
+const updateEmail = async (userId: number, email: string) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/users/update-email`, { userId, email },  { withCredentials: true });
+        return response;
+    } catch (err: any) {
+        return err.response;
+    }
+}
+
+const updateNickname = async (userId: number, nickname: string) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/users/update-nickname`, { userId, nickname },  { withCredentials: true });
+        return response;
+    } catch (err: any) {
+        return err.response;
+    }
+}
+
+const updatePassword = async (userId: number, newPassword: string, currentPassword: string) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/users/update-password`, { userId, newPassword, currentPassword },  { withCredentials: true });
+        return response;
+    } catch (err: any) {
+        return err.response;
+    }
+}
+
+const updatePhone = async (userId: number, phone: string) => {
+    try {
+        const response = await axios.post(`http://localhost:5000/users/update-phone`, { userId, phone },  { withCredentials: true });
+        return response;
+    } catch (err: any) {
+        return err.response;
+    }
+}
+
 export {
     getUser,
     logout,
     givePermission,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    updateEmail,
+    updateNickname,
+    updatePassword,
+    updatePhone
 }
