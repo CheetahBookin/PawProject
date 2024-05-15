@@ -12,6 +12,5 @@ test('newsletter display on link click', async ({ page }) => {
         const newsletterElement = document.querySelector('.newsletter');
         return newsletterElement !== null && newsletterElement.innerHTML.trim() !== '';
     });
-    // tu coś nie styka z linijką 12, bo nie ma elementu .newsletter a jest
     expect(isNewsletterRendered).toBe(true);
 });
