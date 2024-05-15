@@ -1,0 +1,16 @@
+{
+  "name": "pawproject",
+  "version": "1.0.0",
+  "description": "TBD.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.12",
+    "jest-playwright-preset": "^4.0.0"
+  }
+}
