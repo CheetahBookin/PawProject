@@ -22,7 +22,7 @@ function Footer() {
 
         <div className="flex flex-col gap-2 text-sm">
           <p className="text-base font-bold tracking-wide text-gray-900">Customer Service</p>
-          <a href="#" onClick={() => setShowNewsletter(true)}>Newsletter</a>
+          <a href="#" className='newsletter' onClick={() => setShowNewsletter(true)}>Newsletter</a>
           <a href="#">Terms & Conditions</a>
           <a href="#">Customer Service help</a>
           <a href="#">Customer Partner help</a>
