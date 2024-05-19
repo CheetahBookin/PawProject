@@ -15,6 +15,7 @@ export type MostVisitedDestination = {
         country: string;
         count: number;
     }
+    destination: string;
 }
 
 export type NextTrip = {
@@ -22,6 +23,7 @@ export type NextTrip = {
         hotel: HotelTypes[];
         tripDate: Date;
     }
+    destination: string;
 }
 
 export type Level = {

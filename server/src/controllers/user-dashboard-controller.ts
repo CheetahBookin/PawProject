@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { TripType } from '../types/DashboardTypes';
 const prisma = new PrismaClient();
 
 const getFinishedUpcomingTrips = async (req: Request, res: Response) => {
@@ -17,8 +18,8 @@ const getFinishedUpcomingTrips = async (req: Request, res: Response) => {
             finishedTrips = []
             upcomingTrips = []
         }
-        finishedTrips = trips.filter(trip => trip.toDate < new Date())
-        upcomingTrips = trips.filter(trip => trip.fromDate > new Date())
+        finishedTrips = trips.filter((trip: TripType) => trip.toDate < new Date())
+        upcomingTrips = trips.filter((trip: TripType) => trip.fromDate > new Date())
         const finished = finishedTrips.length
         const upcoming = upcomingTrips.length
         res.status(200).json({ finished, upcoming })
@@ -41,7 +42,7 @@ const getMostVisitedDestination = async (req: Request, res: Response) => {
         }
         const destinationsArr: any[] = []
         const citArr: any[] = []
-        await Promise.all(trips.map(async (trip) => {
+        await Promise.all(trips.map(async (trip: TripType) => {
             const destinationsFromHotels = await prisma.accomodation.findMany({
                 where: { id: trip.hotelId },
                 select: { country: true, city: true }
@@ -116,7 +117,7 @@ const nextTrip = async (req: Request, res: Response) => {
             return res.status(200).json({ destination: '' })
         }
         const times: Trip[] = []
-        trips.map((trip)=>{
+        trips.map((trip: TripType)=>{
             const now = new Date().getTime()
             const startDate = trip.fromDate.getTime()
             const difference = startDate - now
