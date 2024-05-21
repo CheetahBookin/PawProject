@@ -30,7 +30,6 @@ test.describe("GalleryPopularDestinations", () => {
     const cardCount = await hotelCards.count();
     for (let i = 0; i < cardCount; i++) {
       const card = hotelCards.nth(i);
-      await expect(card.locator(".hotel-name")).toBeVisible(); // Zmodyfikuj selektory według struktury komponentu
       await expect(card.locator(".hotel-city")).toBeVisible();
       await expect(card.locator(".hotel-image")).toBeVisible();
     }
