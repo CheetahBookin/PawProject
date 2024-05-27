@@ -26,6 +26,8 @@ const config = {
       colors: {
        'brand-primary': '#D89340',
        'brand-secondary': '#E3DFD9',
+       'brand-primary-dark': '#5e3504',
+       'font-dark-mode': '#cfcfcc',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -42,13 +42,13 @@ function BargainsGallery() {
       <CarouselContent className="-ml-1">
         {data?.map((item: DiscountedRooms, index: number) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="h-full bg-brand-primary rounded-2xl relative">
-              <FontAwesomeIcon icon={faTag} className="absolute top-0 left-[4px] text-red-500 z-10 fa fa-tag text-8xl"/>
-              <span className="absolute top-8 left-8 z-20 text-brand-secondary">{`${(item.Rooms[0].discount) * 100}%`}</span>
+            <div className="h-full bg-brand-primary rounded-2xl relative dark:bg-brand-primary-dark">
+              <FontAwesomeIcon icon={faTag} className="absolute top-0 left-[4px] text-red-500 z-10 fa fa-tag text-8xl dark:text-red-800"/>
+              <span className="absolute top-8 left-8 z-20 text-brand-secondary dark:text-font-dark-mode">{`${(item.Rooms[0].discount) * 100}%`}</span>
               <img src={item.images[0].image} alt={item.name} className="w-full h-1/2 rounded-t-2xl" />
               <div className='w-full flex flex-col items-center justify-around h-1/2'>
-                <p className='text-black'>{item.name}, {item.country}</p>
-                <div className="bg-brand-secondary p-8 rounded-2xl cursor-pointer hover:bg-gray-300 transition-all" onClick={()=>handleClick(item.name, item.id, item.Rooms[0].id)}>
+                <p className='text-black dark:text-font-dark-mode'>{item.name}, {item.country}</p>
+                <div className="bg-brand-secondary p-8 rounded-2xl cursor-pointer hover:bg-gray-300 transition-all dark:bg-background dark:text-font-dark-mode dark:hover:bg-gray-700" onClick={()=>handleClick(item.name, item.id, item.Rooms[0].id)}>
                   <p>{item.Rooms[0].roomNumber}</p>
                   <p>Room perfect for {item.Rooms[0].peopleCapacity} people</p>
                   <p>Old price: <span className="line-through">{item.Rooms[0].priceForPerson}zł</span></p>

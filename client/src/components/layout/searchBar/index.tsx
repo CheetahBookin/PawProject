@@ -100,8 +100,8 @@ function SearchBar() {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center w-full bg-brand-secondary border-gray-300 rounded-md p-6 lg:w-3/4 md:w-full">
-  <h2 className="text-2xl font-bold mb-4">Search For Your Dream Tour!</h2>
+    <section className="flex flex-col items-center justify-center w-full bg-brand-secondary border-gray-300 rounded-md p-6 lg:w-3/4 md:w-full dark:bg-background">
+  <h2 className="text-2xl font-bold mb-4 dark:text-font-dark-mode">Search For Your Dream Tour!</h2>
   <form className="flex flex-col md:flex-row md:space-x-2 lg:flex-row mb-4 w-full items-center" action="/search" method='POST'>
     <div className="w-full relative z-50">
       <Label
@@ -111,7 +111,7 @@ function SearchBar() {
         onKeyDown={(e) => handleOnKeyDown(e)}
         name={'destination'}
         value={clicked ? destination : undefined}
-        className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
+        className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary dark:text-font-dark-mode dark:bg-background dark:border-gray-600 dark:placeholder-font-dark-mode dark:ring-foreground dark:ring-1"
         noLabel={true}
       />
       {searchResults && <SearchResults results={searchResults.result} setData={setData} clicked={setClicked} destination={setDestination} setSearchResult={setSearchResults}/>}
@@ -121,7 +121,7 @@ function SearchBar() {
       placeholder={'Check In'}
       onChange={(e) => handleChange(e)}
       name={'checkInDate'}
-      className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
+      className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary dark:text-font-dark-mode dark:bg-background dark:border-gray-600 dark:placeholder-font-dark-mode dark:ring-foreground dark:ring-1"
       noLabel={true}
     />
     <Label
@@ -129,7 +129,7 @@ function SearchBar() {
       placeholder={'Check Out'}
       onChange={(e) => handleChange(e)}
       name={'checkOutDate'}
-      className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary"
+      className="w-full md:w-1/4 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:border-brand-primary dark:text-font-dark-mode dark:bg-background dark:border-gray-600 dark:placeholder-font-dark-mode dark:ring-foreground dark:ring-1"
       noLabel={true}
     />
     <div className="flex items-center space-x-4">
@@ -138,7 +138,7 @@ function SearchBar() {
     </div>
     <button
       id="search"
-      className="h-10 bg-brand-primary text-white rounded-md px-4 self-center md:self-start"
+      className="h-10 bg-brand-primary text-white rounded-md px-4 self-center md:self-start dark:bg-brand-primary-dark"
       onClick={e=>handleSearch(e)}
     >
       Search

@@ -142,10 +142,10 @@ function HotelCard({id, index, image, name, city, flag_url}: HotelCardProps) {
             onClick={handleClick}
         />
         <div className='flex justify-center gap-2 items-center'>
-          <p>{name}, {city}</p>
+          <p className='dark:text-font-dark-mode'>{name}, {city}</p>
           <img src={flag_url} alt={city} className='w-8'/>
           {user && !loading && (
-            favorites.includes(id) ? <FontAwesomeIcon icon={solidHeart} onClick={()=>delFavorite(user.id, id)} className="text-2xl text-red-700 cursor-pointer hover:text-red-500 hover:transition-all"/> : <FontAwesomeIcon icon={regularHeart} className="text-2xl cursor-pointer hover:text-red-700 hover:transition-all" onClick={()=>addToFavorites(user.id, id)}/>)}
+            favorites.includes(id) ? <FontAwesomeIcon icon={solidHeart} onClick={()=>delFavorite(user.id, id)} className="text-2xl text-red-700 cursor-pointer hover:text-red-500 hover:transition-all"/> : <FontAwesomeIcon icon={regularHeart} className="text-2xl cursor-pointer hover:text-red-700 hover:transition-all dark:text-font-dark-mode" onClick={()=>addToFavorites(user.id, id)}/>)}
         </div>
     </div>
   )
