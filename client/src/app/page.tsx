@@ -7,7 +7,7 @@ import GalleryPropertyType from '@/components/layout/galleryPropertyType'
 
 export default function Home() {
   return (
-    <main className="text-gray-900 bg-brand-secondary flex flex-col items-center pt-4 gap-12 dark:bg-black">
+    <main className="text-gray-900 bg-brand-secondary flex flex-col items-center pt-4 gap-12 dark:bg-background">
        <Search />
        <GalleryPopularDestinations />
        <GalleryPropertyType />

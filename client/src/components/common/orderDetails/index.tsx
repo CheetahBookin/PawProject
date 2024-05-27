@@ -66,7 +66,6 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
         }
     };
     const [error, setError] = useState<string | null>(null);
-    const [message, setMessage] = useState<string | null>(null);
     const [counters, dispatchCounters] = useReducer(counterReducer, {
       adults: 0,
       children: 0,
@@ -123,12 +122,12 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
     setSuccess(true);
   }
   return (
-    <div className="bg-gray-200 border border-gray-300 p-4 rounded-lg shadow-md flex justify-between">
+    <div className="bg-gray-200 border border-gray-300 p-4 rounded-lg shadow-md flex justify-between dark:bg-background">
       <div className="flex flex-col">
         <div className="flex items-center">
-          <p className="text-lg mr-4">Adults: {counters.adults}</p>
+          <p className="text-lg mr-4 dark:text-font-dark-mode">Adults: {counters.adults}</p>
           <button
-            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4"
+            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4 dark:bg-brand-primary-dark"
             onClick={() =>
               dispatchCounters({ type: "INCREMENT", target: "adults" })
             }
@@ -136,7 +135,7 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
             +
           </button>
           <button
-            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4"
+            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4 dark:bg-brand-primary-dark"
             onClick={() =>
               dispatchCounters({ type: "DECREMENT", target: "adults" })
             }
@@ -145,9 +144,9 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
           </button>
         </div>
         <div className="flex items-center mt-4">
-          <p className="text-lg mr-4">Children: {counters.children}</p>
+          <p className="text-lg mr-4 dark:text-font-dark-mode">Children: {counters.children}</p>
           <button
-            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4"
+            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4 dark:bg-brand-primary-dark"
             onClick={() =>
               dispatchCounters({ type: "INCREMENT", target: "children" })
             }
@@ -155,7 +154,7 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
             +
           </button>
           <button
-            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4"
+            className="bg-brand-primary text-white rounded-lg w-8 h-8 mr-4 dark:bg-brand-primary-dark"
             onClick={() =>
               dispatchCounters({ type: "DECREMENT", target: "children" })
             }
@@ -164,31 +163,31 @@ function OrderDetails({ setSelectedRoom, roomId, hotelId, capacity, setOrderDeta
           </button>
         </div>
         <div className="flex items-center mt-4">
-          <label htmlFor="fromDate" className="mr-2">
+          <label htmlFor="fromDate" className="mr-2 dark:text-font-dark-mode">
             From:
           </label>
           <input
             type="date"
             id="fromDate"
             name="fromDate"
-            className="border border-gray-300 rounded-md p-1"
+            className="border border-gray-300 rounded-md p-1 dark:text-font-dark-mode dark:bg-background dark:border-gray-600 dark:placeholder-font-dark-mode dark:ring-foreground dark:ring-1"
             onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="flex items-center mt-2">
-          <label htmlFor="toDate" className="mr-2">
+          <label htmlFor="toDate" className="mr-2 dark:text-font-dark-mode">
             To:
           </label>
           <input
             type="date"
             id="toDate"
             name="toDate"
-            className="border border-gray-300 rounded-md p-1"
+            className="border border-gray-300 rounded-md p-1 dark:text-font-dark-mode dark:bg-background dark:border-gray-600 dark:placeholder-font-dark-mode dark:ring-foreground dark:ring-1"
             onChange={(e) => handleChange(e)}
           />
         </div>
         {error && <p className="text-red-500">{error}</p>}
-        <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md" onClick={handleBookTrip}>
+        <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md dark:bg-blue-800 dark:text-font-dark-mode" onClick={handleBookTrip}>
           Set your data
         </button>
       </div>

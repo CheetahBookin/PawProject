@@ -69,9 +69,9 @@ function Header() {
   ];
 
   return (
-    <header className="lg:px-16 flex flex-wrap py-4 shadow-md justify-between bg-brand-primary items-center">
+    <header className="lg:px-16 flex flex-wrap py-4 shadow-md justify-between bg-brand-primary items-center dark:bg-brand-primary-dark">
       <Link href="/">
-        <img src="/cheetahbooking-high-resolution-logo.png" alt="logo" className="w-56" />
+        <img src={darkMode ? '/logo-dark-mode.png' : '/logo-no-background.png'} alt="logo" className="w-56" />
       </Link>
       <nav className="flex-1 flex justify-end">
         <div className="md:flex md:items-center md:w-auto w-full" id="menu">
@@ -79,7 +79,7 @@ function Header() {
             {isLogged && (
               <li>
                 {!loading ? (
-                  <p>Welcome on your adventure {user?.username}!</p>
+                  <p className="dark:text-font-dark-mode">Welcome on your adventure {user?.username}!</p>
                 ) : (
                   <Loading />
                 )}
@@ -91,23 +91,23 @@ function Header() {
             {isLogged && (
               <li>
                 {!loading ? (
-                  <Link href="/dashboard/reservations">Reservations</Link>
+                  <Link href="/dashboard/reservations" className="dark:text-font-dark-mode">Reservations</Link>
                 ) : (
                   <Loading />
                 )}
               </li>)}
             <li>
-              <Link className="block" href="/about">
+              <Link className="block dark:text-font-dark-mode" href="/about">
                 About
               </Link>
             </li>
             <li>
-              <Link className="block" href="/destinations">
+              <Link className="block dark:text-font-dark-mode" href="/destinations">
                 Destinations
               </Link>
             </li>
             <li>
-              <select className="appearance-none bg-brand-secondary border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+              <select className="appearance-none bg-brand-secondary border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline dark:text-font-dark-mode dark:bg-background dark:border-gray-600 dark:placeholder-font-dark-mode dark:ring-foreground dark:ring-1">
                 {currency.map((item, index) => (
                   <option key={index} value={item.value}>
                     {item.label}

@@ -49,7 +49,7 @@ function Searcher() {
       <input
         type="text"
         placeholder="Find your hotel..."
-        className="bg-white rounded-md pl-10 pr-4 py-1.5 border border-gray-400 focus:outline-none focus:border-blue-500"
+        className="bg-white rounded-md pl-10 pr-4 py-1.5 border border-gray-400 focus:outline-none focus:border-blue-500 dark:text-font-dark-mode dark:bg-background dark:border-gray-600 dark:placeholder-font-dark-mode dark:ring-foreground dark:ring-1"
         value={searchValue}
         onChange={(e) => handleChange(e)}
         onClick={handleInputClick}
