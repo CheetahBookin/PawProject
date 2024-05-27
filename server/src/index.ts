@@ -10,6 +10,7 @@ import paymentRouter from './routes/paymentRoute';
 import userProfileRouter from './routes/userProfileRoute';
 import userDashboardRouter from './routes/userDashboardRoute';
 import favoritesRouter from './routes/favoritesRoute';
+import bestRatedRouter from "./routes/bestRatedRoute";
 import cookieParser from 'cookie-parser';
 import initializeWebSocket from './websockets/initializeWebSocket';
 import { createServer } from 'http';
@@ -42,6 +43,7 @@ app.use("/payments", paymentRouter)
 app.use("/up", userProfileRouter)
 app.use("/dashboard", userDashboardRouter)
 app.use("/favs", favoritesRouter)
+app.use("/bestRated", bestRatedRouter)
 
 const httpServer = createServer(app);
 initializeWebSocket(httpServer);
