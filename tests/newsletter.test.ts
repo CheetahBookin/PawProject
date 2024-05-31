@@ -3,7 +3,6 @@ import { test, expect } from '@playwright/test';
 test('successful newsletter subscription', async ({ page }) => {
     await page.goto('http://localhost:3000');
     try {
-        // waiting for locator('input[type="email"]') to be visible
         await page.waitForSelector('.mx-auto input[type="email"]', { timeout: 10000 });
     } catch (error) {
         console.error("Failed to locate the email input field:", error);

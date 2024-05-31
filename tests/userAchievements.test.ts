@@ -4,14 +4,11 @@ import { exec } from 'child_process';
 let serverProcess;
 
 test.beforeAll(async () => {
-  // Start the development server
   serverProcess = exec('npm start');
-  // Wait for the server to start (adjust the time as necessary)
-  await new Promise(resolve => setTimeout(resolve, 10000)); // 10 seconds
+  await new Promise(resolve => setTimeout(resolve, 10000)); 
 });
 
 test.afterAll(async () => {
-  // Stop the development server
   serverProcess.kill();
 });
 
