@@ -30,7 +30,7 @@ function Counter({ label, onChangeCount }: CounterProps) {
     return (
         <div className="flex items-center justify-center md:justify-start space-x-2">
             <button 
-                className="px-4 py-2 bg-brand-primary text-white rounded-lg"
+                className="px-4 py-2 bg-brand-primary text-white rounded-lg dark:bg-brand-primary-dark"
                 onClick={() => {
                     dispatch({ type: 'decrement' });
                     handleChangeCount(count - 1);
@@ -39,9 +39,9 @@ function Counter({ label, onChangeCount }: CounterProps) {
             >
                 -
             </button>
-            <span className="text-lg md:w-24 text-center">{label}: {count}</span>
+            <span className="text-lg md:w-24 text-center dark:text-font-dark-mode">{label}: {count}</span>
             <button 
-                className="px-4 py-2 bg-brand-primary text-white rounded-lg"
+                className="px-4 py-2 bg-brand-primary text-white rounded-lg dark:bg-brand-primary-dark"
                 onClick={() => {
                     dispatch({ type: 'increment' });
                     handleChangeCount(count + 1);
