@@ -18,7 +18,6 @@ function Footer() {
             </p>
           </div>
         </div>
-
         <div className="flex flex-col gap-2 text-sm">
           <p className="text-base font-bold tracking-wide text-gray-900 dark:text-gray-400">Customer Service</p>
           <a href="#" onClick={() => setShowNewsletter(true)} className='dark:text-font-dark-mode'>Newsletter</a>
