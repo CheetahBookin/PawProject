@@ -42,6 +42,7 @@ Run server side
 
 ```bash
   cd server
+  create .env file and paste in there provided env content
   npm i
   npx prisma generate
   npx prisma migrate dev --name init
