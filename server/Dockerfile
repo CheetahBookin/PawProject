@@ -1,15 +1,8 @@
 FROM node:latest
-
-WORKDIR /usr/src/app
-
-COPY package*.json .
-
+WORKDIR /app
+COPY package.json /app
 RUN npm install
-
-COPY . .
-
+COPY . /app
+RUN npx prisma generate
 RUN npm run build
-
-EXPOSE 5000
-
 CMD ["npm", "run", "dev"]

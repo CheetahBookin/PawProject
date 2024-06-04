@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { Toaster } from '@/components/ui/toaster'
 import { DarkModeProvider } from '@/context/DarkModeContext'
 import { ProfileImageProvider } from '@/context/ProfileImageContext'
+import { Suspense } from 'react'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -39,7 +40,9 @@ export default function RootLayout({
           <DarkModeProvider>
             <ProfileImageProvider>
               <Header />
-              {children}
+              <Suspense>
+                {children}
+              </Suspense>
               <Footer />
               <Toaster />
             </ProfileImageProvider>
