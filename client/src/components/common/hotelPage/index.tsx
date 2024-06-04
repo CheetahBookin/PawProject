@@ -169,8 +169,8 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
 
   return (
       <>
-        <main className="bg-brand-secondary text-black flex dark:bg-background">
-            <div className="w-1/2 p-16">
+        <main className="bg-brand-secondary text-black flex flex-col lg:flex-row dark:bg-background">
+            <div className="w-full lg:w-1/2 p-16">
               <div>
                 <h1 className="text-3xl font-bold mb-4 dark:text-font-dark-mode">{name}</h1>
                 <p className="mb-2 dark:text-font-dark-mode">Address: {address}, {city}, {country}</p>
@@ -196,7 +196,7 @@ function HotelPage({ id, name, address, country, city, type, carParkFee, images,
                 <button className="book-now-button bg-blue-500 text-white px-6 py-3 rounded-full mb-4 dark:bg-blue-800 dark:text-font-dark-mode" onClick={handleBook}>Book now</button>
               </div>
             </div>
-            <div className="w-1/2 p-16">
+            <div className="w-full lg:w-1/2 p-16">
               <h1>Gallery:</h1>
               <div className="mb-8">
                 <img src={mainImage} alt={name} className="w-full mb-4 rounded-lg shadow-lg h-[50vh]" />

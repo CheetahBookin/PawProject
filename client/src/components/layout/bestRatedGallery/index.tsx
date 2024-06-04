@@ -33,11 +33,11 @@ const BesRatedGallery = ()=>{
 
     return(
         <div className="w-[65%] flex flex-col items-center gap-4 pb-8">
-            <h1 className="font-bold text-3xl">Best rated</h1>
+            <h1 className="font-bold text-2xl md:text-3xl">Best rated</h1>
             <Carousel className="w-full">
                 <CarouselContent className="-ml-1">
                     {data?.map((item: BestRated, index: number) => (
-                        <CarouselItem key={index} className="basis-1/3 h-full md:w-1/2 lg:w-1/3">
+                        <CarouselItem key={index} className="lg:basis-1/3 md:basis-1/2 h-full md:w-1/2 lg:w-1/3">
                         <div className="h-full bg-brand-primary rounded-2xl">
                             <img src={item.image} alt={item.name} className="w-full h-56 object-cover rounded-t-3xl" />
                             <div className='p-6'>
