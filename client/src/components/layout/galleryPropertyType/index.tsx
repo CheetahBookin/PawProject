@@ -21,7 +21,7 @@ function GalleryPropertyType() {
   }, []);
   return (
     <div className="flex flex-col items-center justify-center">
-      <h2 className="text-3xl font-bold mb-4">Browse by property type</h2>
+      <h2 className="text-3xl font-bold mb-4 dark:text-font-dark-mode">Browse by property type</h2>
       <div className='flex flex-wrap justify-center'>
         {hotelsTypes ? hotelsTypes.map((hotelType, index) => (
           <HotelTypeCard key={index} hotelType={hotelType.type} images={hotelType.images} />

@@ -63,3 +63,12 @@ export type DiscountedRooms = {
     images: RoomImages[],
     Rooms: DiscountedRoomsRooms[],
 }
+
+export type BestRated = {
+    id: number,
+    name: string,
+    country: string,
+    image: string,
+    avg_rate: number | null,
+    rates_count: number
+}
