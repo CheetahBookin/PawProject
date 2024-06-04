@@ -69,7 +69,7 @@ function Header() {
   ];
 
   return (
-    <header className="lg:px-16 flex flex-wrap py-4 shadow-md justify-between bg-brand-primary items-center dark:bg-brand-primary-dark">
+    <header className="lg:px-16 flex flex-col lg:flex-row flex-wrap py-4 shadow-md justify-between bg-brand-primary items-center dark:bg-brand-primary-dark">
       <Link href="/">
         <img src={darkMode ? '/logo-dark-mode.png' : '/logo-no-background.png'} alt="logo" className="w-56" />
       </Link>
