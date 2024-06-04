@@ -26,7 +26,9 @@ describe('verifyJWT', ()=>{
     })
 
     it('should return 401 if no token is provided', () => {
-        req.cookies.token = undefined
+        let cookies = req.cookies
+        if(!cookies) cookies = { token: undefined }
+        cookies.token = undefined
 
         verifyJWT(req as Request, res as Response, next)
 
