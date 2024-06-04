@@ -33,7 +33,7 @@ const BesRatedGallery = () => {
   
   return (
     <div className="w-[65%] flex flex-col items-center gap-4 pb-8">
-      <h1 className="font-bold text-2xl md:text-3xl>Best rated</h1>
+      <h1 className="font-bold text-2xl md:text-3xl">Best rated</h1>
       <Carousel className="w-full">
         <CarouselContent className="-ml-1">
           {data?.map((item: BestRated, index: number) => (
