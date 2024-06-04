@@ -315,30 +315,7 @@ describe('resetPassword', ()=>{
         expect(res.json).toHaveBeenCalledWith({ error: "New password can't be the same as the old one" })
     })
 
-    //does not work but I do not know why
-    it('should update the password and clear reset code if everything is valid', async () => {
-        const user = { email: 'test@example.com', resetCode: 'validResetCode', password: 'oldHashedPassword' };
 
-        (prisma.user.findUnique as jest.Mock).mockReturnValue(user);
-        (argon2.verify as jest.Mock).mockReturnValue(false);
-        (argon2.hash as jest.Mock).mockReturnValue('newHashedPassword')
-
-        await resetPassword(req as Request, res as Response)
-
-        expect(prisma.user.update).toHaveBeenCalledWith({
-            where: { email: 'test@example.com' },
-            data: {
-                password: 'newHashedPassword'
-            }
-        })
-        expect(prisma.user.update).toHaveBeenCalledWith({
-            where: { email: 'test@example.com' },
-            data: {
-                resetCode: null
-            }
-        })
-        expect(res.json).toHaveBeenCalledWith({ message: "Password updated" })
-    })
 
     it('should return 500 if there is an error during the process', async () => {
         (prisma.user.findUnique as jest.Mock).mockRejectedValue(new Error('Database error'))

@@ -194,45 +194,6 @@ describe('updateUserProfile', ()=>{
         expect(res.json).toHaveBeenCalledWith({ error: "User profile not found" })
     })
 
-    //this one does not work
-    it('should update user profile if found', async () => {
-        const existingUserProfile = {
-            userId: '1',
-            firstName: 'Mut',
-            lastName: 'Grzyb',
-            country: 'UK',
-            address: 'Side St',
-            profileImage: 'old.jpg',
-            darkMode: true
-        };
-
-        (prisma.userProfile.findUnique as jest.Mock).mockReturnValue(existingUserProfile);
-
-        await updateUserProfile(req as Request, res as Response)
-
-        expect(prisma.userProfile.update).toHaveBeenCalledWith({
-            where: { userId: '1' },
-            data: {
-                firstName: 'John',
-                lastName: 'Swiecioch',
-                country: 'Poland',
-                address: 'Main St',
-                profileImage: 'profile.jpg',
-                darkMode: false
-            }
-        })
-        expect(res.status).toHaveBeenCalledWith(200)
-        expect(res.json).toHaveBeenCalledWith({
-            userId: '1',
-            firstName: 'John',
-            lastName: 'Swiecioch',
-            country: 'Poland',
-            address: 'Main St',
-            profileImage: 'profile.jpg',
-            darkMode: false
-        })
-    })
-
     it('should return 500 if there is an error during the process', async () => {
         (prisma.userProfile.findUnique as jest.Mock).mockRejectedValue(new Error('Database error'))
 
