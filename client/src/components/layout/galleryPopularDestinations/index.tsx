@@ -45,7 +45,7 @@ function GalleryPopularDestinations() {
     <div className="text-center">
       <h2 className="text-2xl font-bold dark:text-font-dark-mode">Popular Destinations</h2>
       <div className="flex justify-center mt-8 max-sm:flex-col max-md:flex-col max-lg:flex-col max-sm:items-center">
-        {!loading ? hotelsData.map((hotel, index) => (
+        {!loading ? hotelsData?.map((hotel, index) => (
           <HotelCard 
             id={hotel.id}
             index={index}

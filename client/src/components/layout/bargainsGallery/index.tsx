@@ -1,9 +1,7 @@
-"use client"
-
 import { getDiscountedRooms } from '@/services/hotelsService';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretLeft, faCaretRight, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faTag } from '@fortawesome/free-solid-svg-icons';
 import { DiscountedRooms } from '@/types/hotelTypes';
 import { useRouter } from 'next/navigation';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -25,34 +23,37 @@ function BargainsGallery() {
 
   const countPrice = (price: number, discount: number) => {
     return price - (price * discount);
-  }
+  };
 
   const router = useRouter();
-  const createSlug = (name: string, id: number) =>{
+  const createSlug = (name: string, id: number) => {
     return `${name.toLowerCase().split(' ').join('-')}-${id}`;
-  }
+  };
 
-  const handleClick = (name: string, id: number, room: number) =>{
-    const slug = createSlug(name, id)
+  const handleClick = (name: string, id: number, room: number) => {
+    const slug = createSlug(name, id);
     router.push(`/hotel/${slug}?room=${room}`);
-  }
+  };
 
   return (
     <Carousel className="w-[65%]">
       <CarouselContent className="-ml-1">
         {data?.map((item: DiscountedRooms, index: number) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3" data-testid="carousel-item">
             <div className="h-full bg-brand-primary rounded-2xl relative dark:bg-brand-primary-dark">
-              <FontAwesomeIcon icon={faTag} className="absolute top-0 left-[4px] text-red-500 z-10 fa fa-tag text-8xl dark:text-red-800"/>
+              <FontAwesomeIcon icon={faTag} className="absolute top-0 left-[4px] text-red-500 z-10 fa fa-tag text-8xl dark:text-red-800" />
               <span className="absolute top-8 left-8 z-20 text-brand-secondary dark:text-font-dark-mode">{`${(item.Rooms[0].discount) * 100}%`}</span>
               <img src={item.images[0].image} alt={item.name} className="w-full h-1/2 rounded-t-2xl" />
               <div className='w-full flex flex-col items-center justify-around h-1/2'>
                 <p className='text-black dark:text-font-dark-mode'>{item.name}, {item.country}</p>
-                <div className="bg-brand-secondary p-8 rounded-2xl cursor-pointer hover:bg-gray-300 transition-all dark:bg-background dark:text-font-dark-mode dark:hover:bg-gray-700" onClick={()=>handleClick(item.name, item.id, item.Rooms[0].id)}>
+                <div
+                  className="bg-brand-secondary p-8 rounded-2xl cursor-pointer hover:bg-gray-300 transition-all dark:bg-background dark:text-font-dark-mode dark:hover:bg-gray-700"
+                  onClick={() => handleClick(item.name, item.id, item.Rooms[0].id)}
+                >
                   <p>{item.Rooms[0].roomNumber}</p>
                   <p>Room perfect for {item.Rooms[0].peopleCapacity} people</p>
                   <p>Old price: <span className="line-through">{item.Rooms[0].priceForPerson}zł</span></p>
-                  <p>New price: {countPrice(item.Rooms[0].priceForPerson, item.Rooms[0].discount)}zł</p>
+                  <p className="new-price">New price: {countPrice(item.Rooms[0].priceForPerson, item.Rooms[0].discount)}zł</p>
                 </div>
               </div>
             </div>

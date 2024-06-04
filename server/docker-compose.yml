@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  db:
+    container_name: db
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bookingDB
+    ports:
+      - "3307:3306"
